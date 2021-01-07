@@ -2,6 +2,7 @@ import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { ROUTES } from "../../consts";
 import style from "./Authentication.module.css";
+import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
 import { useStores } from "../../hooks/useStores";
 import { useObserver } from "mobx-react-lite";
@@ -11,6 +12,15 @@ const Authentication = () => {
   return useObserver(() => (
     <>
       <Switch>
+        <Route exact path={ROUTES.login}>
+          {uiStore.currentUser ? (
+            <Redirect to={ROUTES.home} />
+          ) : (
+            <div className={style.wrapper}>
+              <LoginForm />
+            </div>
+          )}
+        </Route>
         <Route exact path={ROUTES.register}>
           {uiStore.currentUser ? (
             <Redirect to={ROUTES.home} />
@@ -21,8 +31,10 @@ const Authentication = () => {
           )}
         </Route>
         <Route path={ROUTES.home}>
+          {console.log(uiStore.currentUser)}
           {uiStore.currentUser ? (
             <>
+            <p>hello</p>
             </>
           ) : (
             <Redirect to={ROUTES.login} />

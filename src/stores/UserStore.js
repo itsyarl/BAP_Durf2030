@@ -8,6 +8,12 @@ class UserStore {
     this.users = [];
   }
 
+  getUserByEmail = async email => {
+    const result = await this.userService.getUserByEmail(email);
+    console.log(result);
+    return result.data();
+  }
+
   createUser = async user => {
     return await this.userService.createUser(user);
   };
