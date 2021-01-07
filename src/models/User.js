@@ -17,21 +17,4 @@ class User {
 
 }
 
-const userConverter = {
-  toFirestore: function(user) {
-    return {
-      userId: user.id,
-      email: user.email
-    };
-  },
-  fromFirestore: function(snapshot, options) {
-    const data = snapshot.data(options);
-    return new User({
-      email: data.email,
-      id: data.userId
-    });
-  }
-};
-
-export { userConverter };
 export default User;

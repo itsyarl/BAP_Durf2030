@@ -23,7 +23,7 @@ const RegisterForm = () => {
       });
       const result = await uiStore.registerUser(user);
       if (result.uid) {
-        console.log(result);
+        console.log(result.email);
         //gebruiker is correct geregistreerd
         history.push(ROUTES.home);
       } else {

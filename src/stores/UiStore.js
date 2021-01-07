@@ -7,10 +7,6 @@ class UiStore {
     this.currentUser = undefined;
   }
 
-  isRegisteredContact = async user => {
-    return this.authService.isRegistered(user.email);
-  };
-
   onAuthStateChanged = user => {
     if (user) {
       console.log(`De user is ingelogd: ${user.email}`);
@@ -36,35 +32,13 @@ class UiStore {
     }
   };
 
-  loginUser = async user => {
-    //service aanspreken
-    const result = await this.authService.login(user.email, user.password);
-    return result;
-  };
-  logoutUser = async () => {
-    const result = await this.authService.logout();
-    return result;
-  };
   registerUser = async user => {
-    const result = await this.authService.register(
-      user.name,
-      user.email,
-      user.password,
-      user.avatar
-    );
-    const newRegisteredUser = new User({
-      id: result.uid,
-      name: result.displayName,
-      avatar: result.photoURL,
-      store: this.rootStore.userStore,
-      email: result.email
-    });
-    if (result) {
+    if (user) {
       //user toevoegen aan onze users collection
-      this.rootStore.userStore.createUser(newRegisteredUser);
+      this.rootStore.userStore.createUser(user);
     }
 
-    return result;
+    return user;
   };
 
   setCurrentUser(user) {
