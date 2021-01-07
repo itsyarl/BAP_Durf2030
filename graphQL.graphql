@@ -1,0 +1,10 @@
+type Project {
+   title: String!
+   validated: Boolean
+   description: String!
+}
+
+type Query {
+   allProjects: [Project!]
+}
+
