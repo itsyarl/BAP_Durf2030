@@ -14,10 +14,9 @@
 -titel
 -beschrijving
 -samenvatting
--groote
+-grote
 -deelnemers: user_id
 -comments
--ideeën
 -funding
 -rollen
 -locatie

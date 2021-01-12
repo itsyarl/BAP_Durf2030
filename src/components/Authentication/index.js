@@ -7,6 +7,9 @@ import RegisterForm from "./RegisterForm";
 import { useStores } from "../../hooks/useStores";
 import { useObserver } from "mobx-react-lite";
 
+import Sidebar from "../../container/Navigatie/SideNav/Sidebar.js"
+import Home from "../../container/Content";
+
 const Authentication = () => {
   const { uiStore } = useStores();
   return useObserver(() => (
@@ -31,10 +34,10 @@ const Authentication = () => {
           )}
         </Route>
         <Route path={ROUTES.home}>
-          {console.log(uiStore.currentUser)}
           {uiStore.currentUser ? (
             <>
-            <p>hello</p>
+              <Sidebar />
+              <Home />
             </>
           ) : (
             <Redirect to={ROUTES.login} />

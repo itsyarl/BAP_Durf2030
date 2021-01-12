@@ -9,17 +9,20 @@ class UiStore {
     this.userService = new UserService();
   }
 
-  onAuthStateChanged = async (user) => {
+  onAuthStateChanged = (user) => {
     if (user) {
-      console.log(`De user is ingelogd`);
+      console.log(`De user is ingelogd ${user.email}`);
       this.setCurrentUser(
         new User({
-          id: user.uid,
+          id: user.id,
           email: user.email,
           store: this.rootStore.userStore,
         })
-      ); 
+      );
+      //haalt alle projecten op
+      this.rootStore.projectStore.getProjects();
     } else {
+      this.rootStore.projectStore.getProjects();
       console.log(`De user is uitgelogd.`);
       this.rootStore.userStore.empty();
       this.setCurrentUser(undefined);
@@ -29,8 +32,9 @@ class UiStore {
   loginUser = async user => {
     //service aanspreken
     const result = await this.userService.login(user);
-    this.onAuthStateChanged(result);
-    return result;
+    const loggedInUser = await this.userService.getUserByDocument(result.instance.id);
+    this.onAuthStateChanged(loggedInUser.data);
+    return loggedInUser;
   };
 
   registerUser = async user => {

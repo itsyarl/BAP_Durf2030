@@ -33,6 +33,14 @@ class UserService {
     return await client.query(
       q.Paginate(q.Match(q.Index('users_by_email'), email))
     )
+    .catch((error) => console.log('error', error.message))
+  }
+
+  getUserByDocument = async (document) => {
+    return await client.query(
+      q.Get(q.Ref(q.Collection("Users"), `${document}`))
+    )
+    .catch((error) => console.log('error', error.message))
   }
 }
 
