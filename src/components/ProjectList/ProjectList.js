@@ -1,26 +1,19 @@
-import { useObserver } from "mobx-react-lite";
 import React from "react";
 import { useStores } from "../../hooks/useStores";
+import Project from "../../components/Project/Project"
+import { useObserver } from "mobx-react-lite";
 
-const ProjectList = ({project}) => {
-  const { uiStore } = useStores();
-  console.log(uiStore.currentUser);
+const ProjectList = () => {
+  const { projectStore } = useStores();
+  // console.log(projectStore.projects);
   return useObserver(() => (
     <>
-      {uiStore.currentUser.id === project.ownerId ? (
-          <button>Edit</button>
-      ) : (
-          <span>Meer details</span>
-      )}
-      <div>
-        <span>{project.theme}</span>
-        <span>{project.status}</span>
-      </div>
-      <h2>{project.title}</h2>
-      <div>
-        <span>{project.likes}</span>
-        {/* <span>{project.comments.math()}</span> */}
-      </div>
+    {/* {projectStore.projects.map(project => console.log(project))} */}
+    <ul>
+    {projectStore.projects.map(project => (
+      <Project project={project} key={project.id}/>
+    ))}
+    </ul>
     </>
   ));
 };

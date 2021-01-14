@@ -8,7 +8,6 @@ class Project {
     description,
     recap,
     updates = [],
-    comments = [],
     size,
     pic = "",
     participants = [],
@@ -21,10 +20,10 @@ class Project {
     rols = [],
     location,
     status,
+    donationGoal
   }) {
     this.id = id;
     this.title = title;
-    this.comments = comments;
     this.pic = pic;
     if (!pic) {
       this.pic = `https://avatars.dicebear.com/v2/identicon/${this.id}.svg`;
@@ -43,6 +42,7 @@ class Project {
     this.eventData = eventDate;
     this.creationDate = creationDate;
     this.ownerId = ownerId;
+    this.donationGoal = donationGoal;
   }
 
   // linkComment(comment) {

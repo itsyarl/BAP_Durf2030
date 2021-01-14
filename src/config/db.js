@@ -3,17 +3,6 @@ import faunadb from 'faunadb'
 const client = new faunadb.Client({ secret: process.env.REACT_APP_FAUNADB_KEY })
 const q = faunadb.query
 
+// const userClient = new faunadb.Client({secret: process.env.FAUNA_GUEST_SECRET})
 
-// client.query(q.CreateCollection({ name: 'notes' }))
-// .then((ret) => console.log(ret))
-
-// client.query(
-//   q.CreateIndex({
-//     name: 'notes',
-//     source: q.Collection('notes'),
-//   })
-// )
-// .then((ret) => console.log(ret))
-
-
-export { client , q }
+export { client, q }

@@ -34,7 +34,7 @@ class UiStore {
     const result = await this.userService.login(user);
     const loggedInUser = await this.userService.getUserByDocument(result.instance.id);
     this.onAuthStateChanged(loggedInUser.data);
-    return loggedInUser;
+    return result;
   };
 
   registerUser = async user => {

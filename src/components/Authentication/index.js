@@ -8,7 +8,7 @@ import { useStores } from "../../hooks/useStores";
 import { useObserver } from "mobx-react-lite";
 
 import Sidebar from "../../container/Navigatie/SideNav/Sidebar.js"
-import Home from "../../container/Content";
+import Content from "../../container/Content/Content";
 
 const Authentication = () => {
   const { uiStore } = useStores();
@@ -37,7 +37,7 @@ const Authentication = () => {
           {uiStore.currentUser ? (
             <>
               <Sidebar />
-              <Home />
+              <Content />
             </>
           ) : (
             <Redirect to={ROUTES.login} />

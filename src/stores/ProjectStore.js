@@ -13,34 +13,40 @@ class ProjectStore {
   // };
 
   getProjects = async () => {
-    const projects = await this.projectService.getAllProjects();
-    console.log(projects);
-    projects.map(project => this.addProject(project.data));
-    // this.addProject(projects);
+    const results = await this.projectService.getAllProjects();
+    results.map(project => this.addProject(project.data));
+  };
+
+  getProjectById = id => this.projects.find(project =>{
+    const getProject = project.id === id;
+    return getProject;
+  });
+
+  createProject = async project => {
+    //de creationdate instellen
+    project.creationDate = new Date();
+    //owner instellen van het project
+    project.ownerId = this.rootStore.uiStore.currentUser.id;
+    //create project in fauna backend
+    const newProjectRef = await this.projectService.createProject(project);
+    //id juist zetten met de document id van de backend
+    project.id = newProjectRef.id;
+    //de huidige gebruiker toevoegen als member van het project
+    await this.projectService.addMemberToProject(
+      project.id,
+      this.rootStore.uiStore.currentUser
+    );
+    return project;
   };
 
   addProject = project => {
-    // let projectExist = this.projects.findIndex(item => item.id === project.id);
-    // if (projectExist === -1) {
+    console.log(project);
+    let projectExist = this.projects.findIndex(item => item.id === project.id);
+    if (projectExist === -1) {
       this.projects.push(project);
-      // console.log(project)
-    // }
+      // this.projects.map(project=> console.log(project.id));
+    }
   };
-
-  // createGroup = async group => {
-  //   //owner instellen van de groep
-  //   group.ownerId = this.rootStore.uiStore.currentUser.id;
-  //   //create group in firestore backend
-  //   const newGroepRef = await this.groupService.create(group);
-  //   //id juist zetten met de document id van de backend
-  //   group.id = newGroepRef.id;
-  //   //de huidige gebruiker toevoegen als member van de groep
-  //   await this.groupService.addMemberToProject(
-  //     group.id,
-  //     this.rootStore.uiStore.currentUser
-  //   );
-  //   return group;
-  // };
 
   // getGroupById = id => this.groups.find(group => group.id === id);
 

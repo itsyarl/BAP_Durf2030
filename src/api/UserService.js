@@ -1,5 +1,4 @@
 import { client, q } from '../config/db'
-
 class UserService {
 
   createUser = async (user) => { 
@@ -23,7 +22,7 @@ class UserService {
         { password: user.password },
       )
     )
-    .then((response) => {
+    .then((response) => {    
       return response;
     })
     .catch((error) => console.log('error', error.message))

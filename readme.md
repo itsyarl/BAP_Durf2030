@@ -27,7 +27,7 @@
 
 #comments
 -id
--tekst
+-content
 -user_id
 -project_id
 -datum
