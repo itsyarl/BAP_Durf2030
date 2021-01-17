@@ -3,8 +3,10 @@ import style from "./Authentication.module.css";
 import TextInputGroup from "../TextInputGroup";
 import User from "../../models/User";
 import { useStores } from "../../hooks/useStores";
+import { withCookies, useCookies } from "react-cookie";
 
 const LoginForm = () => {
+  const [cookies, setCookie] = useCookies(["userToken"])
   const { userStore, uiStore } = useStores();
 
   const [email, setEmail] = useState("");
@@ -18,7 +20,9 @@ const LoginForm = () => {
       password: password
     });
     const result = await uiStore.loginUser(user);
-    console.log(result);
+    setCookie('userToken', result.secret, {path: '/'});
+    setCookie('userRef', result.instance.id, {path: '/'});
+    console.log(cookies);
   };
 
   return (
@@ -46,4 +50,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default withCookies(LoginForm);
