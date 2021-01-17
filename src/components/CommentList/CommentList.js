@@ -1,4 +1,4 @@
-import React, { useEffect, useState }from "react";
+import React, { useEffect }from "react";
 
 import Comment from "../Comment/Comment";
 import CommentForm from "../CommentForm/CommentForm";
@@ -10,15 +10,12 @@ import { useParams } from "react-router-dom";
 
 const CommentList = () => {
   const { id } = useParams();
-  const { projectStore, commentStore } = useStores();
-  const project = projectStore.getProjectById(id);
-  const [comments, setComments] = useState();
+  const { commentStore } = useStores();
+  // const project = projectStore.getProjectById(id);
 
   useEffect(() => {
     const getComments = async () => {
-      const comments = await commentStore.getCommentsByProjectId(id);
-      // console.log(comments);
-      setComments(comments);
+      await commentStore.getCommentsByProjectId(id);
     }
     getComments();
   }, [commentStore, id])
@@ -30,19 +27,14 @@ const CommentList = () => {
     // }
     return (
       <>
-        <header>
-          {project && (
-            <>
-              <h3>{project.name}</h3>
-            </>
-          )}
-        </header>
         <ul>
         {commentStore.comments ? (
-          // <span>comments</span>
-          commentStore.comments.map(comment => (
-            <Comment comment={comment} key={comment.id} />
-          ))
+          <>
+            <h3>comments</h3>
+            {commentStore.comments.map(comment => (
+              <Comment comment={comment} key={comment.id} />
+            ))}
+          </>
         ) : (
           <span>loading</span>
         )}

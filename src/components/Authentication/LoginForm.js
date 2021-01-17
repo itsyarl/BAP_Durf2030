@@ -21,6 +21,7 @@ const LoginForm = () => {
     });
     const result = await uiStore.loginUser(user);
     setCookie('userToken', result.secret, {path: '/'});
+    setCookie('userRef', result.instance.id, {path: '/'});
     console.log(cookies);
   };
 

@@ -9,6 +9,12 @@ class UiStore {
     this.userService = new UserService();
   }
 
+  logoutUser = async () => {
+    const result = await this.userService.logout();
+    await this.onAuthStateChanged();
+    return result;
+  };
+
   onAuthStateChanged = (user) => {
     if (user) {
       console.log(`De user is ingelogd ${user.email}`);
@@ -28,6 +34,12 @@ class UiStore {
       this.setCurrentUser(undefined);
     }
   };
+
+  getUserByDocument = async user => {
+    console.log(user)
+    const loggedInUser = await this.userService.getUserByDocument(user);
+    this.onAuthStateChanged(loggedInUser);
+  }
 
   loginUser = async user => {
     //service aanspreken

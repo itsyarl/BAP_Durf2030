@@ -1,8 +1,9 @@
 import React from "react";
-
+import { withCookies } from "react-cookie";
 import Authentication from "./components/Authentication";
 
 function App() {
+  // Authorization: Bearer ;
   return (
     <>
       <Authentication/>
@@ -10,4 +11,4 @@ function App() {
   );
 }
 
-export default App;
+export default withCookies(App);

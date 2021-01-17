@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useStores } from "../../hooks/useStores";
+// import { useStores } from "../../hooks/useStores";
 
 const Comment = ({comment}) => {
   // console.log(comment);

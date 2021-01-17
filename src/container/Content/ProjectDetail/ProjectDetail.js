@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useStores } from "../../../hooks/useStores";
 import CommentList from "../../../components/CommentList/CommentList"
 
+
 const GroupDetail = () => {
   const { id } = useParams();
   const { projectStore } = useStores();
@@ -23,5 +24,6 @@ const GroupDetail = () => {
     </>
   );
 };
+
 
 export default GroupDetail;

@@ -1,4 +1,5 @@
-import { client, q } from '../config/db'
+import { client, q } from '../config/db';
+import faunadb from 'faunadb';
 class UserService {
 
   createUser = async (user) => { 
@@ -40,6 +41,21 @@ class UserService {
       q.Get(q.Ref(q.Collection("Users"), `${document}`))
     )
     .catch((error) => console.log('error', error.message))
+  }
+
+  checkLoggedIn = async (userKey) => {
+    const token = new faunadb.Client({ secret: userKey })
+    return await token.query(
+      q.HasCurrentToken()
+    )
+    .catch((err) => console.error('Error: %s', err))
+  }
+
+  logout = async (userKey) => {
+    // const token = new faunadb.Client({ secret: userKey })
+    return await client.query(
+      q.Logout(true)
+    )
   }
 }
 

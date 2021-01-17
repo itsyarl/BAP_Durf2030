@@ -7,6 +7,7 @@ import ProjectList from "../../components/ProjectList/ProjectList"
 
 const Content = ({ token }) => {
   return (
+    <>
     <section>
       <Switch>
         <Route path={ROUTES.projectDetail.path}>
@@ -20,6 +21,7 @@ const Content = ({ token }) => {
         </Route>
       </Switch>
     </section>
+    </>
   );
 };
 

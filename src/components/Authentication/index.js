@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { ROUTES } from "../../consts";
 import style from "./Authentication.module.css";
@@ -9,11 +9,31 @@ import { useObserver } from "mobx-react-lite";
 
 import Sidebar from "../../container/Navigatie/SideNav/Sidebar.js"
 import Content from "../../container/Content/Content";
+import Header from "../Header/Header";
+import { Cookies, withCookies } from "react-cookie";
 
 const Authentication = () => {
-  const { uiStore } = useStores();
+  const { userStore, uiStore } = useStores();
+
+  const cookies = new Cookies();
+  const userToken = cookies.get("userToken");
+  const userRef = cookies.get("userRef");
+  // const [state, setState] = useState("");
+
+  useEffect(() => {
+    const getUserState = async () => {
+      const state = await userStore.checkLoggedIn(userToken);
+      if(state === true){
+        await uiStore.getUserByDocument(userRef);
+      }
+
+    }
+    getUserState();
+  }, [userStore, userToken, uiStore, userRef])
+
   return useObserver(() => (
     <>
+      <Header />
       <Switch>
         <Route exact path={ROUTES.login}>
           {uiStore.currentUser ? (
@@ -48,4 +68,4 @@ const Authentication = () => {
   ));
 };
 
-export default Authentication;
+export default withCookies(Authentication);
