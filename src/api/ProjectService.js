@@ -26,11 +26,30 @@ class ProjectService {
     .catch((error) => console.log('error', error.message))
   }
 
-  getAllProjects = async () => {
+  approveProject = async (id) => {
+    await client.query(
+      q.Update(
+        q.Ref(q.Collection('Project'), q.Get(q.Match(
+          q.Index("project_by_id"), id
+        ))
+      ),
+        {
+          data: {
+            validated: true,
+          },
+        },
+      )
+    )
+    // .then((ret) => console.log(ret))
+    // .catch((err) => console.error('Error: %s', err))
+  }
+
+
+  getValidatedProjects = async (state) => {
     return await client.query(
       q.Paginate(
         q.Match(
-          q.Ref('indexes/allProjects')))
+          q.Index('validated_projects'), state))
     )
     //collect en return data van de response
       .then((response) => {

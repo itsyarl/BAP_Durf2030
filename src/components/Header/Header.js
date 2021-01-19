@@ -27,8 +27,8 @@ const Header = () => {
     <div>
       <p>tekst</p>
       <button onClick={handleLogout}>
-            Logout
-          </button>
+        Logout
+      </button>
     </div>
   );
 };
