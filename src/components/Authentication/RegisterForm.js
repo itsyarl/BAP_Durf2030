@@ -9,6 +9,7 @@ import { ROUTES } from "../../consts";
 const RegisterForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassWord] = useState("");
+  const [name, setName] = useState("");
 
   const { uiStore, userStore } = useStores();
   const history = useHistory();
@@ -17,9 +18,11 @@ const RegisterForm = () => {
     e.preventDefault();
     if (password) {
       const user = new User({
+        admin: false,
         email: email,
         store: userStore,
-        password: password
+        password: password,
+        name: name,
       });
       const result = await uiStore.registerUser(user);
       if (result.uid) {
@@ -51,6 +54,14 @@ const RegisterForm = () => {
           placeholder="Fill in your password."
           value={password}
           onChange={e => setPassWord(e.currentTarget.value)}
+        />
+        <TextInputGroup
+          label="name"
+          type="name"
+          name="name"
+          placeholder="Fill in your name."
+          value={name}
+          onChange={e => setName(e.currentTarget.value)}
         />
         <input type="submit" value="Register" className={style.button} />
       </form>

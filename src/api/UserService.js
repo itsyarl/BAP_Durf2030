@@ -40,6 +40,9 @@ class UserService {
     return await client.query(
       q.Get(q.Ref(q.Collection("Users"), `${document}`))
     )
+    .then((response) => {    
+      return response.data;
+    })
     .catch((error) => console.log('error', error.message))
   }
 

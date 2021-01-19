@@ -4,7 +4,7 @@ import { useStores } from "../../../hooks/useStores";
 import CommentList from "../../../components/CommentList/CommentList"
 
 
-const GroupDetail = () => {
+const ProjectDetail = () => {
   const { id } = useParams();
   const { projectStore } = useStores();
   const project = projectStore.getProjectById(id);
@@ -26,4 +26,4 @@ const GroupDetail = () => {
 };
 
 
-export default GroupDetail;
+export default ProjectDetail;

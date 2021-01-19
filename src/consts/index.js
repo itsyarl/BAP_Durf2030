@@ -3,7 +3,8 @@ const ROUTES = {
   login: "/login",
   register: "/register",
   projectDetail: { path: "/:id", to: "/" },
-  addProject: "/addProject"
+  addProject: "/addProject",
+  admin: "/admin"
 };
 
 export { ROUTES };

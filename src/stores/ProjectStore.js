@@ -6,27 +6,36 @@ class ProjectStore {
     this.rootStore = rootStore;
     this.projectService = new ProjectService();
     this.projects = [];
+    this.validated = [];
   }
 
   // addContactToGroup = async (contact, group) => {
   //   return await this.groupService.addMemberToGroup(group.id, contact);
   // };
 
-  getProjects = async () => {
-    const results = await this.projectService.getAllProjects();
-    results.map(project => this.addProject(project.data));
-  };
+  // getProjects = async () => {
+  //   const results = await this.projectService.getAllProjects();
+  //   results.map(project => this.addProject(project.data));
+  // };
 
   getProjectById = id => this.projects.find(project =>{
     const getProject = project.id === id;
     return getProject;
   });
 
+  getValidatedProjects = async (state) => {
+    const results = await this.projectService.getValidatedProjects(state);
+    results.map(project => this.addProject(project.data));
+  } 
+
   createProject = async project => {
+    //validation installen als false op het moment dat je een project maakt
+    project.validated = false;
     //de creationdate instellen
     project.creationDate = new Date();
     //owner instellen van het project
     project.ownerId = this.rootStore.uiStore.currentUser.id;
+    project.creatorName = this.rootStore.uiStore.currentUser.name;
     //create project in fauna backend
     const newProjectRef = await this.projectService.createProject(project);
     //id juist zetten met de document id van de backend
@@ -38,6 +47,10 @@ class ProjectStore {
     );
     return project;
   };
+
+  approveProject = async id => {
+    await this.projectService.approveProject(id);
+  }
 
   addProject = project => {
     console.log(project);
@@ -54,9 +67,9 @@ class ProjectStore {
   //   group.linkUser(user);
   // };
 
-  // empty() {
-  //   this.groups = [];
-  // }
+  empty() {
+    this.projects = [];
+  }
 
 }
 decorate(ProjectStore, {

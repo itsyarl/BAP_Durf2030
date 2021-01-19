@@ -21,14 +21,20 @@ class UiStore {
       this.setCurrentUser(
         new User({
           id: user.id,
+          admin: user.admin,
           email: user.email,
           store: this.rootStore.userStore,
         })
       );
       //haalt alle projecten op
-      this.rootStore.projectStore.getProjects();
+      if (user.admin === true) {
+        this.rootStore.projectStore.getValidatedProjects(false);
+      } else {
+        this.rootStore.projectStore.getValidatedProjects(true);
+      }
     } else {
-      this.rootStore.projectStore.getProjects();
+      this.rootStore.projectStore.empty();
+      // this.rootStore.projectStore.getProjects();
       console.log(`De user is uitgelogd.`);
       this.rootStore.userStore.empty();
       this.setCurrentUser(undefined);
@@ -38,6 +44,7 @@ class UiStore {
   getUserByDocument = async user => {
     console.log(user)
     const loggedInUser = await this.userService.getUserByDocument(user);
+    console.log(loggedInUser);
     this.onAuthStateChanged(loggedInUser);
   }
 

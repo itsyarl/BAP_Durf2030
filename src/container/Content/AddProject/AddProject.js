@@ -8,7 +8,6 @@ import { useStores } from "../../../hooks/useStores";
 const AddProject = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [recap, setRecap] = useState("");
   const [location, setLocation] = useState("");
   const [donationGoal, setDonationGoal] = useState("");
   const [theme, setTheme] = useState("");
@@ -19,7 +18,7 @@ const AddProject = () => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    const p = new Project({ title, description, recap, store: projectStore, theme, eventDate, donationGoal, location });
+    const p = new Project({ title, description, store: projectStore, theme, eventDate, donationGoal, location });
     try {
       const newProject = await projectStore.createProject(p);
       console.log(newProject);
@@ -48,15 +47,6 @@ const AddProject = () => {
               type="text"
               value={description}
               onChange={e => setDescription(e.target.value)}
-            />
-          </label>
-
-          <label>
-            <span>Samenvatting</span>
-            <input
-              type="text"
-              value={recap}
-              onChange={e => setRecap(e.target.value)}
             />
           </label>
 

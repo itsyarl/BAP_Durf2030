@@ -1,4 +1,4 @@
-import { decorate, observable, action, computed } from "mobx";
+import { decorate, observable, action } from "mobx";
 import { v4 } from "uuid";
 
 class Project {
@@ -6,10 +6,10 @@ class Project {
     id = v4(),
     title,
     description,
-    recap,
     updates = [],
     size,
     pic = "",
+    creatorName,
     participants = [],
     store,
     ownerId,
@@ -19,6 +19,7 @@ class Project {
     likes,
     rols = [],
     location,
+    validated,
     status,
     donationGoal
   }) {
@@ -30,7 +31,6 @@ class Project {
     }
     this.location = location;
     this.size = size;
-    this.recap = recap;
     this.description = description;
     this.updates = updates;
     this.participants = participants;
@@ -41,8 +41,10 @@ class Project {
     this.status = status;
     this.eventData = eventDate;
     this.creationDate = creationDate;
+    this.validated = validated;
     this.ownerId = ownerId;
     this.donationGoal = donationGoal;
+    this.creatorName = creatorName; 
   }
 
   // linkComment(comment) {
@@ -50,19 +52,15 @@ class Project {
   // }
 
   // linkUser(user) {
-  //   !this.users.includes(user) && this.users.push(user);
-  //   !user.groups.includes(user) && user.linkGroup(this);
+  //   !this.user.includes(user) && this.user= `user`);
+  //   !user.projects.includes(user) && user.linkProject(this);
   // }
 }
 
 decorate(Project, {
   messages: observable,
   users: observable,
-  addMessage: action,
-  unreadLength: computed,
-  lastMessageContent: computed,
   linkUser: action,
-  linkMessage: action
 });
 
 /*END */

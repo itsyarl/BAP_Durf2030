@@ -9,7 +9,7 @@ const CommentForm = () => {
   const { uiStore, projectStore, commentStore } = useStores();
   const { id } = useParams();
 
-  const handleFormSubmit = e => {
+  const handleFormSubmit = async e => {
     e.preventDefault();
     if (content !== "") {
       const project = projectStore.getProjectById(id);
@@ -18,7 +18,8 @@ const CommentForm = () => {
         userId: uiStore.currentUser.id,
         projectId: project.id
       });
-      commentStore.createComment(newComment);
+      await commentStore.createComment(newComment);
+      await commentStore.getCommentsByProjectId(id);
       setContent("");
     }
   };

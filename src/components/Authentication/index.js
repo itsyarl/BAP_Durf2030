@@ -26,9 +26,8 @@ const Authentication = () => {
       if(state === true){
         await uiStore.getUserByDocument(userRef);
       }
-
     }
-    getUserState();
+      getUserState();
   }, [userStore, userToken, uiStore, userRef])
 
   return useObserver(() => (
