@@ -22,6 +22,10 @@ class UserStore {
     this.users = [];
   }
 
+  checkLoggedIn = async (userKey) => {
+    return await this.userService.checkLoggedIn(userKey);
+  } 
+
 }
 
 decorate(UserStore, {

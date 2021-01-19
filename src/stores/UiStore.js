@@ -9,27 +9,43 @@ class UiStore {
     this.userService = new UserService();
   }
 
-  onAuthStateChanged = async (user) => {
+  logoutUser = async () => {
+    const result = await this.userService.logout();
+    await this.onAuthStateChanged();
+    return result;
+  };
+
+  onAuthStateChanged = (user) => {
     if (user) {
-      console.log(`De user is ingelogd`);
+      console.log(`De user is ingelogd ${user.email}`);
       this.setCurrentUser(
         new User({
-          id: user.uid,
+          id: user.id,
           email: user.email,
           store: this.rootStore.userStore,
         })
-      ); 
+      );
+      //haalt alle projecten op
+      this.rootStore.projectStore.getProjects();
     } else {
+      this.rootStore.projectStore.getProjects();
       console.log(`De user is uitgelogd.`);
       this.rootStore.userStore.empty();
       this.setCurrentUser(undefined);
     }
   };
 
+  getUserByDocument = async user => {
+    console.log(user)
+    const loggedInUser = await this.userService.getUserByDocument(user);
+    this.onAuthStateChanged(loggedInUser);
+  }
+
   loginUser = async user => {
     //service aanspreken
     const result = await this.userService.login(user);
-    this.onAuthStateChanged(result);
+    const loggedInUser = await this.userService.getUserByDocument(result.instance.id);
+    this.onAuthStateChanged(loggedInUser.data);
     return result;
   };
 

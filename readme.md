@@ -14,10 +14,9 @@
 -titel
 -beschrijving
 -samenvatting
--groote
+-grote
 -deelnemers: user_id
 -comments
--ideeën
 -funding
 -rollen
 -locatie
@@ -28,7 +27,7 @@
 
 #comments
 -id
--tekst
+-content
 -user_id
 -project_id
 -datum
