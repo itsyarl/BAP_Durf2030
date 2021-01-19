@@ -6,6 +6,7 @@ const ProjectAdmin = ({project}) => {
 
   const handleApprove = async e => {
     e.preventDefault();
+    // const projectRef = await projectStore.getProjectById();
     await projectStore.approveProject(project.id);
   };
 

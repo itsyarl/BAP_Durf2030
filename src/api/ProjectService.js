@@ -27,21 +27,23 @@ class ProjectService {
   }
 
   approveProject = async (id) => {
+  
+    //Volledig document ophalen door id
+    const object = await client.query(
+      q.Get(
+        q.Match(q.Index('project_by_id'), id)
+      )
+    );
+    // referentie van document ophalen
+    const ref = object.ref.id;
+    //document updaten
     await client.query(
       q.Update(
-        q.Ref(q.Collection('Project'), q.Get(q.Match(
-          q.Index("project_by_id"), id
-        ))
-      ),
-        {
-          data: {
-            validated: true,
-          },
-        },
+        q.Ref(q.Collection('Project'), ref),
+        { data: { validated: true } },
       )
     )
-    // .then((ret) => console.log(ret))
-    // .catch((err) => console.error('Error: %s', err))
+    .catch((err) => console.error('Error: %s', err))
   }
 
 
