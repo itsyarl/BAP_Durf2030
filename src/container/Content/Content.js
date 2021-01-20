@@ -1,11 +1,17 @@
 import React from "react";
-import { Switch, Route, Link } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import { ROUTES } from "../../consts";
 import ProjectDetail from "./ProjectDetail/ProjectDetail";
 import AddProject from "./AddProject/AddProject";
-import ProjectList from "../../components/ProjectList/ProjectList"
 import { useStores } from "../../hooks/useStores";
 import Admin from "./Admin/Admin";
+import Home from "./Home/Home";
+import Acount from "./Acount/Acount";
+import DataProject from "./DataProject/DataProject"
+import EditProject from "./EditProject/EditProject"
+import Funding from "./Funding/Funding"
+import Guide from "./Guide/Guide"
+import Kalender from "./Kalender/Kalender"
 
 const Content = ({ token }) => {
   const { uiStore } = useStores();
@@ -13,8 +19,32 @@ const Content = ({ token }) => {
     <>
       <section>
         <Switch>
-          <Route exact path={ROUTES.addProject}>
+          <Route path={ROUTES.addProject}>
             <AddProject />
+          </Route>
+
+          <Route path={ROUTES.guide}>
+            <Guide />
+          </Route>
+
+          <Route path={ROUTES.kalender}>
+            <Kalender />
+          </Route>
+
+          <Route path={ROUTES.acount}>
+            <Acount />
+          </Route>
+
+          <Route path={ROUTES.dataProject.path}>
+            <DataProject />
+          </Route>
+
+          <Route path={ROUTES.editProject.path}>
+            <EditProject />
+          </Route>
+
+          <Route path={ROUTES.funding.path}>
+            <Funding />
           </Route>
 
           <Route path={ROUTES.projectDetail.path}>
@@ -25,12 +55,7 @@ const Content = ({ token }) => {
             {uiStore.currentUser.admin === true ? (
               <Admin />
             ) : (
-              <>
-                <ProjectList token={token} />
-                <Link to={ROUTES.addProject}>
-                  <span>Addproject</span>
-                </Link>
-              </>
+              <Home/>
             )}
           </Route>
         </Switch>

@@ -61,6 +61,46 @@ const Authentication = () => {
           )}
         </Route>
 
+        <Route path={ROUTES.projectDetail.path}>
+          {uiStore.currentUser ? (
+              <Content />
+          ) : (
+            <Redirect to={ROUTES.login} />
+          )}
+        </Route>
+
+        <Route path={ROUTES.acountUser.path}>
+          {uiStore.currentUser ? (
+              <Content />
+          ) : (
+            <Redirect to={ROUTES.login} />
+          )}
+        </Route>
+
+        <Route path={ROUTES.dataProject.path}>
+          {uiStore.currentUser ? (
+              <Content />
+          ) : (
+            <Redirect to={ROUTES.login} />
+          )}
+        </Route>
+
+        <Route path={ROUTES.editProject.path}>
+          {uiStore.currentUser ? (
+              <Content />
+          ) : (
+            <Redirect to={ROUTES.login} />
+          )}
+        </Route>
+
+        <Route path={ROUTES.funding.path}>
+          {uiStore.currentUser ? (
+              <Content />
+          ) : (
+            <Redirect to={ROUTES.login} />
+          )}
+        </Route>
+
         <Route path={ROUTES.addProject}>
           {uiStore.currentUser ? (
               <Content />
@@ -69,7 +109,37 @@ const Authentication = () => {
           )}
         </Route>
 
+        <Route path={ROUTES.admin}>
+          {uiStore.currentUser ? (
+              <Content />
+          ) : (
+            <Redirect to={ROUTES.login} />
+          )}
+        </Route>
 
+        <Route path={ROUTES.acount}>
+          {uiStore.currentUser ? (
+              <Content />
+          ) : (
+            <Redirect to={ROUTES.login} />
+          )}
+        </Route>
+
+        <Route path={ROUTES.guide}>
+          {uiStore.currentUser ? (
+              <Content />
+          ) : (
+            <Redirect to={ROUTES.login} />
+          )}
+        </Route>
+
+        <Route path={ROUTES.kalender}>
+          {uiStore.currentUser ? (
+              <Content />
+          ) : (
+            <Redirect to={ROUTES.login} />
+          )}
+        </Route>
       </Switch>
     </>
   ));
