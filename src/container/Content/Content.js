@@ -1,35 +1,40 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Link } from "react-router-dom";
 import { ROUTES } from "../../consts";
-import ProjectDetail from "./ProjectDetail/ProjectDetail.js";
-import AddProject from "./AddProject/AddProject.js";
+import ProjectDetail from "./ProjectDetail/ProjectDetail";
+import AddProject from "./AddProject/AddProject";
 import ProjectList from "../../components/ProjectList/ProjectList"
 import { useStores } from "../../hooks/useStores";
-import Admin from "./Admin/Admin.js";
+import Admin from "./Admin/Admin";
 
 const Content = ({ token }) => {
   const { uiStore } = useStores();
   return (
     <>
-    <section>
-      <Switch>
-        <Route path={ROUTES.projectDetail.path}>
-          <ProjectDetail token={token} />
-        </Route>
+      <section>
+        <Switch>
+          <Route exact path={ROUTES.addProject}>
+            <AddProject />
+          </Route>
 
-        <Route path={ROUTES.addProject}>
-          <AddProject />
-        </Route>
+          <Route path={ROUTES.projectDetail.path}>
+            <ProjectDetail token={token} />
+          </Route>
 
-        <Route path={ROUTES.home}>
-          {uiStore.currentUser.admin === true ? (
-            <Admin />
-          ) : (
-            <ProjectList token={token} />
-          )}
-        </Route>
-      </Switch>
-    </section>
+          <Route exact strict path={ROUTES.home}>
+            {uiStore.currentUser.admin === true ? (
+              <Admin />
+            ) : (
+              <>
+                <ProjectList token={token} />
+                <Link to={ROUTES.addProject}>
+                  <span>Addproject</span>
+                </Link>
+              </>
+            )}
+          </Route>
+        </Switch>
+      </section>
     </>
   );
 };

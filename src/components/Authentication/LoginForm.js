@@ -3,6 +3,8 @@ import style from "./Authentication.module.css";
 import TextInputGroup from "../TextInputGroup";
 import User from "../../models/User";
 import { useStores } from "../../hooks/useStores";
+import { Link } from "react-router-dom";
+import { ROUTES } from "../../consts";
 import { withCookies, useCookies } from "react-cookie";
 
 const LoginForm = () => {
@@ -45,6 +47,9 @@ const LoginForm = () => {
           onChange={e => setPassword(e.currentTarget.value)}
         />
         <input type="submit" value="Login" className={style.button} />
+        <Link className={`${style.button} ${style.button__signin}`} to={ROUTES.register}>
+          <span>Sign up</span>
+        </Link>
       </form>
     </div>
   );
