@@ -7,9 +7,8 @@ import RegisterForm from "./RegisterForm";
 import { useStores } from "../../hooks/useStores";
 import { useObserver } from "mobx-react-lite";
 
-import Sidebar from "../../container/Navigatie/SideNav/Sidebar.js"
 import Content from "../../container/Content/Content";
-import Header from "../Header/Header";
+import Header from "../Logout/Header";
 import { Cookies, withCookies } from "react-cookie";
 
 const Authentication = () => {
@@ -43,6 +42,7 @@ const Authentication = () => {
             </div>
           )}
         </Route>
+
         <Route exact path={ROUTES.register}>
           {uiStore.currentUser ? (
             <Redirect to={ROUTES.home} />
@@ -52,16 +52,24 @@ const Authentication = () => {
             </div>
           )}
         </Route>
+        
         <Route path={ROUTES.home}>
           {uiStore.currentUser ? (
-            <>
-              <Sidebar />
               <Content />
-            </>
           ) : (
             <Redirect to={ROUTES.login} />
           )}
         </Route>
+
+        <Route path={ROUTES.addProject}>
+          {uiStore.currentUser ? (
+              <Content />
+          ) : (
+            <Redirect to={ROUTES.login} />
+          )}
+        </Route>
+
+
       </Switch>
     </>
   ));
