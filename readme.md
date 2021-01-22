@@ -1,6 +1,6 @@
-##models
+## models
 
-#users
+# users
 -id
 -naam/bedrijf
 -profielfoto
@@ -8,7 +8,7 @@
 -professional : true / false
 -projects: project_id
 
-#projects
+# projects
 -id
 -likes
 -titel
@@ -25,7 +25,7 @@
 -status
 -updates
 
-#comments
+# comments
 -id
 -content
 -user_id
@@ -33,19 +33,19 @@
 -datum
 -idee: true / false
 
-#rollen
+# rollen
 -id
 -name
 -user_id
 -project_id
 
-#funding
+# funding
 -naam
 -amount
 -project_id
 -id
 
-#updates
+# updates
 -tekst
 -datum
 -user_id
