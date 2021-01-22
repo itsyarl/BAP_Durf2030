@@ -1,8 +1,8 @@
-import { action, computed, decorate, observable } from "mobx";
+import { decorate } from "mobx";
 import { v4 } from "uuid";
 
 class Comment {
-  constructor({ id = v4(), content, userId, projectId, timestamp, idea = false }) {
+  constructor({ id = v4(), projectId, content, userId, timestamp }) {
     // if (!projectId) {
     //   throw new Error("A Comment must have a project");
     // }
@@ -20,18 +20,11 @@ class Comment {
     // this.group.linkComment(this);
     // this.user.linkComment(this);
     this.timestamp = timestamp;
-    this.idea = idea;
   }
 }
 
 decorate(Comment, {
-  messages: observable,
-  users: observable,
-  addMessage: action,
-  unreadLength: computed,
-  lastMessageContent: computed,
-  linkUser: action,
-  linkMessage: action
+
 });
 
 export default Comment;

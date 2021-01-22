@@ -23,6 +23,9 @@ const Project = ({project}) => {
           <h2>{project.title}</h2>
           <div>
             <span>{project.likes}</span>
+            {project.participants.map(participant => (
+              <span key={participant.id} >{participant.name}</span>
+            ))}
             {/* <span>{project.comments.math()}</span> */}
           </div>
         </Link>

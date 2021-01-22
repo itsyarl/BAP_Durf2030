@@ -33,34 +33,37 @@ class Project {
     this.size = size;
     this.description = description;
     this.updates = updates;
-    this.participants = participants;
     this.rols = rols;
     this.theme = theme;
     this.likes = likes
-    this.store = store;
     this.status = status;
     this.eventData = eventDate;
+    this.participants = participants;
     this.creationDate = creationDate;
     this.validated = validated;
     this.ownerId = ownerId;
     this.donationGoal = donationGoal;
     this.creatorName = creatorName; 
+    this.store = store;
+    // this.participants.forEach(participant => {
+    //   participant.linkParticipant(this);
+    // });
   }
 
   // linkComment(comment) {
   //   !this.comments.includes(comment) && this.comments.push(comment);
   // }
 
-  // linkUser(user) {
-  //   !this.user.includes(user) && this.user= `user`);
-  //   !user.projects.includes(user) && user.linkProject(this);
-  // }
+  linkParticipant(participant) {
+    !this.participants.includes(participant) && this.participants.push(participant);
+    !participant.projects.includes(participant) && participant.linkProject(this);
+  }
 }
 
 decorate(Project, {
   messages: observable,
   users: observable,
-  linkUser: action,
+  linkParticipant: action,
 });
 
 /*END */

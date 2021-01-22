@@ -9,7 +9,11 @@ class UserService {
         {
           credentials: { password: user.password },
           data: {
+            id: user.id,
+            admin: user.admin,
+            name: user.name,
             email: user.email,
+            projects: []
           },
         }
       )

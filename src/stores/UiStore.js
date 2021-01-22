@@ -15,7 +15,7 @@ class UiStore {
     return result;
   };
 
-  onAuthStateChanged = (user) => {
+  onAuthStateChanged = user => {
     if (user) {
       console.log(`De user is ingelogd ${user.email}`);
       this.setCurrentUser(
@@ -26,6 +26,7 @@ class UiStore {
           store: this.rootStore.userStore,
         })
       );
+
       //haalt alle projecten op
       if (user.admin === true) {
         this.rootStore.projectStore.getValidatedProjects(false);
@@ -42,9 +43,7 @@ class UiStore {
   };
 
   getUserByDocument = async user => {
-    console.log(user)
     const loggedInUser = await this.userService.getUserByDocument(user);
-    console.log(loggedInUser);
     this.onAuthStateChanged(loggedInUser);
   }
 

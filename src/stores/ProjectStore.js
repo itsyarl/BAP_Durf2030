@@ -6,7 +6,6 @@ class ProjectStore {
     this.rootStore = rootStore;
     this.projectService = new ProjectService();
     this.projects = [];
-    this.validated = [];
   }
 
   // addContactToGroup = async (contact, group) => {
@@ -18,14 +17,19 @@ class ProjectStore {
   //   results.map(project => this.addProject(project.data));
   // };
 
-  getProjectById = id => this.projects.find(project =>{
-    const getProject = project.id === id;
-    return getProject;
-  });
+  getProjectById = id => {
+    this.getComments(id);
+    //find project
+    return this.projects.find(project => project.id === id);
+  }
+
+  getComments = async id => {
+    //get comments
+    await this.rootStore.commentStore.getCommentsByProjectId(id);
+  }
 
   getValidatedProjects = async (state) => {
-    const results = await this.projectService.getValidatedProjects(state);
-    results.map(project => this.addProject(project.data));
+    await this.projectService.getValidatedProjects(state, this.addProject);
   } 
 
   createProject = async project => {
@@ -48,18 +52,25 @@ class ProjectStore {
     return project;
   };
 
+  getUsers = async projectId => {
+    return await this.projectService.getUsersInProject(projectId);
+  }
+
   approveProject = async id => {
     await this.projectService.approveProject(id);
   }
 
   addProject = project => {
-    console.log(project);
     let projectExist = this.projects.findIndex(item => item.id === project.id);
     if (projectExist === -1) {
       this.projects.push(project);
-      // this.projects.map(project=> console.log(project.id));
     }
   };
+
+  addParticipantToProject = async(id) => {
+    const user = this.rootStore.uiStore.currentUser; 
+    await this.projectService.addParticpantToProject(user, id);
+  }
 
   // getGroupById = id => this.groups.find(group => group.id === id);
 

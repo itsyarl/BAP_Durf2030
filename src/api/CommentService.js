@@ -1,4 +1,5 @@
-import { client, q } from '../config/db'
+import { client, q } from '../config/db';
+import Comment from '../models/Comment'
 
 class CommentService {
   // constructor() {
@@ -18,8 +19,7 @@ class CommentService {
           projectId: comment.projectId,
           content: comment.content,
           userId: comment.userId,
-          timestamp: comment.timestamp,
-          idea: false,
+          timestamp: comment.timestamp
         } },
       )
     )
@@ -139,19 +139,32 @@ class CommentService {
 //     this.subscriptionsByRef = {}
 //   }
 
-getCommentByProjectId = async id => {
+getCommentByProjectId = async (id, onChange) => {
   return await client.query(
       q.Paginate(
         q.Match(
           q.Ref('indexes/comment_by_project'), id)),
   )
-  .then((response) => {
+  .then(async (response) => {
     const productRefs = response.data
     const getAllProductDataQuery = productRefs.map((ref) => {
       return q.Get(ref)
     })
-    // query the refs
-    return client.query(getAllProductDataQuery).then((data) => data);
+    
+    await client.query(getAllProductDataQuery).then((comments) => {
+      comments.forEach(async comment => {
+        //comments als model invoegen
+        const commentObj = new Comment({
+          id: comment.data.id,
+          projectId: comment.data.projectId,
+          content: comment.data.content,
+          userId: comment.data.userId,
+          from: comment.data.from,
+          timestamp: comment.data.timestamp,
+        });
+        onChange(commentObj);
+      })
+    });
   })
   .catch((error) => console.log('error', error.message))
 }

@@ -12,14 +12,16 @@ const CommentForm = () => {
   const handleFormSubmit = async e => {
     e.preventDefault();
     if (content !== "") {
-      const project = projectStore.getProjectById(id);
       const newComment = new Comment({
+        projectId: id,
         content,
         userId: uiStore.currentUser.id,
-        projectId: project.id
+        from: uiStore.currentUser.name
+        // timestamp
       });
+      console.log(newComment);
       await commentStore.createComment(newComment);
-      await commentStore.getCommentsByProjectId(id);
+      await projectStore.getProjectById(id);
       setContent("");
     }
   };

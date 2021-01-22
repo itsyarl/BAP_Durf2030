@@ -15,12 +15,20 @@ class CommentStore {
   };
 
   getCommentsByProjectId = async (id) => {
-    await this.empty();
-    const comments = await this.commentService.getCommentByProjectId(id);
-    return await comments.map(comment => {
-      this.comments.push(comment.data);
-      return comment.data;
-    })
+    this.empty();
+    await this.commentService.getCommentByProjectId(id, this.addComments);
+    // return await comments.map(comment => {
+    //   this.comments.push(comment.data);
+    //   return comment.data;
+    // })
+  }
+
+  addComments = comment => {
+    let commentExist = this.comments.findIndex(item => item.id === comment.id);
+    if (commentExist === -1) {
+      this.comments.push(comment);
+      // this.projects.map(project=> console.log(project.id));
+    }
   }
 
   empty = () => {
