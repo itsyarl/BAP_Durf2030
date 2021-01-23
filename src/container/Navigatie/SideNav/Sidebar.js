@@ -4,8 +4,8 @@ import style from "./Sidebar.module.css"
 
 const Sidebar = () => {
   return useObserver(() => (
-    <div className={style.test}>
-
+    <div className={style.sidebar}>
+      sidenav
     </div>
   ))
 };

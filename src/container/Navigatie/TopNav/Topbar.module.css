@@ -1,2 +1,9 @@
 @value tokens: "../../../styles/tokens.module.css";
 @value from tokens;
+
+.topbar {
+  grid-column: 2 / 3;
+	grid-row: 1;
+	height: 50px;
+	background: white;
+}
