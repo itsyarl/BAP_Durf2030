@@ -5,6 +5,7 @@ import { useStores } from "../../hooks/useStores";
 import User from "../../models/User";
 import { useHistory, Link } from "react-router-dom";
 import { ROUTES } from "../../consts";
+import logo from './logo.svg';
 
 const RegisterForm = () => {
   const [email, setEmail] = useState("");
@@ -37,41 +38,44 @@ const RegisterForm = () => {
   };
 
   return (
-    <div className={style.container}>
-      <form onSubmit={handleSubmit} className={style.form}>
-      <TextInputGroup
-          label="Email"
-          name="email"
-          type="email"
-          placeholder="Fill in your email."
-          value={email}
-          onChange={e => setEmail(e.currentTarget.value)}
-        />
+    <section className={style.container}>
+      <div className={style.box}>
+        <h2 className={style.login_title}>Sign up</h2>
+        <form onSubmit={handleSubmit} className={style.form}>
         <TextInputGroup
-          label="Password"
-          type="password"
-          name="Password"
-          placeholder="Fill in your password."
-          value={password}
-          onChange={e => setPassWord(e.currentTarget.value)}
-        />
-        <TextInputGroup
-          label="name"
-          type="name"
-          name="name"
-          placeholder="Fill in your name."
-          value={name}
-          onChange={e => setName(e.currentTarget.value)}
-        />
-        <input type="submit" value="Register" className={style.button} />
-        <Link className={`${style.button} ${style.button__signin}`} to={ROUTES.login}>
-          Anuleren
-        </Link>
-        <Link className={`${style.button} ${style.button__signin}`} to={ROUTES.login}>
-          Ik heb al een acount
-        </Link>
-      </form>
-    </div>
+            label="Email:"
+            name="email"
+            type="email"
+            placeholder="Fill in your email."
+            value={email}
+            onChange={e => setEmail(e.currentTarget.value)}
+          />
+          <TextInputGroup
+            label="Wachtwoord:"
+            type="password"
+            name="Password"
+            placeholder="Fill in your password."
+            value={password}
+            onChange={e => setPassWord(e.currentTarget.value)}
+          />
+          <TextInputGroup
+            label="Name:"
+            type="name"
+            name="name"
+            placeholder="Fill in your name."
+            value={name}
+            onChange={e => setName(e.currentTarget.value)}
+          />
+          <div className={style.buttons}>
+            <Link className={style.button__back} to={ROUTES.login}>
+              Login
+            </Link>
+            <input type="submit" value="Sign up" className={style.button__submit}/>
+          </div>
+        </form>
+      </div>
+      <img src={logo} className="App-logo" alt="login illustratie"/>
+    </section>
   );
 };
   

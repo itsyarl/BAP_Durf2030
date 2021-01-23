@@ -8,7 +8,6 @@ import { useStores } from "../../hooks/useStores";
 import { useObserver } from "mobx-react-lite";
 
 import Content from "../../container/Content/Content";
-import Header from "../Logout/Header";
 import { Cookies, withCookies } from "react-cookie";
 
 const Authentication = () => {
@@ -31,7 +30,6 @@ const Authentication = () => {
 
   return useObserver(() => (
     <>
-      <Header />
       <Switch>
         <Route exact path={ROUTES.login}>
           {uiStore.currentUser ? (

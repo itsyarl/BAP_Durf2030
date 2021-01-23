@@ -1,5 +1,4 @@
 import React from "react";
-
 import style from "./TextInputGroup.module.css";
 
 const TextInputGroup = ({
@@ -12,9 +11,8 @@ const TextInputGroup = ({
 }) => {
   return (
     <>
-      <label htmlFor={name} className="visually-hidden ">
+      <label htmlFor={name} className={style.label}>
         {label}
-      </label>
       <input
         className={style.input}
         type={type}
@@ -25,6 +23,7 @@ const TextInputGroup = ({
         required="required"
         autoComplete="off"
       />
+      </label>
     </>
   );
 };

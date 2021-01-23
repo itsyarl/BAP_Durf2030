@@ -1,12 +1,31 @@
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import "./styles/reset.css";
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* stylelint-disable */
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+/* stylelint-enable */
+
+body {
+  font-size: 1.4rem;
+  font-family: 'Montserrat', Helvetica, sans-serif;
+  background-color: #e9edf0;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.leaflet-container {
+  width: 50%;
+  height: 50vh;
+  border: 5px slategrey solid;
 }

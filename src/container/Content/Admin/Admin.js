@@ -1,19 +1,17 @@
 import React from "react";
 import ProjectList from "../../../components/ProjectList/ProjectList";
-// import { useStores } from "../../../hooks/useStores";
+import style from "./Admin.module.css"
 
 const Admin = () => {
-  // const { uiStore } = useStores();
 
   return (
     <>
-      <h3>admin</h3>
+      <h3 className={style.test}>admin</h3>
       <section>
         <ProjectList />
       </section>
     </>
   );
 };
-
 
 export default Admin;

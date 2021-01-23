@@ -4,6 +4,7 @@ import { ROUTES } from "../../consts";
 import ProjectDetail from "./ProjectDetail/ProjectDetail";
 import AddProject from "./AddProject/AddProject";
 import { useStores } from "../../hooks/useStores";
+import Logout from "../../components/Logout/Header"
 import Admin from "./Admin/Admin";
 import Home from "./Home/Home";
 import Acount from "./Acount/Acount";
@@ -11,13 +12,15 @@ import DataProject from "./DataProject/DataProject"
 import EditProject from "./EditProject/EditProject"
 import Funding from "./Funding/Funding"
 import Guide from "./Guide/Guide"
-import Kalender from "./Kalender/Kalender"
+import AcountUser from "./AcountUser/AcountUser"
+import style from "./Content.module.css"
 
 const Content = ({ token }) => {
   const { uiStore } = useStores();
   return (
     <>
-      <section>
+      <section className={style.test}>
+        <Logout />
         <Switch>
           <Route path={ROUTES.addProject}>
             <AddProject />
@@ -27,12 +30,12 @@ const Content = ({ token }) => {
             <Guide />
           </Route>
 
-          <Route path={ROUTES.kalender}>
-            <Kalender />
-          </Route>
-
           <Route path={ROUTES.acount}>
             <Acount />
+          </Route>
+
+          <Route path={ROUTES.acountUser.path}>
+            <AcountUser />
           </Route>
 
           <Route path={ROUTES.dataProject.path}>
@@ -46,7 +49,7 @@ const Content = ({ token }) => {
           <Route path={ROUTES.funding.path}>
             <Funding />
           </Route>
-
+          
           <Route path={ROUTES.projectDetail.path}>
             <ProjectDetail token={token} />
           </Route>

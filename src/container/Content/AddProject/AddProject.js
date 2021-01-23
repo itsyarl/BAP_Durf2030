@@ -2,8 +2,7 @@ import React from "react";
 import Project from "../../../models/Project";
 import { useState } from "react";
 import { useStores } from "../../../hooks/useStores";
-// import { useHistory } from "react-router-dom";
-// import { ROUTES } from "../../../consts";
+import style from "./AddProject.module.css"
 
 const AddProject = () => {
   const [title, setTitle] = useState("");
@@ -14,7 +13,6 @@ const AddProject = () => {
   const [eventDate, setEventDate] = useState("");
 
   const { projectStore } = useStores();
-  // const history = useHistory();
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -22,7 +20,6 @@ const AddProject = () => {
     try {
       const newProject = await projectStore.createProject(p);
       console.log(newProject);
-      // history.push(ROUTES.projectDetail.to + g.id);
     } catch (error) {
       console.log(error);
     }
@@ -30,7 +27,7 @@ const AddProject = () => {
 
   return (
     <>
-      <div>
+      <div className={style.test}>
         <form onSubmit={handleSubmit}>
           <label>
             <span>Title</span>

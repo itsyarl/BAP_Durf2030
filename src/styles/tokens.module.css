@@ -1,14 +1,40 @@
-@value colorPrimary: #00bcd4;
-@value darkPrimary: #028494;
-@value colorBubbleMe: #bdbdbd;
-@value background: #cfd8dc;
-@value hover: #eee;
-@value solight: whitesmoke;
-@value notblack: darkslategrey;
+/*COLORS*/
+/*Primary*/
+@value red-prim: #e62336;
+@value green-prim: #54bbab;
+@value yellow-prim: #ffed00;
+@value white-prim: #f9ffff;
 
-@value spacer1: 1rem;
-@value spacer2: 1.5rem;
-@value spacerLarge: 6rem;
+/*hover color*/
+@value green-hover: #248576;
 
-@value fontSizeMedium: 1.8rem;
-@value fontSizeLarge: 3rem;
+/*Darkmode*/
+@value dark: #0c1424;
+@value grey: #282828;
+
+/*Lightmode*/
+@value off-white: #f4f6f7;
+@value light-gray: #e9edf0;
+
+/*Status*/
+@value blue: #2d9cdb;
+@value status-green: #6fcf97;
+@value status-yellow: #f2c94c;
+
+
+
+/*FONTS SIZES*/
+@value title-size: 3.6rem;
+@value subtitle-size: 1.8rem;
+
+
+
+/*FONT FAMILIES*/
+@value text-chat-font: 'Mulish', Helvetica, sans-serif;
+@value extra-font: 'Roboto Mono', 'Roboto', Helvetica, sans-serif;
+
+
+
+/*PADDING BUTTON*/
+@value button: 1rem 2rem;
+@value base: 2rem;

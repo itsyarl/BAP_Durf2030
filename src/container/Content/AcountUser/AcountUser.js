@@ -1,14 +1,13 @@
 import React from "react";
+import style from "./AcountUser.module.css"
 
 const AcountUser = () => {
-  // const { uiStore } = useStores();
 
   return (
     <>
-      <h3>AcountUser dit is van een andere user</h3>
+      <h3 className={style.test}>AcountUser dit is van een andere user</h3>
     </>
   );
 };
-
 
 export default AcountUser;

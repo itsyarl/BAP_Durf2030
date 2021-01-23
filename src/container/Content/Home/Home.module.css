@@ -1,3 +1,6 @@
+@value tokens: "../../../styles/tokens.module.css";
+@value from tokens;
+
 .test {
   display: flex;
   flex-flow: column;
