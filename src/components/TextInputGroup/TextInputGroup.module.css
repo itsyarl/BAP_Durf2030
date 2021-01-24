@@ -1,22 +1,17 @@
 @value tokens: "../../styles/tokens.module.css";
-@value spacer1 from tokens;
+@value subtitle-size from tokens;
 
 .input {
-  composes: input from "../../styles/components.module.css";
-  margin-bottom: spacer1;
+ border: solid 1px black;
+ margin: .5rem 0 2rem;
+ width: 25rem;
+ height: 2.5rem;
+ font-size: 1.4rem;
 }
 
 .label {
-  composes: label from "../../styles/components.module.css";
-}
-
-.visually-hidden {
-  position: absolute !important;
-  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
-  clip: rect(1px, 1px, 1px, 1px);
-  padding: 0 !important;
-  border: 0 !important;
-  height: 1px !important;
-  width: 1px !important;
-  overflow: hidden;
+  display: flex;
+  flex-flow: column;
+  font-weight: 500;
+  font-size: subtitle-size;
 }

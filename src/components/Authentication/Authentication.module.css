@@ -1,0 +1,66 @@
+@value tokens: "../../styles/tokens.module.css";
+@value off-white, title-size, green-prim, white-prim, base, button, green-hover from tokens;
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 100vh;
+  width: 96rem;
+  margin: 0 auto;
+}
+
+.container_grid {
+  display: grid;
+	grid-template-columns: 1fr 5fr;
+  grid-template-rows: auto 1fr;
+}
+
+.box {
+  background-color: white-prim;
+  padding: base;
+}
+
+.login_title {
+  font-size: title-size;
+  font-weight: 900;
+  padding: base;
+}
+
+.form {
+  padding: base;
+  display: flex;
+  flex-flow: column;
+}
+
+.buttons {
+  align-self: flex-end;
+}
+
+.button__submit {
+  background-color: green-prim;
+  color: white-prim;
+  border: none; 
+  cursor: pointer;
+  padding: button;
+  font-weight: 500;
+  font-size: 1.4rem;
+}
+
+.button__submit:hover {
+  background-color: green-hover;
+}
+
+.button__back {
+  padding: .9rem 2rem;
+  font-weight: 500;
+  border: solid .1rem green-prim;
+  color: green-prim;
+  margin-right: 1rem;
+}
+
+.button__back:hover {
+  border: solid .1rem green-hover;
+  color: green-hover;
+}
+

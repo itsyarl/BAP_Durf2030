@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useStores } from "../../../hooks/useStores";
 import CommentList from "../../../components/CommentList/CommentList"
 import ParticipantList from "../../../components/ParticipantList/ParticipantList";
-
+import style from "./ProjectDetail.module.css"
 
 const ProjectDetail = () => {
   const { id } = useParams();
@@ -16,7 +16,7 @@ const ProjectDetail = () => {
 
   return (
     <>
-      <div>
+      <div className={style.test}>
         <section>
           <h3>{project.title}</h3>
         </section>

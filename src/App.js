@@ -5,9 +5,9 @@ import Authentication from "./components/Authentication";
 function App() {
   // Authorization: Bearer ;
   return (
-    <>
+    <section>
       <Authentication/>
-    </>
+    </section>
   );
 }
 

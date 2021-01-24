@@ -8,7 +8,8 @@ import { useStores } from "../../hooks/useStores";
 import { useObserver } from "mobx-react-lite";
 
 import Content from "../../container/Content/Content";
-import Header from "../Logout/Header";
+import SideNav from "../../container/Navigatie/SideNav/Sidebar";
+import TopNav from "../../container/Navigatie/TopNav/Topbar";
 import { Cookies, withCookies } from "react-cookie";
 
 const Authentication = () => {
@@ -31,7 +32,6 @@ const Authentication = () => {
 
   return useObserver(() => (
     <>
-      <Header />
       <Switch>
         <Route exact path={ROUTES.login}>
           {uiStore.currentUser ? (
@@ -55,7 +55,71 @@ const Authentication = () => {
         
         <Route path={ROUTES.home}>
           {uiStore.currentUser ? (
+            <section className={style.container_grid}>
+              <TopNav/>
+              <SideNav/>
               <Content />
+            </section>
+          ) : (
+            <Redirect to={ROUTES.login} />
+          )}
+        </Route>
+
+        <Route path={ROUTES.projectDetail.path}>
+          {uiStore.currentUser ? (  
+            <section className={style.container_grid}>
+              <TopNav/>
+              <SideNav/>
+              <Content />
+            </section>
+          ) : (
+            <Redirect to={ROUTES.login} />
+          )}
+        </Route>
+
+        <Route path={ROUTES.acountUser.path}>
+          {uiStore.currentUser ? (
+            <section className={style.container_grid}>
+              <TopNav/>
+              <SideNav/>
+              <Content />
+            </section>
+          ) : (
+            <Redirect to={ROUTES.login} />
+          )}
+        </Route>
+
+        <Route path={ROUTES.dataProject.path}>
+          {uiStore.currentUser ? (
+            <section className={style.container_grid}>
+              <TopNav/>
+              <SideNav/>
+              <Content />
+            </section>
+          ) : (
+            <Redirect to={ROUTES.login} />
+          )}
+        </Route>
+
+        <Route path={ROUTES.editProject.path}>
+          {uiStore.currentUser ? (
+            <section className={style.container_grid}>
+              <TopNav/>
+              <SideNav/>
+              <Content />
+            </section>
+          ) : (
+            <Redirect to={ROUTES.login} />
+          )}
+        </Route>
+
+        <Route path={ROUTES.funding.path}>
+          {uiStore.currentUser ? (
+            <section className={style.container_grid}>
+              <TopNav/>
+              <SideNav/>
+              <Content />
+            </section>
           ) : (
             <Redirect to={ROUTES.login} />
           )}
@@ -63,13 +127,63 @@ const Authentication = () => {
 
         <Route path={ROUTES.addProject}>
           {uiStore.currentUser ? (
+            <section className={style.container_grid}>
+              <TopNav/>
+              <SideNav/>
               <Content />
+            </section>
           ) : (
             <Redirect to={ROUTES.login} />
           )}
         </Route>
 
+        <Route path={ROUTES.admin}>
+          {uiStore.currentUser ? (
+            <section className={style.container_grid}>
+              <TopNav/>
+              <SideNav/>
+              <Content />
+            </section>
+          ) : (
+            <Redirect to={ROUTES.login} />
+          )}
+        </Route>
 
+        <Route path={ROUTES.acount}>
+          {uiStore.currentUser ? (
+            <section className={style.container_grid}>
+              <TopNav/>
+              <SideNav/>
+              <Content />
+            </section>
+          ) : (
+            <Redirect to={ROUTES.login} />
+          )}
+        </Route>
+
+        <Route path={ROUTES.guide}>
+          {uiStore.currentUser ? (
+            <section className={style.container_grid}>
+              <TopNav/>
+              <SideNav/>
+              <Content />
+            </section>
+          ) : (
+            <Redirect to={ROUTES.login} />
+          )}
+        </Route>
+
+        <Route path={ROUTES.kalender}>
+          {uiStore.currentUser ? (
+            <section className={style.container_grid}>
+              <TopNav/>
+              <SideNav/>
+              <Content />
+            </section>
+          ) : (
+            <Redirect to={ROUTES.login} />
+          )}
+        </Route>
       </Switch>
     </>
   ));
