@@ -23,6 +23,8 @@ class UiStore {
           id: user.id,
           admin: user.admin,
           email: user.email,
+          name: user.name,
+          projects: user.projects,
           store: this.rootStore.userStore,
         })
       );
@@ -43,15 +45,13 @@ class UiStore {
   };
 
   getUserByDocument = async user => {
-    const loggedInUser = await this.userService.getUserByDocument(user);
-    this.onAuthStateChanged(loggedInUser);
+    await this.userService.getUserByDocument(user,  this.onAuthStateChanged);
   }
 
   loginUser = async user => {
     //service aanspreken
     const result = await this.userService.login(user);
-    const loggedInUser = await this.userService.getUserByDocument(result.instance.id);
-    this.onAuthStateChanged(loggedInUser.data);
+    await this.userService.getUserByDocument(result.instance.id, this.onAuthStateChanged);
     return result;
   };
 

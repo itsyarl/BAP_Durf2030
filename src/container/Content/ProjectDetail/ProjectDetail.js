@@ -2,17 +2,13 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useStores } from "../../../hooks/useStores";
 import CommentList from "../../../components/CommentList/CommentList"
+import ParticipantList from "../../../components/ParticipantList/ParticipantList";
 
 
 const ProjectDetail = () => {
   const { id } = useParams();
-  const { projectStore } = useStores();
+  const { projectStore} = useStores();
   const project = projectStore.getProjectById(id);
-
-  const handleFormSubmit = async e => {
-    e.preventDefault();
-    await projectStore.addParticipantToProject(id);
-    }
 
   if (!project) {
     return <p>geen groep</p>;
@@ -25,20 +21,7 @@ const ProjectDetail = () => {
           <h3>{project.title}</h3>
         </section>
         <section>
-          <ul>
-            {project.participants.map(participant =>(
-              <li key={participant.id} >{participant.email}</li>
-            ))}
-          </ul>
-          
-          <form onSubmit={handleFormSubmit}>
-            <button>
-              <span>
-                Join project
-              </span>
-            </button>
-          </form>
-        
+          <ParticipantList project={project} />
         </section>
         <section>
           <CommentList />

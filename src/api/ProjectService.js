@@ -147,7 +147,6 @@ class ProjectService {
         )
       );
       const ref = object.ref.id;
-      console.log(object);
       //document updaten
       await client.query(
         q.Update(

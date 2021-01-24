@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 
 const CommentForm = () => {
   const [content, setContent] = useState("");
-  const { uiStore, projectStore, commentStore } = useStores();
+  const { uiStore, commentStore } = useStores();
   const { id } = useParams();
 
   const handleFormSubmit = async e => {
@@ -21,7 +21,7 @@ const CommentForm = () => {
       });
       console.log(newComment);
       await commentStore.createComment(newComment);
-      await projectStore.getProjectById(id);
+      await commentStore.addComments(newComment);
       setContent("");
     }
   };

@@ -63,6 +63,7 @@ class Project {
 decorate(Project, {
   messages: observable,
   users: observable,
+  participants: observable,
   linkParticipant: action,
 });
 

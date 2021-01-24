@@ -1,5 +1,6 @@
 import { client, q } from '../config/db';
 import faunadb from 'faunadb';
+import User from '../models/User';
 class UserService {
 
   createUser = async (user) => { 
@@ -40,12 +41,24 @@ class UserService {
     .catch((error) => console.log('error', error.message))
   }
 
-  getUserByDocument = async (document) => {
-    return await client.query(
+  getUserByDocument = async (document, onChange) => {
+    await client.query(
       q.Get(q.Ref(q.Collection("Users"), `${document}`))
     )
-    .then((response) => {    
-      return response.data;
+    .then(async (response) => {
+      await client.query(response).then((user) => {
+        console.log(user.data)
+          //project als model invoegen
+          const userObj = new User({
+            id: user.data.id,
+            admin: user.data.admin,
+            name: user.data.name,
+            email: user.data.email,
+            projects: user.data.projects,
+          });
+          console.log(userObj)
+          onChange(userObj);
+        })
     })
     .catch((error) => console.log('error', error.message))
   }
