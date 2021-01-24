@@ -1,0 +1,15 @@
+@value tokens: "../../styles/tokens.module.css";
+@value red-prim, red-hover from tokens;
+
+.logout {
+  background-color: transparent;
+  padding: .9rem 2rem;
+  font-weight: 700;
+  border: solid .1rem red-prim;
+  color: red-prim;
+}
+
+.logout:hover {
+  color: red-hover;
+  border: solid .1rem red-hover;
+}

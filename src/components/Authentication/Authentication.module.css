@@ -12,7 +12,7 @@
 
 .container_grid {
   display: grid;
-	grid-template-columns: 1fr 5fr;
+	grid-template-columns: 8fr 42fr;
   grid-template-rows: auto 1fr;
 }
 

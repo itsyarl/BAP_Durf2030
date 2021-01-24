@@ -1,9 +1,67 @@
 @value tokens: "../../../styles/tokens.module.css";
-@value from tokens;
+@value light-gray, red-prim, extra-font, subtitle-size from tokens;
 
 .sidebar {
   grid-column: 1 / 2;
 	grid-row: 1 / 3;
 	height: 100vh;
+}
+
+.sidebar__fixed {
+	position: fixed;
+	z-index: 10000;
 	background: white;
+	height: 100vh;
+	width: 16%;
+	display: flex;
+	flex-flow: column;
+}
+
+.logo {
+	margin: 2rem 0;
+	align-self: center;
+}
+
+.nav {
+	margin-left: 2rem;
+}
+
+.nav__icon {
+	margin-right: 1rem;
+}
+
+.nav__container {
+	margin-bottom: 4rem;
+}
+
+.nav__container2 {
+	margin-bottom: 10rem;
+}
+
+.nav__titel {
+	font-family: extra-font;
+	font-weight: lighter;
+	margin-left: .5rem;
+	margin-bottom: .5rem;
+}
+
+.nav__link {
+	padding: .7rem;
+	display: flex;
+	align-items: center;
+	font-size: subtitle-size;
+	font-weight: 400;
+}
+
+.active {
+	background-color: light-gray;
+	color: red-prim;
+}
+
+.active img {
+	filter: invert(41%) sepia(69%) saturate(5853%) hue-rotate(300deg) brightness(86%) contrast(112%);
+} 
+
+.nav__footer {
+	text-align: center;
 }

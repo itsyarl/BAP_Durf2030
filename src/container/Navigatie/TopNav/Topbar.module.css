@@ -1,9 +1,38 @@
 @value tokens: "../../../styles/tokens.module.css";
-@value from tokens;
+@value dark, green-prim, subtitle-size from tokens;
 
 .topbar {
   grid-column: 2 / 3;
 	grid-row: 1;
-	height: 50px;
+	height: 8rem;
+}
+
+.topbar__fixed {
+	position: fixed;
 	background: white;
+	height: 8rem;
+	z-index: 10000;
+	width: 84%;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	padding-right: 3rem;
+}
+
+.notifications, .user, .userInfo, .mode {
+	margin-right: 2.5rem;
+}
+
+.userInfo {
+	line-height: 1.2;
+}
+
+.userInfo__name {
+	color: dark;
+	font-size: subtitle-size;
+	font-weight: 800;
+}
+
+.userInfo__status {
+	color: green-prim;
 }

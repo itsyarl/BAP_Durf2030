@@ -1,7 +1,7 @@
 // import Link from 'next/link';
 import React from "react";
 import { Cookies, withCookies } from "react-cookie";
-
+import style from "./Logout.module.css";
 import { useStores } from "../../hooks/useStores";
 import { useHistory } from "react-router-dom";
 import { ROUTES } from "../../consts/index";
@@ -25,8 +25,8 @@ const Header = () => {
 
   return (
     <div>
-      <button onClick={handleLogout}>
-        Logout
+      <button className={style.logout} onClick={handleLogout}>
+        Log uit
       </button>
     </div>
   );
