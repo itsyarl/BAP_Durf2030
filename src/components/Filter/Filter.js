@@ -16,17 +16,17 @@ const Filter = ({callBackMap}) => {
   }
 
   return(
-      <div className={style.test}>
-        <>
-          <h3>filter</h3>
-          <Button onClick={showProjects} variant="contained" color={map ? "secondary" : "primary" }>
-            Show projects
-          </Button>
-          <Button onClick={showMap} variant="contained" color={map ? "primary" : "secondary" }>
-            Show map
-          </Button>
-          </>
-      </div>
+    <div className={style.filter__container}>
+      <h4 className={style.filter__title}>Filter</h4>
+      
+      <Button onClick={showProjects} variant="contained" color={map ? "secondary" : "primary" }>
+        Show projects
+      </Button>
+
+      <Button onClick={showMap} variant="contained" color={map ? "primary" : "secondary" }>
+        Show map
+      </Button>
+    </div>
   );
 };
 

@@ -1,2 +1,13 @@
 @value tokens: "../../styles/tokens.module.css";
-@value from tokens;
+@value green-prim, title-size from tokens;
+
+.filter__container {
+  margin: 5rem 0 2rem;
+}
+
+.filter__title {
+  font-size: title-size;
+  font-weight: 900;
+  color: green-prim;
+  margin-bottom: 2rem;
+}

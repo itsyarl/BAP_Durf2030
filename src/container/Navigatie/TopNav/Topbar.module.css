@@ -1,5 +1,5 @@
 @value tokens: "../../../styles/tokens.module.css";
-@value dark, green-prim, subtitle-size from tokens;
+@value dark, green-prim, subtitle-size, off-white from tokens;
 
 .topbar {
   grid-column: 2 / 3;
@@ -9,7 +9,7 @@
 
 .topbar__fixed {
 	position: fixed;
-	background: white;
+	background: off-white;
 	height: 8rem;
 	z-index: 10000;
 	width: 84%;

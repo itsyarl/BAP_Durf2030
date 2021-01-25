@@ -1,7 +1,58 @@
 @value tokens: "../../../styles/tokens.module.css";
-@value from tokens;
+@value off-white, dark, green-prim, yellow-prim, red-prim, yellow-hover, button, subtitle-size from tokens;
 
-.test {
+.banner {
   display: flex;
-  flex-flow: column;
+  background-color: off-white;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.banner__container {
+  padding: 4rem 0;
+}
+
+.banner__title {
+  font-size: 6.4rem;
+  font-weight: 900;
+  color: green-prim;
+}
+
+.banner__text {
+  font-size: 2.4rem;
+  color: dark;
+  font-weight: 600;
+  width: 48.2rem;
+  line-height: 1.2;
+  padding: 1rem 0 3.5rem;
+}
+
+.banner__subtitle {
+  color: red-prim;
+  font-weight: 800;
+}
+
+.banner__quote {
+  padding: .5rem 0 2rem;
+  font-weight: lighter;
+  color: dark;
+}
+
+.banner__quote, .banner__subtitle {
+  font-size: subtitle-size;
+}
+
+.banner__button {
+  background-color: yellow-prim;
+  border: none; 
+  cursor: pointer;
+  padding: button;
+  font-weight: 600;
+  font-size: subtitle-size;
+  display: inline-block;
+  color: dark;
+}
+
+.banner__button:hover {
+  background-color: yellow-hover;
 }
