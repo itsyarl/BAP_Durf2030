@@ -1,5 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+import { Image } from 'cloudinary-react'
 import { useStores } from "../../../hooks/useStores";
 import CommentList from "../../../components/CommentList/CommentList"
 import ParticipantList from "../../../components/ParticipantList/ParticipantList";
@@ -19,6 +20,7 @@ const ProjectDetail = () => {
       <div className={style.test}>
         <section>
           <h3>{project.title}</h3>
+          <Image publicId="" />
         </section>
         <section>
           <ParticipantList project={project} />

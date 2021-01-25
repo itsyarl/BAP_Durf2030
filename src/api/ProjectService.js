@@ -21,7 +21,9 @@ class ProjectService {
           theme: project.theme,
           eventDate: project.eventDate,
           ownerId: project.ownerId,
-          likes: 0
+          likes: 0,
+          image: project.image,
+          validated: false
         } },
       )
     )
@@ -76,7 +78,8 @@ class ProjectService {
               theme: project.data.theme,
               eventDate: project.data.eventDate,
               donationGoal: project.data.donationGoal,
-              location: project.data.location
+              location: project.data.location,
+              image: project.data.image,
             });
             //user ophalen van fauna
             const participants = await this.getParticipantsOfProject(project.data.id);

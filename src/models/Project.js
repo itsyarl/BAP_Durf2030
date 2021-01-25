@@ -8,7 +8,6 @@ class Project {
     description,
     updates = [],
     size,
-    pic = "",
     creatorName,
     participants = [],
     store,
@@ -21,14 +20,11 @@ class Project {
     location,
     validated,
     status,
-    donationGoal
+    donationGoal,
+    image
   }) {
     this.id = id;
     this.title = title;
-    this.pic = pic;
-    if (!pic) {
-      this.pic = `https://avatars.dicebear.com/v2/identicon/${this.id}.svg`;
-    }
     this.location = location;
     this.size = size;
     this.description = description;
@@ -45,6 +41,7 @@ class Project {
     this.donationGoal = donationGoal;
     this.creatorName = creatorName; 
     this.store = store;
+    this.image = image;
     // this.participants.forEach(participant => {
     //   participant.linkParticipant(this);
     // });

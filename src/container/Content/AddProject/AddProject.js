@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useStores } from "../../../hooks/useStores";
 import style from "./AddProject.module.css"
 
+
 const AddProject = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -16,7 +17,22 @@ const AddProject = () => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    const p = new Project({ title, description, store: projectStore, theme, eventDate, donationGoal, location });
+
+    const url = `https://api.cloudinary.com/v1_1/dgbx78idf/upload`
+    const formData = new FormData();
+    const imageForm = document.getElementById(`image`).files[0];
+    formData.append('file', imageForm);
+    formData.append('upload_preset', "nouoxmyc");
+
+    const response = await fetch(url, {
+      method: "post",
+      body: formData,
+    });
+
+    const image = await response.json();
+    console.log(image);
+
+    const p = new Project({ title, description, store: projectStore, theme, eventDate, donationGoal, location, image });
     try {
       const newProject = await projectStore.createProject(p);
       console.log(newProject);
@@ -82,6 +98,8 @@ const AddProject = () => {
               onChange={e => setEventDate(e.target.value)}
             />
           </label>
+          
+          <input type="file" id="image" />
 
           <input type="submit" value="Add project" />
         </form>

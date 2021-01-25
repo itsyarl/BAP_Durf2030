@@ -44,11 +44,6 @@ class ProjectStore {
     const newProjectRef = await this.projectService.createProject(project);
     //id juist zetten met de document id van de backend
     project.id = newProjectRef.id;
-    //de huidige gebruiker toevoegen als member van het project
-    await this.projectService.addMemberToProject(
-      project.id,
-      this.rootStore.uiStore.currentUser
-    );
     return project;
   };
 

@@ -7,6 +7,8 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "cloudinary-core": "^2.11.3",
+    "cloudinary-react": "^1.6.8",
     "dotenv": "^8.2.0",
     "fauna-shell": "^0.12.1",
     "faunadb": "^4.0.0",
