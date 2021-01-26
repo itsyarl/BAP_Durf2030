@@ -3,6 +3,7 @@ import { useStores } from "../../hooks/useStores";
 import Project from "../Project/Project";
 import ProjectAdmin from "../Admin/ProjectAdmin";
 import { useObserver } from "mobx-react-lite";
+import style from  "./ProjectList.module.css";
 
 const ProjectList = () => {
   const { projectStore, uiStore } = useStores();
@@ -11,17 +12,19 @@ const ProjectList = () => {
   return useObserver(() => (
     <>
     {/* {projectStore.projects.map(project => console.log(project))} */}
-    <ul>
-    {projectStore.projects.map(project => (
-      uiStore.currentUser.admin === true ? (
-        <ProjectAdmin project={project} key={project.id} />
-      ) : (
-        <Project project={project} key={project.id}/>
-      )
-    ))}
+    <ul className={style.list}>
+      {projectStore.projects.map(project => (
+        uiStore.currentUser.admin === true ? (
+          <ProjectAdmin project={project} key={project.id} />
+        ) : (
+          <Project project={project} key={project.id}/>
+        )
+      ))}
     </ul>
     </>
   ));
 };
 
 export default ProjectList;
+
+

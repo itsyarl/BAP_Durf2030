@@ -8,6 +8,7 @@
 /*hover color*/
 @value green-hover: #248576;
 @value red-hover: #94000f;
+@value yellow-hover: #ffc700;
 
 /*Darkmode*/
 @value dark: #0c1424;

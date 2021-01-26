@@ -1,0 +1,31 @@
+@value tokens: "../../styles/tokens.module.css";
+@value subtitle-size, dark, red-prim from tokens;
+
+.progres__container {
+  margin-top: 1.5rem;
+}
+
+.progres__title {
+  font-size: subtitle-size;
+  font-weight: lighter;
+  color: dark;
+}
+
+.progress, .progress_done {
+	border-radius: 20px;
+}
+
+.progress {
+	background-color: dark;
+	height: 1rem;
+  width: 20rem;
+  margin-top: 1rem;
+}
+
+.progress_done {
+	background: red-prim;
+	height: 100%;
+	width: 0;
+	opacity: 0;
+	transition: 1s ease 0.3s;
+}
