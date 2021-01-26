@@ -62,6 +62,13 @@ class ProjectStore {
     }
   };
 
+  addLike = async id => {
+    await this.projectService.addLike(
+      id,
+      this.rootStore.uiStore.currentUser.id
+    );
+  }
+
   addParticipantToProject = async(id) => {
     const user = this.rootStore.uiStore.currentUser; 
     await this.projectService.addParticpantToProject(user, id);

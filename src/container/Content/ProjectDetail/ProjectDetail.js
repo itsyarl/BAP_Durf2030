@@ -14,13 +14,13 @@ const ProjectDetail = () => {
   if (!project) {
     return <p>geen groep</p>;
   }
-
+  console.log(project.image.public_id);
   return (
     <>
       <div className={style.test}>
         <section>
           <h3>{project.title}</h3>
-          <Image publicId="" />
+          <Image width="300" publicId={project.image.public_id} />
         </section>
         <section>
           <ParticipantList project={project} />

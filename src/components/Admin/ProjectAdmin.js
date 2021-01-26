@@ -1,3 +1,4 @@
+import { useObserver } from "mobx-react-lite";
 import React from "react";
 import { useStores } from "../../hooks/useStores";
 
@@ -6,19 +7,24 @@ const ProjectAdmin = ({project}) => {
 
   const handleApprove = async e => {
     e.preventDefault();
-    // const projectRef = await projectStore.getProjectById();
+    project.validated = true;
     await projectStore.approveProject(project.id);
   };
 
-  return(
+  return useObserver(() => (
     <li>
       <h2>{project.title}</h2>
       <p>{project.creatorName}</p>
-      <button onClick={handleApprove}>
-        Approve
-      </button>
+      {project.validated === false ? (
+        <button onClick={handleApprove}>
+          Approve
+        </button>
+      ):(
+        <span>is al goedgekeurd</span>
+      )}
+
     </li>
-  );
+  ));
 };
 
 export default ProjectAdmin;

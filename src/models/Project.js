@@ -21,7 +21,8 @@ class Project {
     validated,
     status,
     donationGoal,
-    image
+    image,
+    likedUsers
   }) {
     this.id = id;
     this.title = title;
@@ -42,9 +43,7 @@ class Project {
     this.creatorName = creatorName; 
     this.store = store;
     this.image = image;
-    // this.participants.forEach(participant => {
-    //   participant.linkParticipant(this);
-    // });
+    this.likedUsers = likedUsers;
   }
 
   // linkComment(comment) {
@@ -60,9 +59,11 @@ class Project {
 decorate(Project, {
   messages: observable,
   users: observable,
+  likes: observable,
+  validated: observable,
   participants: observable,
   linkParticipant: action,
+  addLike: action
 });
 
-/*END */
 export default Project;

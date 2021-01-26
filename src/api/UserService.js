@@ -47,7 +47,6 @@ class UserService {
     )
     .then(async (response) => {
       await client.query(response).then((user) => {
-        console.log(user.data)
           //project als model invoegen
           const userObj = new User({
             id: user.data.id,
@@ -56,7 +55,6 @@ class UserService {
             email: user.data.email,
             projects: user.data.projects,
           });
-          console.log(userObj)
           onChange(userObj);
         })
     })

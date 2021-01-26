@@ -6,6 +6,7 @@ import { useObserver } from "mobx-react-lite";
 
 const ProjectList = () => {
   const { projectStore, uiStore } = useStores();
+  
   // console.log(projectStore.projects);
   return useObserver(() => (
     <>

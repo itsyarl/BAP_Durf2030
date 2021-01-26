@@ -5,13 +5,16 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter } from "react-router-dom";
 import { CookiesProvider } from "react-cookie";
+import CloudinaryContext from "cloudinary-react/lib/components/CloudinaryContext";
 
 ReactDOM.render(
+  <CloudinaryContext cloudName="dgbx78idf">
     <CookiesProvider>
       <BrowserRouter>
         <App />
       </BrowserRouter>
-    </CookiesProvider>,
+    </CookiesProvider>
+  </CloudinaryContext>,
 
   document.getElementById("root")
 );

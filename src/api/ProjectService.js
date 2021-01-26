@@ -23,7 +23,8 @@ class ProjectService {
           ownerId: project.ownerId,
           likes: 0,
           image: project.image,
-          validated: false
+          validated: false,
+          likedUsers: []
         } },
       )
     )
@@ -31,6 +32,27 @@ class ProjectService {
       return response;
     })
     .catch((error) => console.log('error', error.message))
+  }
+
+  addLike = async (id, userId) => {
+    const object = await client.query(
+      q.Get(
+        q.Match(q.Index('project_by_id'), id)
+      )
+    );
+    // referentie van document ophalen
+    const ref = object.ref.id;
+    //document updaten
+    await client.query(
+      q.Update(
+        q.Ref(q.Collection('Project'), ref),
+        { data: { 
+          likes: object.data.likes + 1,
+          likedUsers: q.Append(userId, object.data.likedUsers)
+         } },
+      )
+    )
+    .catch((err) => console.error('Error: %s', err))
   }
 
   approveProject = async (id) => {
@@ -80,6 +102,9 @@ class ProjectService {
               donationGoal: project.data.donationGoal,
               location: project.data.location,
               image: project.data.image,
+              likes: project.data.likes,
+              likedUsers: project.data.likedUsers,
+              validated: project.data.validated
             });
             //user ophalen van fauna
             const participants = await this.getParticipantsOfProject(project.data.id);
