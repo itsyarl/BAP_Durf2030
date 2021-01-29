@@ -51,7 +51,7 @@ const LoginForm = () => {
           />
           <div className={style.buttons}>
             <Link className={style.button__back} to={ROUTES.register}>
-              <span>Sign up</span>
+              <span>Maak een account</span>
             </Link>
             <input type="submit" value="Login" className={style.button__submit}/>
           </div>

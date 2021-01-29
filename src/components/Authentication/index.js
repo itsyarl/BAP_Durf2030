@@ -173,7 +173,7 @@ const Authentication = () => {
           )}
         </Route>
 
-        <Route path={ROUTES.kalender}>
+        <Route path={ROUTES.contact}>
           {uiStore.currentUser ? (
             <section className={style.container_grid}>
               <TopNav/>

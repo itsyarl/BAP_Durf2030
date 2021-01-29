@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import ProjectList from "../../../components/ProjectList/ProjectList"
 import Filter from "../../../components/Filter/Filter";
 import Map from "../../../components/Map/Map";
-import ProgresBar from "../../../components/ProgresBar/ProgresBar";
 import { Link } from "react-router-dom";
-import illustratie from "./illu.svg";
+import illustratie from "./illu_home.svg";
 import style from "./Home.module.css"
 
 // import style from "./Home.module.css"
@@ -21,16 +20,15 @@ const Home = ({ token }) => {
     <>
       <div className={style.banner}>
         <div className={style.banner__container}>
-          <h3 className={style.banner__title}>DURF 2030</h3>
-          <ProgresBar/>
+          <h3 className={style.banner__title}>DIT IS DURVEN</h3>
           <p className={style.banner__text}>
-            Durvers gezocht om maatschappelijke uitdagingen aan te pakken.
+            Kortrijk zoekt echte durvers om maatschappelijke uitdagingen aan te pakken
           </p>
           <h4 className={style.banner__subtitle}>PROJECT OPROEP:</h4>
           <p className={style.banner__quote}>Samen pakken we eenzaamheid aan!</p>
           <Link className={style.banner__button} to="/addproject">Start zelf een project</Link>
         </div>
-        <img src={illustratie} alt="home illustratie"/>
+        <img className={style.baner__img} src={illustratie} alt="home illustratie"/>
       </div>
 
       <Filter callBackMap={handleCallback}/>

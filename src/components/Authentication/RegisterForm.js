@@ -40,7 +40,7 @@ const RegisterForm = () => {
   return (
     <section className={style.container}>
       <div className={style.box}>
-        <h2 className={style.login_title}>Sign up</h2>
+        <h2 className={style.login_title}>Creëer account</h2>
         <form onSubmit={handleSubmit} className={style.form}>
         <TextInputGroup
             label="Email:"
@@ -59,7 +59,7 @@ const RegisterForm = () => {
             onChange={e => setPassWord(e.currentTarget.value)}
           />
           <TextInputGroup
-            label="Name:"
+            label="Naam:"
             type="name"
             name="name"
             placeholder="Fill in your name."
@@ -67,10 +67,10 @@ const RegisterForm = () => {
             onChange={e => setName(e.currentTarget.value)}
           />
           <div className={style.buttons}>
-            <Link className={style.button__back} to={ROUTES.login}>
-              Login
+            <Link className={style.button__account} to={ROUTES.login}>
+              Ik heb al een account
             </Link>
-            <input type="submit" value="Sign up" className={style.button__submit}/>
+            <input type="submit" value="Maak account" className={style.button__submit}/>
           </div>
         </form>
       </div>

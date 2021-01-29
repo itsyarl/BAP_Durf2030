@@ -12,7 +12,8 @@ const ROUTES = {
   acount: "/acount",
   guide: "/guide",
   chat: "/chat",
-  messages: { path: "/chat/:id", to: "/chat/" }
+  messages: { path: "/chat/:id", to: "/chat/" },
+  contact: "/contact"
 };
 
 export { ROUTES };

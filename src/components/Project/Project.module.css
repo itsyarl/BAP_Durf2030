@@ -1,0 +1,61 @@
+@value tokens: "../../styles/tokens.module.css";
+@value dark, subtitle-size, off-white, white-prim, button, green-prim from tokens;
+
+.proj__img {
+  background-image: url(./project.png);
+  background-image: linear-gradient(270deg, rgba(30, 30, 30, 0.55) 6.29%, rgba(28, 28, 28, 0) 25.81%), url(./project.png);
+  background-image: -moz-linear-gradient(270deg, rgba(30, 30, 30, 0.55) 6.29%, rgba(28, 28, 28, 0) 25.81%), url(./project.png);
+  background-image: -webkit-gradient(270deg, rgba(30, 30, 30, 0.55) 6.29%, rgba(28, 28, 28, 0) 25.81%), url(./project.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 20rem;
+}
+
+.proj__img__box {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  align-items: center;
+}
+
+.proj__details {
+  color: white;
+  font-weight: 600;
+}
+
+.proj__details:hover {
+  color: #676767;
+}
+
+.proj__container {
+  padding: 1rem;
+  /*background-color: red; --> Moest het tog eenn eigen kleur hebben*/
+}
+
+.proj__title {
+  font-size: subtitle-size;
+  color: dark;
+  font-weight: 800;
+  padding: .5rem 0;
+}
+
+.proj__box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.proj__theme,
+.proj__like {
+  color: #676767;
+  font-weight: 600;
+}
+
+.proj__status {
+  background-color: green-prim;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 2rem;
+  display: block;
+}

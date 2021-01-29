@@ -1,0 +1,6 @@
+@value tokens: "../../../styles/tokens.module.css";
+@value from tokens;
+
+.test {
+  color: brown;
+}

@@ -1,5 +1,5 @@
 @value tokens: "../../styles/tokens.module.css";
-@value off-white, title-size, green-prim, white-prim, base, button, green-hover from tokens;
+@value off-white, title-size, green-prim, white-prim, base, button, green-hover, dark from tokens;
 
 .container {
   display: flex;
@@ -25,6 +25,7 @@
   font-size: title-size;
   font-weight: 900;
   padding: base;
+  color: dark;
 }
 
 .form {
@@ -64,3 +65,8 @@
   color: green-hover;
 }
 
+.button__account {
+  margin-right: 1rem;
+  font-size: 1.2rem;
+  border-bottom: solid dark .1rem;
+}
