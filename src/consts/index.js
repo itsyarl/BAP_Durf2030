@@ -10,7 +10,9 @@ const ROUTES = {
   addProject: "/addProject",
   admin: "/admin",
   acount: "/acount",
-  guide: "/guide"
+  guide: "/guide",
+  chat: "/chat",
+  messages: { path: "/chat/:id", to: "/chat/" }
 };
 
 export { ROUTES };

@@ -116,6 +116,7 @@ class ProjectService {
                 id: participant.data.id,
                 admin: participant.data.admin,
                 email: participant.data.email,
+                avatar: participant.data.avatar,
               });
               //user linken aan project
               participantObj.linkProject(projectObj);

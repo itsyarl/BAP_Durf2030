@@ -17,9 +17,7 @@ const CommentForm = () => {
         content,
         userId: uiStore.currentUser.id,
         from: uiStore.currentUser.name
-        // timestamp
       });
-      console.log(newComment);
       await commentStore.createComment(newComment);
       await commentStore.addComments(newComment);
       setContent("");

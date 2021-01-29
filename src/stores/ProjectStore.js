@@ -1,23 +1,51 @@
 import { decorate, observable} from "mobx";
 import ProjectService from "../api/ProjectService.js";
+import ChatService from "../api/ChatService.js";
+import Message from "../models/Message.js";
 
 class ProjectStore {
   constructor(rootStore) {
     this.rootStore = rootStore;
     this.projectService = new ProjectService();
+    this.chatService = new ChatService();
     this.projects = [];
+    this.chats = [];
+    this.messages = [];
   }
 
-  // addContactToGroup = async (contact, group) => {
-  //   return await this.groupService.addMemberToGroup(group.id, contact);
-  // };
+  addMessage = message => {
+    this.emptyMessage();
+    console.log(message);
+    let messageExist = this.messages.findIndex(item => item.id === message.id);
+    if (messageExist === -1) {
+      this.messages.push(message);
+      // this.projects.map(project=> console.log(project.id));
+    }
+  }
 
-  // getProjects = async () => {
-  //   const results = await this.projectService.getAllProjects();
-  //   results.map(project => this.addProject(project.data));
-  // };
+  createChatDocument = async (document) => {
+    await this.chatService.createChatDocument(document);
+  }
+
+  sendMessage = async (content, id) => {
+    return await this.chatService.sendMessage(content, id);
+  };
+
+  getMessagesById = async (projectId) => {
+    this.emptyMessage();
+    await this.chatService.getMessagesById(projectId, this.addMessage);
+  }
+
+  emptyMessage = () => {
+    this.messages = [];
+  }
 
   getProjectById = id => {
+    //get messages
+    this.getMessagesById(
+      id,
+    );
+    //get comments
     this.getComments(id);
     //find project
     return this.projects.find(project => project.id === id);
@@ -74,20 +102,25 @@ class ProjectStore {
     await this.projectService.addParticpantToProject(user, id);
   }
 
-  // getGroupById = id => this.groups.find(group => group.id === id);
+  getProjectsChatForUser = async (id) => {
+    const project = await this.chatService.getChatsByUser(id)
 
-  // addUser = (user, group) => {
-  //   group.linkUser(user);
-  // };
+    let projectExist = this.projects.findIndex(item => item.id === project.id);
+    if (projectExist === -1) {
+      this.chats.push(project);
+    }
+  };
 
   empty() {
     this.projects = [];
+    this.chats = [];
   }
 
 }
 decorate(ProjectStore, {
   projects: observable,
-  // empty: action,
+  messages: observable,
+  chats: observable,
   // addGroup: action,
   // addUser: action,
   // unreadLength: computed

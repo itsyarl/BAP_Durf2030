@@ -5,7 +5,6 @@ class UserStore {
   constructor(rootStore) {
     this.rootStore = rootStore;
     this.userService = new UserService();
-    this.users = [];
   }
 
   getUserByEmail = async email => {
@@ -18,14 +17,9 @@ class UserStore {
     return await this.userService.createUser(user);
   };
 
-  empty() {
-    this.users = [];
-  }
-
   checkLoggedIn = async (userKey) => {
     return await this.userService.checkLoggedIn(userKey);
   } 
-
 }
 
 decorate(UserStore, {

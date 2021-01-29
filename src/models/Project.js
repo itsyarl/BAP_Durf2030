@@ -10,6 +10,7 @@ class Project {
     size,
     creatorName,
     participants = [],
+    messages = [],
     store,
     ownerId,
     creationDate,
@@ -34,6 +35,7 @@ class Project {
     this.theme = theme;
     this.likes = likes
     this.status = status;
+    this.messages = messages;
     this.eventData = eventDate;
     this.participants = participants;
     this.creationDate = creationDate;
@@ -54,6 +56,10 @@ class Project {
     !this.participants.includes(participant) && this.participants.push(participant);
     !participant.projects.includes(participant) && participant.linkProject(this);
   }
+
+  linkMessage(message) {
+    !this.messages.includes(message) && this.messages.push(message);
+  }
 }
 
 decorate(Project, {
@@ -62,6 +68,7 @@ decorate(Project, {
   likes: observable,
   validated: observable,
   participants: observable,
+  likedUsers: observable,
   linkParticipant: action,
   addLike: action
 });

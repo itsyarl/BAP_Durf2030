@@ -1,6 +1,7 @@
 import { useObserver } from "mobx-react-lite";
 import React from "react";
 import { useStores } from "../../hooks/useStores";
+import Message from "../../models/Message";
 
 const ProjectAdmin = ({project}) => {
   const { projectStore } = useStores();
@@ -8,6 +9,11 @@ const ProjectAdmin = ({project}) => {
   const handleApprove = async e => {
     e.preventDefault();
     project.validated = true;
+    //chatDocument maken
+    const newChat = new Message({
+      projectId: project.id,
+    });
+    await projectStore.createChatDocument(newChat);
     await projectStore.approveProject(project.id);
   };
 

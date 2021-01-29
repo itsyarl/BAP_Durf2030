@@ -17,7 +17,7 @@ const Topbar = () => {
       <div className={style.topbar__fixed}>
         <img src={lightmode} className={style.mode} alt="mode"/>
         <img src={notification} className={style.notifications} alt="notifications"/>
-        <img src={user.image} className={style.user} alt="user"/>
+        <img src={user.avatar} className={style.user} width="50" alt="user"/>
         <div className={style.userInfo}>
           <p className={style.userInfo__name}>{user.name}</p>
           <p className={style.userInfo__status}>Online</p>  

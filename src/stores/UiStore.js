@@ -34,12 +34,16 @@ class UiStore {
         this.rootStore.projectStore.getValidatedProjects(false);
       } else {
         this.rootStore.projectStore.getValidatedProjects(true);
+        //haalt chats voor user op
+        this.currentUser.projects.forEach(userProject => {
+        this.rootStore.projectStore.getProjectsChatForUser(userProject);
+        })
       }
+
     } else {
       this.rootStore.projectStore.empty();
       // this.rootStore.projectStore.getProjects();
       console.log(`De user is uitgelogd.`);
-      this.rootStore.userStore.empty();
       this.setCurrentUser(undefined);
     }
   };

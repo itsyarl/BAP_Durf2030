@@ -5,16 +5,7 @@ import { ROUTES } from "../../consts";
 import { useObserver } from "mobx-react-lite";
 
 const Project = ({project}) => {
-  const { uiStore, projectStore } = useStores();
-
-  const didLike = project.likedUsers.findIndex(user => user === uiStore.currentUser.id);
-  
-  const like = async e => {
-    e.preventDefault();
-    project.likedUsers.push(uiStore.currentUser.id);
-    project.likes = project.likes + 1;
-    await projectStore.addLike(project.id, uiStore.currentUser.id);
-  }
+  const { uiStore } = useStores();
 
   return useObserver(() => (
     <li>
@@ -38,17 +29,6 @@ const Project = ({project}) => {
             ))}
           </div>
         </Link>
-        {didLike === -1 ? (
-          <form onSubmit={like}>
-            <button>
-              <span>
-                Like
-              </span>
-            </button>
-          </form>
-        ):(
-          <span>al geliked</span>
-        )}
       </li>
   ));
 };
