@@ -11,7 +11,9 @@ const ROUTES = {
   admin: "/admin",
   acount: "/acount",
   guide: "/guide",
-  contact: "/contact"
+  contact: "/contact",
+  chat: "/chat",
+  messages: { path: "/chat/:id", to: "/chat/" }
 };
 
 export { ROUTES };

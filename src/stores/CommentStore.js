@@ -17,10 +17,6 @@ class CommentStore {
   getCommentsByProjectId = async (id) => {
     this.empty();
     await this.commentService.getCommentByProjectId(id, this.addComments);
-    // return await comments.map(comment => {
-    //   this.comments.push(comment.data);
-    //   return comment.data;
-    // })
   }
 
   addComments = comment => {

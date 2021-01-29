@@ -7,12 +7,14 @@ import { useStores } from "../../hooks/useStores";
 import Admin from "./Admin/Admin";
 import Home from "./Home/Home";
 import Acount from "./Acount/Acount";
-import DataProject from "./DataProject/DataProject"
-import EditProject from "./EditProject/EditProject"
-import Funding from "./Funding/Funding"
-import Guide from "./Guide/Guide"
-import AcountUser from "./AcountUser/AcountUser"
-import style from "./Content.module.css"
+import DataProject from "./DataProject/DataProject";
+import EditProject from "./EditProject/EditProject";
+import Funding from "./Funding/Funding";
+import Guide from "./Guide/Guide";
+import AcountUser from "./AcountUser/AcountUser";
+import Chat from "./Chat/Chat";
+import style from "./Content.module.css";
+import Messages from "./Messages/Messages";
 import Contact from "./Contact/Contact"
 
 const Content = ({ token }) => {
@@ -63,6 +65,15 @@ const Content = ({ token }) => {
             <Home/>
           )}
         </Route>
+
+        <Route exact strict path={ROUTES.chat}>
+          <Chat />
+        </Route>
+
+        <Route exact strict path={ROUTES.messages.path}>
+          <Messages />
+        </Route>
+
       </Switch>
     </section>
   );

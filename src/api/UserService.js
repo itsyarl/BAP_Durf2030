@@ -14,7 +14,8 @@ class UserService {
             admin: user.admin,
             name: user.name,
             email: user.email,
-            projects: []
+            projects: [],
+            avatar: user.avatar
           },
         }
       )
@@ -54,6 +55,7 @@ class UserService {
             name: user.data.name,
             email: user.data.email,
             projects: user.data.projects,
+            avatar: user.data.avatar
           });
           onChange(userObj);
         })

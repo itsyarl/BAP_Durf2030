@@ -1,0 +1,14 @@
+
+.form {
+  display: flex;
+  padding: 1rem;
+}
+
+.input {
+  composes: input from "../../styles/components.module.css";
+}
+
+.emoji {
+  border: none;
+  border-radius: 0.5rem;
+}

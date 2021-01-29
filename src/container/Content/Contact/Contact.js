@@ -1,6 +1,7 @@
-import { Link } from "@material-ui/core";
+import { Link } from "react-router-dom";
 import React from "react";
-import style from "./Contact.module.css"
+import style from "./Contact.module.css";
+import { ROUTES } from "../../../consts";
 
 const Contact = () => {
 
@@ -33,7 +34,7 @@ const Contact = () => {
 
           checkbox (Ja, ik ga akkoord dat mijn gegevens bewaard worden)
 
-          <Link>Annuleren</Link>
+          <Link to={ROUTES.home}><span>Annuleren</span></Link>
           <button>Versturen</button>
         </form>
       </div>
