@@ -3,7 +3,7 @@ import styling from "./ProgresBar.module.css";
 
 const ProgresBar = () => {
   const [style, setStyle] = useState({});
-	const aantal = 843
+	const aantal = 1015;
   const done = (aantal/2030*100).toFixed();
   
   setTimeout(() => {

@@ -1,2 +1,39 @@
 @value tokens: "../../../styles/tokens.module.css";
-@value from tokens;
+@value dark, button, green-prim, light-dark, title-size from tokens;
+
+.info__title {
+  color: green-prim;
+  font-size: title-size;
+  font-weight: 900;
+}
+
+.info__button__contianer {
+  margin: 4rem 0 3rem
+}
+
+.info__button {
+  background-color: transparent;
+  padding: button;
+  border: .1rem dark solid;
+  font-weight: 900;
+  font-size: 1.4rem;
+  color: dark;
+  margin-right: 2rem;
+  cursor: pointer;
+}
+
+.info__button:hover {
+  color: #203868;
+  border: .1rem #203868 solid;
+}
+
+.info__button__active {
+  background-color: green-prim;
+  padding: button;
+  border: .1rem green-prim solid;
+  font-weight: 900;
+  font-size: 1.4rem;
+  color: white;
+  margin-right: 2rem;
+}
+

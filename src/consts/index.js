@@ -10,7 +10,8 @@ const ROUTES = {
   addProject: "/addProject",
   admin: "/admin",
   acount: "/acount",
-  guide: "/guide"
+  guide: "/guide",
+  contact: "/contact"
 };
 
 export { ROUTES };

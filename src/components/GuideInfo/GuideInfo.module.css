@@ -1,0 +1,109 @@
+@value tokens: "../../styles/tokens.module.css";
+@value dark, subtitle-size, green-prim, yellow-prim, light-dark, red-prim from tokens;
+
+.guide__content {
+  color: dark;
+  line-height: 1.6rem;
+}
+
+.title {
+  font-weight: 900;
+  font-size: subtitle-size;
+  margin-bottom: 1rem;
+}
+
+/*BASICS*/
+.basics__wat__container {
+  width: 75%;
+  margin-bottom: 5rem;
+}
+
+.Basics__icons__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 33rem);
+  grid-gap: 2rem 5rem;
+  margin-bottom: 4rem;
+}
+
+.Basics__icons__item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.Basics__icons__item__status {
+  margin-bottom: 2rem;
+}
+
+.Basics__ball {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 2rem;
+  margin-right: 2rem;
+  border: dark .1rem solid;
+}
+
+.yellow {
+  background-color: yellow-prim;
+}
+
+.green {
+  background-color: green-prim;
+}
+
+.blue {
+  background-color: #2d9cdB;
+}
+
+.Basics__smalltitle {
+  font-weight: 600;
+  font-size: subtitle-size;
+  margin-bottom: .5rem;
+}
+
+.Basics__icons__img {
+  margin-right: 2rem;
+}
+
+/*VOORSTELLEN*/
+.vs__paragraaf {
+  width: 50%;
+  margin-bottom: 4rem;
+}
+
+.vs__paragraaf_up {
+  margin-top: 4rem;
+  margin-bottom: 1rem;
+}
+
+.vs__list {
+  list-style-type: decimal;
+  margin-left: 2rem;
+  margin-bottom: 4rem;
+}
+
+.vs__list__item {
+  margin-bottom: 2rem;
+}
+
+.vs__list__item__small {
+  width: 60%;
+}
+
+/*BEHEREN*/
+.beheren__img {
+  margin: 1rem 0;
+}
+
+
+/*FUNDING*/
+.aandacht {
+  color: red-prim;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.space {
+  margin-bottom: 4rem;
+}

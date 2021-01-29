@@ -13,6 +13,7 @@ import Funding from "./Funding/Funding"
 import Guide from "./Guide/Guide"
 import AcountUser from "./AcountUser/AcountUser"
 import style from "./Content.module.css"
+import Contact from "./Contact/Contact"
 
 const Content = ({ token }) => {
   const { uiStore } = useStores();
@@ -29,6 +30,10 @@ const Content = ({ token }) => {
 
         <Route path={ROUTES.acount}>
           <Acount />
+        </Route>
+
+        <Route path={ROUTES.contact}>
+          <Contact />
         </Route>
 
         <Route path={ROUTES.acountUser.path}>
