@@ -24,7 +24,9 @@ class ProjectService {
           likes: 0,
           image: project.image,
           validated: false,
-          likedUsers: []
+          likedUsers: [],
+          rollen: project.rollen,
+          benodigdheden: project.benodigdheden
         } },
       )
     )
@@ -104,7 +106,10 @@ class ProjectService {
               image: project.data.image,
               likes: project.data.likes,
               likedUsers: project.data.likedUsers,
-              validated: project.data.validated
+              validated: project.data.validated,
+              rollen: project.data.rollen,
+              benodigdheden: project.data.benodigdheden,
+              ownerId: project.data.ownerId
             });
             //user ophalen van fauna
             const participants = await this.getParticipantsOfProject(project.data.id);
@@ -117,6 +122,7 @@ class ProjectService {
                 admin: participant.data.admin,
                 email: participant.data.email,
                 avatar: participant.data.avatar,
+                companyName: participant.data.companyName
               });
               //user linken aan project
               participantObj.linkProject(projectObj);

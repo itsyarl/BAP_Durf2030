@@ -6,7 +6,7 @@ class Project {
     id = v4(),
     title,
     description,
-    updates = [],
+    benodigdheden = [],
     size,
     creatorName,
     participants = [],
@@ -17,21 +17,21 @@ class Project {
     theme,
     eventDate,
     likes,
-    rols = [],
+    rollen = [],
     location,
     validated,
     status,
     donationGoal,
     image,
-    likedUsers
+    likedUsers,
   }) {
     this.id = id;
     this.title = title;
     this.location = location;
     this.size = size;
     this.description = description;
-    this.updates = updates;
-    this.rols = rols;
+    this.benodigdheden = benodigdheden;
+    this.rollen = rollen;
     this.theme = theme;
     this.likes = likes
     this.status = status;

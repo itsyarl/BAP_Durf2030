@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useObserver } from "mobx-react-lite";
-import Message from "../../models/Message";
 import { useStores } from "../../hooks/useStores.js";
 import { useParams } from "react-router-dom";
 import { v4 } from "uuid";

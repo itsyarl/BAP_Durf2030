@@ -27,7 +27,7 @@ const CommentForm = () => {
   return useObserver(() => (
     <form onSubmit={handleFormSubmit}>
       <section>
-        <input
+        <textarea
             id="content"
             name="content"
             placeholder="Typ een bericht"

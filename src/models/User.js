@@ -1,7 +1,7 @@
 import { v4 } from "uuid";
 
 class User {
-  constructor({ id = v4(),store, email, avatar = "", password, admin, name, projects = [] }) {
+  constructor({ id = v4(),store, email, avatar = "", password, admin, name, projects = [], companyName }) {
     this.id = id;
     this.admin = admin;
     this.name = name;
@@ -12,6 +12,7 @@ class User {
     }
     this.password = password;
     this.projects = projects;
+    this.companyName = companyName;
   }
 
   linkProject(project) {

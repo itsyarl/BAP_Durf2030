@@ -11,6 +11,8 @@ const RegisterForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassWord] = useState("");
   const [name, setName] = useState("");
+  const [company, setCompany] = useState("");
+  const [companyName, setCompanyName] = useState("");
 
   const { uiStore, userStore } = useStores();
   const history = useHistory();
@@ -24,6 +26,7 @@ const RegisterForm = () => {
         store: userStore,
         password: password,
         name: name,
+        companyName: companyName
       });
       const result = await uiStore.registerUser(user);
       if (result.uid) {
@@ -42,6 +45,29 @@ const RegisterForm = () => {
       <div className={style.box}>
         <h2 className={style.login_title}>Creëer account</h2>
         <form onSubmit={handleSubmit} className={style.form}>
+        <label className={style.add__label}>
+          <span className={style.add__title}>Werk je onder een bedrijf?</span>
+          <input 
+            id="company"
+            type="checkbox" 
+            value={true}
+            onChange={e => setCompany(e.target.value)}
+          />
+          </label>
+          {company ? (
+            <label>
+        <TextInputGroup
+            label="Naam van de organisatie:"
+            name="company"
+            type="company"
+            placeholder="groeps-/bedrijfsnaam"
+            value={companyName}
+            onChange={e => setCompanyName(e.currentTarget.value)}
+          />
+            </label>
+          ):(
+            <span>niets</span>
+          )}
         <TextInputGroup
             label="Email:"
             name="email"
