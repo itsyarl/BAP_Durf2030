@@ -88,6 +88,18 @@ const ProjectDetail = () => {
 
         <div>
           <div className={style.details__funding__fixed}>
+            {uiStore.currentUser.id === project.ownerId ? (
+              <div>
+                <h4>Overzicht</h4>
+                <div>
+                  <Link to={`${ROUTES.editProject.to}${id}`}><span>Bewerken</span></Link>
+                  <Link to={`${ROUTES.dataProject.to}${id}`}><span>Beheren</span></Link>
+                </div>
+              </div>
+            ):(
+              <>
+              </>
+            )}
             <div className={style.details__funding}>
               <p className={style.details__spotlight__text}>Zet dit project in de spotlight!</p>
               <div className={style.details__spotlight__buttons}>

@@ -9,35 +9,23 @@ import icon from "./duim.svg";
 
 const Project = ({project}) => {
   const { uiStore } = useStores();
-  console.log(uiStore.currentUser.id);
-  console.log(project);
+
   return useObserver(() => (
     <li>
       <Link to={`${ROUTES.projectDetail.to}${project.id}`}>
-<<<<<<< HEAD
-      <div className={style.proj__img}>
-        <div className={style.proj__img__box}>
-          <span>users</span>
-          {uiStore.currentUser.id === project.ownerId ? (
-            <Link to={`${ROUTES.dataProject.to}${project.id}`} className={style.proj__details}>Edit</Link>
-          ) : (
-            <p className={style.proj__details}>
-              <span>Meer details</span>
-            </p>
-          )}
-=======
         <div className={style.proj__img}>
           <div className={style.proj__img__box}>
             <span>users</span>
             {uiStore.currentUser.id === project.ownerId ? (
-                <button className={style.proj__details}>Edit</button>
+              <p className={style.proj__details}>
+                <span>Aanpassen</span>
+              </p>
             ) : (
               <p className={style.proj__details}>
                 <span>Meer details</span>
               </p>
             )}
           </div>
->>>>>>> css
         </div>
         <div className={style.proj__container}>
           
@@ -53,15 +41,9 @@ const Project = ({project}) => {
               <span key={participant.id} >{participant.name}</span>
             ))}
           </div>
-<<<<<<< HEAD
           </div>
         </Link>
       </li>
-=======
-        </div>
-      </Link>
-    </li>
->>>>>>> css
   ));
 };
 

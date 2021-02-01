@@ -11,7 +11,14 @@ const DataProject = () => {
   return (
     <>
       <h3 className={style.test}>DataProject</h3>
-      <h6>{project.title}</h6>
+      <ul>
+        {project.rollen.map(rol => (
+          <>
+            <li>{rol.rol} -- {rol.aantal}</li>
+            <button>Geef een rol</button>
+          </>
+        ))}
+      </ul>
     </>
   );
 };

@@ -41,9 +41,7 @@ class ProjectStore {
 
   getProjectById = id => {
     //get messages
-    this.getMessagesById(
-      id,
-    );
+    this.getMessagesById(id);
     //get comments
     this.getComments(id);
     //find project
