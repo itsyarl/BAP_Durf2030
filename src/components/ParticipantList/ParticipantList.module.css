@@ -1,0 +1,21 @@
+@value tokens: "../../styles/tokens.module.css";
+@value green-prim, subtitle-size, dark, button, green-hover from tokens;
+
+.join {
+  padding: button;
+  font-size: 1.4rem;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  color: white;
+  background-color: green-prim;
+}
+
+.join:hover {
+  background-color: green-hover;
+}
+
+.text {
+  font-weight: bold;
+  margin-right: 1rem;
+}

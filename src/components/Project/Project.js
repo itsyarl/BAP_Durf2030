@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { ROUTES } from "../../consts";
 import style from "./Project.module.css";
 import { useObserver } from "mobx-react-lite";
+import icon from "./duim.svg";
 
 
 const Project = ({project}) => {
@@ -32,6 +33,7 @@ const Project = ({project}) => {
           </div>
           <h2 className={style.proj__title}>{project.title}</h2>
           <div className={style.proj__boxlike}>
+            <img className={style.proj__likeicon} src={icon} alt="like icon"/>
             <span className={style.proj__like}>{project.likes}</span>
             {project.participants.map(participant => (
               <span key={participant.id} >{participant.name}</span>

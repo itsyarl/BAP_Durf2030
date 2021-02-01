@@ -27,7 +27,7 @@ const Guide = () => {
         return  <Voorstellen/>;
       default: return <Basics/>;
     }
- }
+  }
 
   return (
     <>

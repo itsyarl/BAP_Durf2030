@@ -1,7 +1,6 @@
 import { decorate, observable} from "mobx";
 import ProjectService from "../api/ProjectService.js";
 import ChatService from "../api/ChatService.js";
-import Message from "../models/Message.js";
 
 class ProjectStore {
   constructor(rootStore) {

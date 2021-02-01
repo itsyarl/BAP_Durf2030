@@ -1,12 +1,7 @@
 import React from "react";
-
-// import Comment from "../Comment/Comment";
-// import CommentForm from "../CommentForm/CommentForm";
-
 import { useObserver } from "mobx-react-lite";
 import { useStores } from "../../hooks/useStores";
-import Participant from "../Participant/Participant";
-
+import style from "./ParticipantList.module.css";
 
 const ParticipantList = ({ project }) => {
   const { projectStore, uiStore } = useStores();
@@ -25,16 +20,10 @@ const ParticipantList = ({ project }) => {
     }
     return (
       <>
-        <ul>
-        {project.participants.map(participant =>(
-          <Participant key={participant.id} participant={participant} />
-        ))}
-        </ul>
-
         { inProject === -1 ? ( 
           <>
             <form onSubmit={handleFormSubmit}>
-              <button>
+              <button className={style.join}>
                 <span>
                   Join project
                 </span>
@@ -42,7 +31,7 @@ const ParticipantList = ({ project }) => {
             </form>
           </>
         ):(
-          <span>Je zit al in dit project</span>
+          <span className={style.text}>Al in project</span>
         )}
       </>
     );

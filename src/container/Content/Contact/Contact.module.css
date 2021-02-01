@@ -1,6 +1,105 @@
 @value tokens: "../../../styles/tokens.module.css";
-@value from tokens;
+@value green-prim, title-size, button, white-prim, green-hover, red-prim, red-hover from tokens;
 
 .test {
-  color: brown;
+  color: green-prim;
+  font-size: title-size;
+  font-weight: 900;
+}
+
+.contact__grid {
+  display: grid;
+  grid-template-columns: repeat(2 ,1fr);
+  grid-column-gap: 12rem;
+  margin-top: 2rem;  
+}
+
+.contact__title {
+  font-weight: bold;
+  font-size: 2.4rem; 
+  margin-bottom: 2rem;
+}
+
+.contact__title__top {
+  margin-top: 4rem;
+}
+
+.contact__info {
+  display: flex;
+  flex-flow: column;
+  margin: 2rem 0;
+  line-height: 1.1;
+  font-weight: 600;
+}
+
+.contact__light {
+  font-weight: lighter;
+}
+
+.map {
+  height: 30rem;
+}
+
+.contact__label {
+  display: flex;
+  flex-flow: column;
+  width: 35rem;
+  font-weight: 500;
+  font-size: 1.8rem;
+}
+
+.contact__textarea {
+  border: solid .1rem;
+  height: 20rem;
+  margin: .5rem 0 2rem;
+}
+
+.contact__input {
+  border: solid .1rem;
+  margin: .5rem 0 2rem;
+  height: 2.5rem;
+  font-size: 1.4rem;
+}
+
+.contact__checkbox__contaier {
+  display: flex;
+  align-items: center;
+}
+
+.contact__checkbox__span {
+  display: block;
+  width: 26rem;
+  margin-left: .5rem;
+}
+
+.buttons {
+  margin-left: 12rem;
+  margin-top: 2rem;
+}
+
+.button__submit {
+  background-color: green-prim;
+  color: white-prim;
+  border: none; 
+  cursor: pointer;
+  padding: button;
+  font-weight: 500;
+  font-size: 1.4rem;
+}
+
+.button__submit:hover {
+  background-color: green-hover;
+}
+
+.button__back {
+  padding: .9rem 2rem;
+  font-weight: 500;
+  border: solid .1rem red-prim;
+  color: red-prim;
+  margin-right: 1rem;
+}
+
+.button__back:hover {
+  border: solid .1rem red-hover;
+  color: red-hover;
 }

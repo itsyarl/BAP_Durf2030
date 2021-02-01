@@ -59,3 +59,12 @@
   border-radius: 2rem;
   display: block;
 }
+
+.proj__boxlike {
+  display: flex;
+  align-items: center;
+}
+
+.proj__likeicon {
+  margin-right: 1rem;
+}

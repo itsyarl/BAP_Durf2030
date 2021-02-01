@@ -12,6 +12,15 @@
   margin-bottom: 1rem;
 }
 
+.tussen__title {
+  font-weight: 900;
+  margin-bottom: .5rem;
+}
+
+.paragraaf {
+  margin-bottom: 1rem;
+}
+
 /*BASICS*/
 .basics__wat__container {
   width: 75%;
