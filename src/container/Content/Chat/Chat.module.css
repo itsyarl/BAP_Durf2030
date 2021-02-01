@@ -1,0 +1,26 @@
+@value tokens: "../../../styles/tokens.module.css";
+@value title-size, dark, green-prim, green-hover, button from tokens;
+
+.container {
+  display: flex;
+  flex-flow: column;
+}
+
+.title {
+  color: dark;
+  font-size: title-size;
+  font-weight: 900;
+}
+
+.link {
+  background-color: green-prim;
+  padding: button;
+  align-self: center;
+  margin-top: 10rem;
+  color: white;
+  font-weight: 600;
+}
+
+.link:hover {
+  background-color: green-hover;
+}

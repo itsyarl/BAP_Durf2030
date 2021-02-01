@@ -1,0 +1,29 @@
+.item {
+  display: flex;
+  align-items: center;
+}
+
+.groep__info {
+  margin-left: 3rem;
+}
+
+.chat__title {
+  font-size: 2.4rem;
+  margin-bottom: .6rem;
+  font-weight: 900;
+}
+
+.chat__text,
+.chat__text__naam {
+  font-size: 1.8rem;
+}
+
+.chat__text {
+  font-weight: lighter;
+}
+
+.chat__text__naam {
+  font-weight: 500;
+  margin-right: .8rem;
+}
+

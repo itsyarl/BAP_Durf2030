@@ -1,2 +1,257 @@
 @value tokens: "../../../styles/tokens.module.css";
-@value from tokens;
+@value green-prim, title-size, subtitle-size, dark, button, off-white, yellow-prim, extra-font, yellow-hover, green-hover from tokens;
+
+.details__container {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  grid-column-gap: 5rem;
+}
+
+.details__link {
+  display: flex;
+  align-items: center;
+  margin-left: -2rem;
+}
+
+.details__link__tekst {
+  font-weight: 600;
+  margin-left: 1rem;
+}
+
+@-webkit-keyframes bounceLeft {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    -webkit-transform: translateX(0rem);
+    transform: translateX(0rem);
+  }
+  40% {
+    -webkit-transform: translateX(1.8rem);
+    transform: translateX(1.8rem);
+  }
+  60% {
+    -webkit-transform: translateX(.9rem);
+    transform: translateX(.9rem);
+  }
+}
+@-moz-keyframes bounceLeft {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateX(0rem);
+  }
+  40% {
+    transform: translateX(1.8rem);
+  }
+  60% {
+    transform: translateX(.9rem);
+  }
+}
+@keyframes bounceLeft {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    -ms-transform: translateX(0rem);
+    transform: translateX(0rem);
+  }
+  40% {
+    -ms-transform: translateX(1.8rem);
+    transform: translateX(1.8rem);
+  }
+  60% {
+    -ms-transform: translateX(.9rem);
+    transform: translateX(.9rem);
+  }
+}
+
+.details__link:hover {
+  -webkit-animation: bounceLeft 1.5s infinite;
+  animation: bounceLeft 1.5s infinite;
+}
+
+.driehoek {
+  width: 0;
+  height: 0;
+  border-top: 1.5rem solid transparent;
+  border-right: 2rem solid red;
+  border-bottom: 1.5rem solid transparent;
+}
+
+.details__title {
+  font-size: title-size;
+  font-weight: bold;
+  margin: 1rem 0;
+}
+
+.details__img {
+  width: 100%;
+}
+
+.details__info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.details__theme {
+  font-size: subtitle-size;
+  font-weight: 600;
+}
+
+.status {
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: green-prim;
+  border-radius: 1rem;
+}
+
+.details__samenvatting {
+  font-weight: bold;
+  margin: 2rem 0; 
+}
+
+.details__tekst {
+  font-weight: 500;
+}
+
+.buttons {
+  margin-top: 4rem;
+}
+
+.info__button {
+  background-color: white;
+  padding: button;
+  font-weight: 900;
+  font-size: 1.4rem;
+  color: green-prim;
+  margin-right: .5rem;
+  cursor: pointer;
+  border: none;
+}
+
+.info__button:hover {
+  color: #203868;
+}
+
+.info__button__active {
+  background-color: green-prim;
+  padding: button;
+  font-weight: 900;
+  font-size: 1.4rem;
+  color: white;
+  border: none;
+  margin-right: .5rem;
+}
+
+.details__posting {
+  margin-top: .5rem;
+  background-color: blanchedalmond;
+  padding: 2rem;
+  background-color: white;
+}
+
+.details__funding__fixed {
+  position: fixed;
+  margin-top: 5rem;
+}
+
+.details__funding {
+  background: off-white;
+  padding: 2rem;
+}
+
+.details__spotlight__text {
+  font-weight: lighter;
+  margin-bottom: 1rem;
+  font-family: extra-font;
+}
+
+.details__spotlight__buttons {
+  display: flex;
+  margin-bottom: 2rem;
+  align-items: center;
+}
+
+.details__like,
+.details__share,
+.details__geef {
+  padding: button;
+  font-size: 1.4rem;
+  font-weight: 900;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.details__like,
+.details__geef {
+  color: white;
+  background-color: green-prim;
+  margin-right: 1rem;
+}
+
+.details__like:hover,
+.details__geef:hover {
+  background-color: green-hover;
+}
+
+
+.details__share {
+  color: dark;
+  background-color: yellow-prim;
+}
+
+.details__share:hover {
+  color: dark;
+  background-color: yellow-hover;
+}
+
+.details__icon {
+  margin-right: 1rem;
+}
+
+.details__help {
+  color: dark;
+  font-size: 2.4rem;
+  font-weight: 900;
+  margin-bottom: 1rem
+}
+
+.details__rollen__benodigheden {
+  margin-right: 7rem;
+}
+
+.details__join__buttons {
+  display: flex;
+  align-items: center;
+}
+
+.details__data {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+.details__data__title {
+  font-weight: 900;
+  font-size: subtitle-size;
+  margin-bottom: .5rem;
+}
+
+.details__data__grid {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-gap: 1.5rem 1rem;
+}
+
+.detail__geliked {
+  font-weight: bold;
+  margin-right: 1rem;
+}

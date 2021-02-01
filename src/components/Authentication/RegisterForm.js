@@ -5,7 +5,7 @@ import { useStores } from "../../hooks/useStores";
 import User from "../../models/User";
 import { useHistory, Link } from "react-router-dom";
 import { ROUTES } from "../../consts";
-import logo from './logo.svg';
+import signup from './signup.svg';
 
 const RegisterForm = () => {
   const [email, setEmail] = useState("");
@@ -100,7 +100,7 @@ const RegisterForm = () => {
           </div>
         </form>
       </div>
-      <img src={logo} className="App-logo" alt="login illustratie"/>
+      <img src={signup} className="App-logo" alt="login illustratie"/>
     </section>
   );
 };

@@ -6,7 +6,7 @@ import { useStores } from "../../hooks/useStores";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../consts";
 import { withCookies, useCookies } from "react-cookie";
-import logo from './logo.svg';
+import login from './login.svg';
 
 const LoginForm = () => {
   const [cookies, setCookie] = useCookies(["userToken"])
@@ -58,7 +58,7 @@ const LoginForm = () => {
           
         </form>
       </div>
-      <img src={logo} className="App-logo" alt="login illustratie"/>
+      <img src={login} className="App-logo" alt="login illustratie"/>
     </section>
   );
 };

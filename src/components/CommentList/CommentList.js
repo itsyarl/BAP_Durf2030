@@ -15,10 +15,10 @@ const CommentList = () => {
     }
     return (
       <>
+      <CommentForm />
         <ul>
         {commentStore.comments ? (
           <>
-            <h3>comments</h3>
             {commentStore.comments.map(comment => (
               <Comment comment={comment} key={comment.id} />
             ))}
@@ -27,7 +27,7 @@ const CommentList = () => {
           <span>loading</span>
         )}
         </ul>
-        <CommentForm />
+        
       </>
     );
   });

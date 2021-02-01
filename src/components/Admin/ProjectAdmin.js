@@ -28,7 +28,6 @@ const ProjectAdmin = ({project}) => {
       ):(
         <span>is al goedgekeurd</span>
       )}
-
     </li>
   ));
 };

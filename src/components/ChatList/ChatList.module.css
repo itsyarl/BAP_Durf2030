@@ -1,0 +1,5 @@
+.itemlist {
+  display: grid;
+  grid-row-gap: 3rem;
+  margin-top: 4rem;
+}
