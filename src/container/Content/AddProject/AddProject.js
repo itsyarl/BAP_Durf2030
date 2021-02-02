@@ -149,8 +149,9 @@ const AddProject = () => {
               <label className={style.add__label}>
                 <span className={style.add__title}>Benodigdheden</span>
                   <ul>
-                    {benodigdheden.map(benodigdheid => (
+                    {benodigdheden.map((benodigdheid, index) => (
                       <li>
+                        <span>{index + 1}</span>
                         <span>{benodigdheid.product}</span>
                         <span>{benodigdheid.aantal}</span>
                         <button type="button" onClick={() => deleteBenodigdheid(benodigdheid)}>delete</button>
@@ -161,7 +162,7 @@ const AddProject = () => {
                   <input
                     className={style.add__block}
                     type="text"
-                    value={benodigdhedenInput.benodigdheden}
+                    value={benodigdhedenInput.product}
                     onChange={e => setBenodigdhedenInput({product: e.target.value, aantal: benodigdhedenInput.aantal})}
                   />
                   <input
@@ -179,8 +180,9 @@ const AddProject = () => {
               <label className={style.add__label}>
                 <span className={style.add__title}>Rollen</span>
                   <ul>
-                    {rollen.map(rol => (
+                    {rollen.map((rol, index) => (
                       <li>
+                        <span>{index + 1}</span>
                         <span>{rol.rol}</span>
                         <span>{rol.aantal}</span>
                         <button type="button" onClick={() => deleteRol(rol)}>delete</button>

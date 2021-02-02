@@ -1,14 +1,16 @@
 import React from "react";
-
-// import { useStores } from "../../hooks/useStores";
+import style from "./Comment.module.css";
 
 const Comment = ({comment}) => {
-  // console.log(comment);
 
   return (
-    <>
-      <p>{comment.content}</p>
-    </>
+    <li className={style.comment}>
+      <div className={style.comment__info}>
+        <p className={style.comment__user}>user name</p>
+        <p className={style.comment__datum}>datum comment</p>
+      </div>
+      <p className={style.comment__bericht}>{comment.content}</p>
+    </li>
   );
 };
 

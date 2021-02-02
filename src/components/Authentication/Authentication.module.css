@@ -70,3 +70,7 @@
   font-size: 1.2rem;
   border-bottom: solid dark .1rem;
 }
+
+.form__img {
+  width: 48rem;
+}

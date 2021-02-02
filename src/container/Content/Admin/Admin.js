@@ -1,15 +1,13 @@
 import React from "react";
-import ProjectList from "../../../components/ProjectList/ProjectList";
+import ProjectListAdmin from "../../../components/Admin/ProjectListAdmin";
 import style from "./Admin.module.css"
 
 const Admin = () => {
 
   return (
     <>
-      <h3 className={style.test}>admin</h3>
-      <section>
-        <ProjectList />
-      </section>
+      <h3 className={style.title}>Project voorstellen</h3>
+        <ProjectListAdmin />
     </>
   );
 };

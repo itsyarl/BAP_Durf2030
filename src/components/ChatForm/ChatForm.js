@@ -3,6 +3,8 @@ import { useObserver } from "mobx-react-lite";
 import { useStores } from "../../hooks/useStores.js";
 import { useParams } from "react-router-dom";
 import { v4 } from "uuid";
+import style from "./ChatForm.module.css";
+import send from "./send.svg";
 
 const ChatForm = () => {
   const [content, setContent] = useState("");
@@ -21,19 +23,20 @@ const ChatForm = () => {
 
   return useObserver(() => (
     <form onSubmit={sendMessage}>
-      <section>
-        <button>
-          <span role="img" aria-label="Smiley">
-            😃
-          </span>
-        </button>
+      <section className={style.form__container}>
         <input
+          className={style.input__form}
           id="content"
           name="content"
           placeholder="Typ een bericht"
           value={content}
           onChange={e => setContent(e.currentTarget.value)}
         />
+        <button className={style.button__form}>
+          <span role="img" aria-label="Smiley">
+            <img className={style.button__form__img} src={send} alt="send icon"/>
+          </span>
+        </button>
       </section>
     </form>
   ));
