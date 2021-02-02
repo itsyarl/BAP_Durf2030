@@ -1,2 +1,9 @@
 @value tokens: "../../../styles/tokens.module.css";
-@value from tokens;
+@value dark from tokens;
+
+.title {
+  color: dark;
+  font-size: 3.6rem;
+  font-weight: 900;
+  margin-bottom: 3rem;
+}

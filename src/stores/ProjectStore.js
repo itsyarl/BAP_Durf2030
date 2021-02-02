@@ -8,6 +8,7 @@ class ProjectStore {
     this.projectService = new ProjectService();
     this.chatService = new ChatService();
     this.projects = [];
+    this.filtered = [];
     this.chats = [];
     this.messages = [];
   }
@@ -21,6 +22,28 @@ class ProjectStore {
       // this.projects.map(project=> console.log(project.id));
     }
   }
+
+  filterProjects = (thema, status) => {
+    this.emptyFilter();
+    console.log(status, thema)
+    if (thema === "all") {
+      const filteredProjects = this.projects.filter( project => {
+        return (project.status === status)
+      })
+      this.filtered.push(filteredProjects);
+      console.log(this.filtered)
+      return filteredProjects;
+    }else{
+      const filteredProjects = this.projects.filter( project => {
+        return (project.theme === thema &&
+                project.status === status)
+      })
+      this.filtered.push(filteredProjects);
+      console.log(this.filtered)
+      return filteredProjects;
+    }
+
+  } 
 
   createChatDocument = async (document) => {
     await this.chatService.createChatDocument(document);
@@ -37,6 +60,10 @@ class ProjectStore {
 
   emptyMessage = () => {
     this.messages = [];
+  }
+
+  emptyFilter = () => {
+    this.filtered = [];
   }
 
   getProjectById = id => {
@@ -58,6 +85,7 @@ class ProjectStore {
   } 
 
   createProject = async project => {
+    project.status = "Bezig";
     //validation installen als false op het moment dat je een project maakt
     project.validated = false;
     //de creationdate instellen
@@ -118,6 +146,7 @@ decorate(ProjectStore, {
   projects: observable,
   messages: observable,
   chats: observable,
+  filtered: observable
   // addGroup: action,
   // addUser: action,
   // unreadLength: computed

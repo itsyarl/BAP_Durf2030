@@ -9,23 +9,23 @@ const ParticipantList = ({ project }) => {
   const handleFormSubmit = async e => {
     e.preventDefault();
     project.participants.push(uiStore.currentUser);
+    projectStore.chats.push(project);
     await projectStore.addParticipantToProject(project.id);
   }
 
-  const inProject = project.participants.findIndex(item => item.id === uiStore.currentUser.id);
-
   return useObserver(() => {
+    const inProject = project.participants.findIndex(item => item.id === uiStore.currentUser.id);
     if (!project.participants) {
       return <p>Er zijn nog geen comments</p>;
     }
-    return (
+    return ( 
       <>
         { inProject === -1 ? ( 
           <>
             <form onSubmit={handleFormSubmit}>
               <button className={style.join}>
                 <span>
-                  Join project
+                  Ik doe mee
                 </span>
               </button>
             </form>

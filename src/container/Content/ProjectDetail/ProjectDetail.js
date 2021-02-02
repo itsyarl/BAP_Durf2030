@@ -89,11 +89,11 @@ const ProjectDetail = () => {
         <div>
           <div className={style.details__funding__fixed}>
             {uiStore.currentUser.id === project.ownerId ? (
-              <div>
-                <h4>Overzicht</h4>
-                <div>
-                  <Link to={`${ROUTES.editProject.to}${id}`}><span>Bewerken</span></Link>
-                  <Link project={project} to={`${ROUTES.dataProject.to}${id}`}><span>Beheren</span></Link>
+              <div className={style.overzicht__container}>
+                <h4 className={style.overzicht}>Overzicht</h4>
+                <div className={style.overzicht__buttons}>
+                  <Link className={style.overzicht__bewerken} to={`${ROUTES.editProject.to}${id}`}><span>Bewerken</span></Link>
+                  <Link className={style.overzicht__beheren} to={`${ROUTES.dataProject.to}${id}`}><span>Beheren</span></Link>
                 </div>
               </div>
             ):(
@@ -139,14 +139,14 @@ const ProjectDetail = () => {
             <div className={style.details__data}>
               <div>
                 <h4 className={style.details__data__title}>Eigenaar</h4>
-                <p>naam eigeaar</p>
+                <p>naam eigenaar</p>
               </div>
               <div>
                 <h4 className={style.details__data__title}>info</h4>
                 <div className={style.details__data__grid}>
-                  <span className={style.details__info}><img src={usersIcon} alt="users icon"/> {project.likes}</span>
-                  <span className={style.details__info}><img src={likeIcon} alt="likes icon"/> {project.likes}</span>
-                  <span className={style.details__info}><img src={commentsIcon} alt="comments icon"/> {project.likes}</span>
+                  <span className={style.details__info}><img className={style.details__counticon} src={usersIcon} alt="users icon"/> {project.likes}</span>
+                  <span className={style.details__info}><img className={style.details__counticon} src={likeIcon} alt="likes icon"/> {project.likes}</span>
+                  <span className={style.details__info}><img className={style.details__counticon} src={commentsIcon} alt="comments icon"/> {project.likes}</span>
                 </div>
               </div>
             </div>

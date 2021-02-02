@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import ProjectList from "../../components/ProjectList/ProjectList"
 import Filter from "../../components/Filter/Filter";
 import Map from "../../components/Map/Map";
 
-const FilterSwitch = ({map, token}) => {
+const FilterSwitch = ({ token}) => {
+  const [map, setMap] = useState("");
+
+  const handleCallback = (map) =>{
+    setMap(map)
+  }
 
   return (
     <>
-      <Filter />
+      <Filter callBackMap={handleCallback}/>
       {map ? (
         <Map />
       ):(

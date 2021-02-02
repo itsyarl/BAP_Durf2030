@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React  from "react";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../../consts";
 import illustratie from "./illu_home.gif";
@@ -8,11 +8,6 @@ import FilterSwitch from "../../../components/FilterSwitch/FilterSwitch";
 // import style from "./Home.module.css"
 
 const Home = ({ token }) => {
-  const [map, setMap] = useState("");
-
-  const handleCallback = (map) =>{
-    setMap(map)
-  }
 
   return (
 
@@ -29,7 +24,7 @@ const Home = ({ token }) => {
         </div>
         <img className={style.baner__img} src={illustratie} alt="home illustratie"/>
       </div>
-      <FilterSwitch handleCallback={handleCallback} map={map} token={token} />
+      <FilterSwitch  token={token} />
     </>
   );
 };

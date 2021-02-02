@@ -11,6 +11,7 @@
   display: flex;
   align-items: center;
   margin-left: -2rem;
+  width: 23rem;
 }
 
 .details__link__tekst {
@@ -254,4 +255,42 @@
 .detail__geliked {
   font-weight: bold;
   margin-right: 1rem;
+}
+
+.details__counticon {
+  margin-right: 1rem;
+}
+
+.overzicht__container {
+  margin-top: 3rem;
+}
+
+.overzicht {
+  font-size: 2.4rem;
+  margin-bottom: 2rem;
+  font-weight: bold;
+}
+
+.overzicht__buttons {
+  margin-bottom: 2rem;
+}
+
+.overzicht__beheren,
+.overzicht__bewerken {
+  margin: 1rem 0;
+  padding: 1rem 2rem;
+  background: green-prim;
+  border: none;
+  color: white;
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.overzicht__bewerken {
+  margin-right: 1rem;
+}
+
+.overzicht__beheren:hover,
+.overzicht__bewerken:hover {
+  background: green-hover;
 }

@@ -15,7 +15,7 @@ class UiStore {
     return result;
   };
 
-  onAuthStateChanged = user => {
+  onAuthStateChanged = async user => {
     if (user) {
       console.log(`De user is ingelogd ${user.email}`);
       this.setCurrentUser(
@@ -35,9 +35,10 @@ class UiStore {
       } else {
         this.rootStore.projectStore.getValidatedProjects(true);
         //haalt chatgroepen voor user op
-        this.currentUser.projects.forEach(userProject => {
-        this.rootStore.projectStore.getProjectsChatForUser(userProject);
+        this.currentUser.projects.forEach(userProject => { 
+          this.rootStore.projectStore.getProjectsChatForUser(userProject);
         })
+        this.rootStore.projectStore.filterProjects("All", "Afgerond");
       }
 
     } else {

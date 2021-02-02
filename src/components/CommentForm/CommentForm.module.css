@@ -1,0 +1,24 @@
+@value tokens: "../../styles/tokens.module.css";
+@value green-prim, green-hover, button from tokens;
+
+.textarea__comment {
+  max-width: 105rem;
+  width: 100%;
+  height: 12rem;
+  padding: 1rem;
+}
+
+.button__comment {
+  margin: 1rem 0;
+  padding: button;
+  background: green-prim;
+  border: none;
+  color: white;
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.button__comment:hover {
+  background: green-hover;
+}
+

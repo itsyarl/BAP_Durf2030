@@ -1,0 +1,25 @@
+@value tokens: "../../styles/tokens.module.css";
+@value off-white, light-gray, subtitle-size, green-prim, green-hover, dark from tokens;
+
+.comment {
+  margin: 2rem 0;
+}
+
+.comment__info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: .5rem;
+}
+
+.comment__user {
+  font-weight: 900;
+}
+
+.comment__datum {
+  font-weight: lighter;
+}
+
+.comment__bericht {
+  font-weight: 600;
+}

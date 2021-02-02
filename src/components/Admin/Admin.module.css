@@ -1,0 +1,43 @@
+@value tokens: "../../styles/tokens.module.css";
+@value off-white, light-gray, subtitle-size, green-prim, green-hover from tokens;
+
+.project__list {
+  display: flex;
+  flex-flow: column;
+}
+
+.project__list__item:nth-child(odd) {
+  background-color:  light-gray;
+}
+
+.project__list__item:nth-child(even) {
+  background-color: off-white;
+}
+
+.projectinfo {
+  font-weight: lighter;
+  font-size: subtitle-size;
+}
+
+.project__list__item {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  padding: 2rem;
+  align-items: center;
+}
+
+.project__title {
+  font-weight: bold;
+  font-size: 1.6rem;
+}
+
+.project__detail__link {
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  background: green-prim;
+  color: white;
+}
+
+.project__detail__link:hover {
+  background: green-hover;
+}

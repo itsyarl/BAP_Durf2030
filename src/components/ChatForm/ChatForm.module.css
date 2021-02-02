@@ -1,14 +1,28 @@
+@value tokens: "../../styles/tokens.module.css";
+@value off-white, subtitle-size, dark from tokens;
 
-.form {
-  display: flex;
-  padding: 1rem;
+.input__form {
+  width: 80%;
+  background-color: transparent;
+  height: 3rem;
+  border: .1rem dark solid
 }
 
-.input {
-  composes: input from "../../styles/components.module.css";
-}
-
-.emoji {
+.button__form {
+  background-color: transparent;
   border: none;
-  border-radius: 0.5rem;
+}
+
+.button__form__img {
+  height: 2.5rem;
+  cursor: pointer;
+}
+
+.button__form__img:hover {
+  filter: invert(41%) sepia(69%) saturate(5853%) hue-rotate(300deg) brightness(86%) contrast(112%);
+}
+
+.form__container {
+  display: flex;
+  align-items: center;
 }
