@@ -12,6 +12,7 @@
     "dotenv": "^8.2.0",
     "fauna-shell": "^0.12.1",
     "faunadb": "^4.0.0",
+    "heroku": "^7.47.11",
     "leaflet": "^1.7.1",
     "mobx": "^5.15.4",
     "mobx-react-lite": "^1.5.2",
@@ -26,7 +27,8 @@
   },
   "scripts": {
     "dev": "react-scripts start",
-    "test": "react-scripts test"
+    "test": "react-scripts test",
+    "build": "react-scripts build"
   },
   "eslintConfig": {
     "extends": "react-app"
