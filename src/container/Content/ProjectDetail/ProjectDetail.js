@@ -93,7 +93,7 @@ const ProjectDetail = () => {
                 <h4>Overzicht</h4>
                 <div>
                   <Link to={`${ROUTES.editProject.to}${id}`}><span>Bewerken</span></Link>
-                  <Link to={`${ROUTES.dataProject.to}${id}`}><span>Beheren</span></Link>
+                  <Link project={project} to={`${ROUTES.dataProject.to}${id}`}><span>Beheren</span></Link>
                 </div>
               </div>
             ):(

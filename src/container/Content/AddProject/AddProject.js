@@ -5,7 +5,7 @@ import { useStores } from "../../../hooks/useStores";
 import style from "./AddProject.module.css";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../../consts";
-
+import Rol from "../../../models/Rol";
 
 const AddProject = () => {
   const [title, setTitle] = useState("");
@@ -18,7 +18,7 @@ const AddProject = () => {
   const [benodigdheden, setBenodigdheden] = useState([]);
   const [rollen, setRollen] = useState([]);
 
-  const { projectStore } = useStores();
+  const { projectStore, uiStore, rolStore } = useStores();
 
   const appendBenodigdheden = () => {
     if (benodigdhedenInput.product !== "" && benodigdhedenInput.aantal !== 0) {
@@ -28,7 +28,7 @@ const AddProject = () => {
   }
 
   const appendRollen = () => {
-    if (rollenInput.product !== "" && rollenInput.aantal !== 0) {
+    if (rollenInput.rol !== "" && rollenInput.aantal !== 0) {
       setRollenInput({rol: "", aantal: 0});
       setRollen(rollen.concat(rollenInput));
     }
@@ -43,7 +43,6 @@ const AddProject = () => {
       setRollen(array);
     }
   }
-
 
   const deleteBenodigdheid = (rol) => {
     console.log(rol)
@@ -79,16 +78,22 @@ const AddProject = () => {
       theme,
       eventDate,
       location,
-      image,
-      benodigdheden,
-      rollen
+      image
     });
-    try {
+
+    rollen.map(async rol => {
+      const r = new Rol({
+        projectId: p.id,
+        userId: uiStore.currentUser.id,
+        name: rol.rol,
+        aantal: rol.aantal,
+      })
+
+      await rolStore.createRol(r);
+    })
+
       const newProject = await projectStore.createProject(p);
       console.log(newProject);
-    } catch (error) {
-      console.log(error);
-    }
   };
 
   return (
@@ -161,7 +166,7 @@ const AddProject = () => {
                   <input
                     className={style.add__block}
                     type="text"
-                    value={benodigdhedenInput.benodigdheden}
+                    value={benodigdhedenInput.product}
                     onChange={e => setBenodigdhedenInput({product: e.target.value, aantal: benodigdhedenInput.aantal})}
                   />
                   <input
@@ -236,7 +241,7 @@ const AddProject = () => {
                 />
               </label>
               
-              <input required="required" type="file" id="image" />
+              <input type="file" id="image" />
             </div>
           </div>
 

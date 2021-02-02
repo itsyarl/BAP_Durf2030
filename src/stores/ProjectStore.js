@@ -14,7 +14,7 @@ class ProjectStore {
 
   addMessage = message => {
     this.emptyMessage();
-    console.log(message);
+    // console.log(message);
     let messageExist = this.messages.findIndex(item => item.id === message.id);
     if (messageExist === -1) {
       this.messages.push(message);

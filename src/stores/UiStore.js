@@ -34,7 +34,7 @@ class UiStore {
         this.rootStore.projectStore.getValidatedProjects(false);
       } else {
         this.rootStore.projectStore.getValidatedProjects(true);
-        //haalt chats voor user op
+        //haalt chatgroepen voor user op
         this.currentUser.projects.forEach(userProject => {
         this.rootStore.projectStore.getProjectsChatForUser(userProject);
         })

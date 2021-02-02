@@ -74,13 +74,13 @@ class ChatService {
     // Before we get a new set of documents (e.g. the next page), we will close down existing streams
     this.closeStreams()
     // First we will get all the document references.
-    const page = await this.getDocuments(projectId, onChange);
+    const page = await this.getDocuments(projectId);
     this.openStreams(page.data, onChange);
   }
 
-  getDocuments = async () => {
+  getDocuments = async (projectId) => {
     return await client.query(
-      q.Paginate(q.Documents(q.Collection("Messages")))
+      q.Paginate((q.Match(q.Index("messages_by_project"), projectId)))
     );
   }
 
@@ -112,7 +112,7 @@ class ChatService {
 // }
 
   openStreams = async (documentReferences, onChange) => {
-    console.log('data retrieved', documentReferences.length)
+    // console.log('data retrieved', documentReferences.length)
     documentReferences.forEach((ref) => {
       
         let stream = client.stream.document(ref)

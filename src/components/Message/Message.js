@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { useObserver } from "mobx-react-lite";
 
 const Message = ({ message }) => {
-  console.log(message);
+  // console.log(message);
   return useObserver(() => (
     <li>
       {message.messages.map(messageObj => (  
