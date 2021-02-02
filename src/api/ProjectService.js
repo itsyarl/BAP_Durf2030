@@ -25,6 +25,7 @@ class ProjectService {
           image: project.image,
           validated: false,
           likedUsers: [],
+          status: project.status
         } },
       )
     )
@@ -105,7 +106,8 @@ class ProjectService {
               likes: project.data.likes,
               likedUsers: project.data.likedUsers,
               validated: project.data.validated,
-              ownerId: project.data.ownerId
+              ownerId: project.data.ownerId,
+              status: project.data.status,
             });
             //user ophalen van fauna
             const participants = await this.getParticipantsOfProject(project.data.id);
