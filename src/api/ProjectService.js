@@ -25,8 +25,7 @@ class ProjectService {
           image: project.image,
           validated: false,
           likedUsers: [],
-          rollen: project.rollen,
-          benodigdheden: project.benodigdheden
+          status: project.status
         } },
       )
     )
@@ -107,9 +106,8 @@ class ProjectService {
               likes: project.data.likes,
               likedUsers: project.data.likedUsers,
               validated: project.data.validated,
-              rollen: project.data.rollen,
-              benodigdheden: project.data.benodigdheden,
-              ownerId: project.data.ownerId
+              ownerId: project.data.ownerId,
+              status: project.data.status,
             });
             //user ophalen van fauna
             const participants = await this.getParticipantsOfProject(project.data.id);
@@ -122,7 +120,8 @@ class ProjectService {
                 admin: participant.data.admin,
                 email: participant.data.email,
                 avatar: participant.data.avatar,
-                companyName: participant.data.companyName
+                companyName: participant.data.companyName,
+                name: participant.data.name
               });
               //user linken aan project
               participantObj.linkProject(projectObj);
@@ -176,21 +175,22 @@ class ProjectService {
   }
 
   addParticpantToProject = async (user, id) => {
-      const object = await client.query(
-        q.Get(
-          q.Match(q.Index('users_by_email'), user.email)
-        )
-      );
-      const ref = object.ref.id;
-      //document updaten
-      await client.query(
-        q.Update(
-          q.Ref(q.Collection('Users'), ref),
-          { data: { projects: q.Append(id, object.data.projects) } },
-        )
+    const object = await client.query(
+      q.Get(
+        q.Match(q.Index('users_by_email'), user.email)
       )
-      .catch((err) => console.error('Error: %s', err))
+    );
+    const ref = object.ref.id;
+    //document updaten
+    await client.query(
+      q.Update(
+        q.Ref(q.Collection('Users'), ref),
+        { data: { projects: q.Append(id, object.data.projects) } },
+      )
+    )
+    .catch((err) => console.error('Error: %s', err))
   }
+
 }
 
 export default ProjectService;

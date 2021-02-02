@@ -13,13 +13,16 @@ const ProjectList = () => {
     <>
     {/* {projectStore.projects.map(project => console.log(project))} */}
     <ul className={style.list}>
-      {projectStore.projects.map(project => (
-        uiStore.currentUser.admin === true ? (
-          <ProjectAdmin project={project} key={project.id} />
+        {uiStore.currentUser.admin === true ? (
+          projectStore.projects.map(project => (          
+            <ProjectAdmin project={project} key={project.id} />
+          ))
         ) : (
-          <Project project={project} key={project.id}/>
-        )
-      ))}
+          projectStore.projects.map(project => (
+            <Project project={project} key={project.id}/>
+            // console.log(project)
+          ))
+      )}
     </ul>
     </>
   ));

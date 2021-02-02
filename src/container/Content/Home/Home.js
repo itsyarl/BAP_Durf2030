@@ -1,22 +1,13 @@
-import React, { useState } from "react";
+import React  from "react";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../../consts";
 import illustratie from "./illu_home.gif";
 import style from "./Home.module.css"
-import ProjectListAdmin from "../../../components/Admin/ProjectListAdmin";
 import FilterSwitch from "../../../components/FilterSwitch/FilterSwitch";
-import { useStores } from "../../../hooks/useStores";
 
 // import style from "./Home.module.css"
 
 const Home = ({ token }) => {
-  const [map, setMap] = useState("");
-
-  const {uiStore} = useStores();
-
-  const handleCallback = (map) =>{
-    setMap(map)
-  }
 
   return (
 
@@ -33,12 +24,7 @@ const Home = ({ token }) => {
         </div>
         <img className={style.baner__img} src={illustratie} alt="home illustratie"/>
       </div>
-
-      {uiStore.currentUser.admin === true ? (
-        <ProjectListAdmin />
-      ) : (
-        <FilterSwitch handleCallback={handleCallback} map={map} token={token} />
-      )}
+      <FilterSwitch  token={token} />
     </>
   );
 };
