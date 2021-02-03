@@ -10,6 +10,18 @@ import icon from "./duim.svg";
 const Project = ({project}) => {
   const { uiStore } = useStores();
 
+  const classSwitch = (status) => {
+    switch (status) {
+      case 'Bezig':
+        return  style.bezig;
+      case 'Uitvoering':
+        return  style.klaar;
+      case 'Afgerond':
+        return  style.afgerond;
+      default: return style.bezig;
+    }
+  }
+
   return useObserver(() => (
     <li>
       <Link to={`${ROUTES.projectDetail.to}${project.id}`}>
@@ -31,15 +43,13 @@ const Project = ({project}) => {
           
           <div className={style.proj__box}>
             <span className={style.proj__theme}>{project.theme}</span>
-            <span className={style.proj__status}>{project.status}</span>
+            <span className={style.proj__status}>{project.status}<div className={classSwitch(project.status)}></div></span>
           </div>
           <h2 className={style.proj__title}>{project.title}</h2>
           <div className={style.proj__boxlike}>
             <img className={style.proj__likeicon} src={icon} alt="like icon"/>
             <span className={style.proj__like}>{project.likes}</span>
-            {project.participants.map(participant => (
-              <span key={participant.id} >{participant.name}</span>
-            ))}
+          
           </div>
           </div>
         </Link>

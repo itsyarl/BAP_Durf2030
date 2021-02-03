@@ -1,5 +1,5 @@
 @value tokens: "../../styles/tokens.module.css";
-@value dark, subtitle-size, off-white, white-prim, button, green-prim from tokens;
+@value dark, subtitle-size, off-white, white-prim, button, green-prim, yellow-prim from tokens;
 
 .proj__img {
   background-image: url(./project.png);
@@ -53,11 +53,28 @@
 }
 
 .proj__status {
-  background-color: green-prim;
+  display: flex;
+}
+
+.bezig,
+.klaar,
+.afgerond {
   width: 1.5rem;
   height: 1.5rem;
   border-radius: 2rem;
-  display: block;
+  margin-left: 1rem;
+}
+
+.bezig {
+  background-color: yellow-prim;
+}
+
+.klaar {
+  background-color: green-prim;
+}
+
+.afgerond {
+  background-color: #2d9cdb;
 }
 
 .proj__boxlike {

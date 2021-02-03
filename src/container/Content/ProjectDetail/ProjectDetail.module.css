@@ -106,11 +106,31 @@
 }
 
 .status {
+ display: flex;
+}
+
+.bezig,
+.klaar,
+.afgerond {
   width: 1.5rem;
   height: 1.5rem;
-  background-color: green-prim;
-  border-radius: 1rem;
+  border-radius: 2rem;
+  margin-left: 1rem;
 }
+
+.bezig {
+  background-color: yellow-prim;
+}
+
+.klaar {
+  background-color: green-prim;
+}
+
+.afgerond {
+  background-color: #2d9cdb;
+}
+
+
 
 .details__samenvatting {
   font-weight: bold;
