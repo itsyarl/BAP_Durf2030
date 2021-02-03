@@ -5,13 +5,14 @@ import { useStores } from "../../hooks/useStores";
 import style from "./MessageList.module.css";
 
 const MessageList = ({project}) => {
+  
   const { projectStore } = useStores();
   return useObserver(() => {
     if (!projectStore.messages) {
       return (<p>Er zijn nog geen berichten</p>);
     }
     return (
-      <ul className={style.list}>
+      <ul className={`${style.list} scroll`}>
          {projectStore.messages ? (
           <>
             {projectStore.messages.map(message => (

@@ -104,14 +104,14 @@ const Basics = () => {
           <li className={`${style.Basics__icons__item} ${style.Basics__icons__item__status}`}>
             <span className={`${style.Basics__ball} ${style.yellow}`}></span>
             <div>
-              <h4 className={style.Basics__smalltitle}>In progress</h4>
+              <h4 className={style.Basics__smalltitle}>Funding</h4>
               <p>Het project is goedgekeurd en zit in de funding fase</p>
             </div>
           </li>
           <li className={`${style.Basics__icons__item} ${style.Basics__icons__item__status}`}>
             <span className={`${style.Basics__ball} ${style.green}`}></span>
             <div>
-              <h4 className={style.Basics__smalltitle}>Klaar</h4>
+              <h4 className={style.Basics__smalltitle}>Uitvoerig</h4>
               <p>Het project is volledig gefund en word uitgevoerd</p>
             </div>
           </li>

@@ -43,6 +43,18 @@ const ProjectDetail = () => {
     }
   }
 
+  const classSwitch = (status) => {
+    switch (status) {
+      case 'Bezig':
+        return  style.bezig;
+      case 'Uitvoering':
+        return  style.klaar;
+      case 'Afgerond':
+        return  style.afgerond;
+      default: return style.bezig;
+    }
+  }
+
   return useObserver(() => {
 
     if (!project) {
@@ -61,7 +73,7 @@ const ProjectDetail = () => {
           <Image className={style.details__img}publicId={project.image.public_id} />
           <div className={style.details__info}>
             <p className={style.details__theme}>{project.theme}</p>
-            <div className={style.status}></div>
+            <span className={style.status}>Status: {project.status}<div className={classSwitch(project.status)}></div></span>
           </div>
 
           <p className={style.details__samenvatting}>Toen het internet een algemeen goed werd, dacht men dat het mensen dichter bij elkaar zou brengen. Facebook helpt bij het vinden van oude vrienden, berichtjes sturen doen we aan de snelheid van een hartslag en afstanden worden gereduceerd tot seconden. Het maakt van de wereld een groot dorp en toch wijzen studies uit dat we eenzamer als ooit tevoren zijn. We lopen door ons leven met een gsm vastgelijmd aan ons hand en in dat proces van altijd geconnecteerd zijn, zijn we vergeten om echt contact met elkaar te hebben. </p>
