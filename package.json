@@ -26,7 +26,8 @@
   },
   "scripts": {
     "dev": "react-scripts start",
-    "test": "react-scripts test"
+    "test": "react-scripts test",
+    "build": "react-scripts build"
   },
   "eslintConfig": {
     "extends": "react-app"
