@@ -25,22 +25,22 @@ class ProjectStore {
 
   filterProjects = (thema, status) => {
     this.emptyFilter();
-    console.log(status, thema)
+    // console.log(status, thema)
     if (thema === "all") {
       const filteredProjects = this.projects.filter( project => {
         return (project.status === status)
       })
-      this.filtered.push(filteredProjects);
-      console.log(this.filtered)
-      return filteredProjects;
+      filteredProjects.map(project => (
+        this.filtered.push(project)
+      ))
     }else{
       const filteredProjects = this.projects.filter( project => {
         return (project.theme === thema &&
                 project.status === status)
       })
-      this.filtered.push(filteredProjects);
-      console.log(this.filtered)
-      return filteredProjects;
+      filteredProjects.map(project => (
+        this.filtered.push(project)
+      ))
     }
 
   } 

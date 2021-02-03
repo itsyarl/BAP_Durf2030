@@ -29,7 +29,7 @@ class UiStore {
         })
       );
 
-      //haalt alle projecten op
+      //haalt alle projecten op met validatie
       if (user.admin === true) {
         this.rootStore.projectStore.getValidatedProjects(false);
       } else {
@@ -38,7 +38,7 @@ class UiStore {
         this.currentUser.projects.forEach(userProject => { 
           this.rootStore.projectStore.getProjectsChatForUser(userProject);
         })
-        this.rootStore.projectStore.filterProjects("All", "Afgerond");
+        this.rootStore.projectStore.filterProjects("All", "Bezig");
       }
 
     } else {
