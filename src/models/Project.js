@@ -22,6 +22,7 @@ class Project {
     donationGoal,
     image,
     likedUsers,
+    geo,
   }) {
     this.id = id;
     this.title = title;
@@ -42,20 +43,14 @@ class Project {
     this.store = store;
     this.image = image;
     this.likedUsers = likedUsers;
+    this.geo = geo;
   }
-
-  // linkComment(comment) {
-  //   !this.comments.includes(comment) && this.comments.push(comment);
-  // }
 
   linkParticipant(participant) {
     !this.participants.includes(participant) && this.participants.push(participant);
     !participant.projects.includes(participant) && participant.linkProject(this);
   }
 
-  linkMessage(message) {
-    !this.messages.includes(message) && this.messages.push(message);
-  }
 }
 
 decorate(Project, {
