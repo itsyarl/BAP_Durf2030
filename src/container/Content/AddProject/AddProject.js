@@ -7,6 +7,9 @@ import { Link } from "react-router-dom";
 import { ROUTES } from "../../../consts";
 import { useHistory } from "react-router-dom";
 import Rol from "../../../models/Rol";
+import { MapContainer, TileLayer, Marker, } from 'react-leaflet';
+import { Icon } from "leaflet";
+import img from "./projectmarker4.svg";
 
 const AddProject = () => {
   const [title, setTitle] = useState("");
@@ -18,7 +21,7 @@ const AddProject = () => {
   const [rollenInput, setRollenInput] = useState({rol: "", aantal: 0});
   const [benodigdheden, setBenodigdheden] = useState([]);
   const [rollen, setRollen] = useState([]);
-  const [geo, setGeo] = useState([50.82803, 3.26487]);
+  const [geo, setGeo] = useState({lat: 50.82803, lng: 3.26487});
 
   const { projectStore, uiStore, rolStore } = useStores();
   const history = useHistory();
@@ -29,6 +32,11 @@ const AddProject = () => {
       setBenodigdheden(benodigdheden.concat(benodigdhedenInput));
     }
   }
+
+  const icon = new Icon({
+    iconUrl: img,
+    iconSize: [40, 40]
+  });
 
   const appendRollen = () => {
     if (rollenInput.rol !== "" && rollenInput.aantal !== 0) {
@@ -63,8 +71,12 @@ const AddProject = () => {
     //set geo locatie voor map
     const getGeo = await fetch(`http://open.mapquestapi.com/geocoding/v1/address?key=${'3l5afEGTejjwWZXsj0NsSJKkQzT6cdpH'}&location=${location}`);
     const geoObj = await getGeo.json();
-    console.log(geoObj.results[0].locations[0].latLng);
-    setGeo(geoObj.results[0].locations[0].latLng);
+    console.log(geoObj);
+    if (geoObj.results[0].locations[0] !== undefined) {
+      setGeo(geoObj.results[0].locations[0].latLng);
+    } else {
+      setGeo({lat: 50.82803, lng: 3.26487});
+    }
   }
 
   const handleSubmit = async e => {
@@ -164,6 +176,17 @@ const AddProject = () => {
                   onChange={e => geoChange(e.target.value)}
                 />
               </label>
+              <MapContainer className={style.map} center={[50.82803, 3.26487]} zoom={13} scrollWheelZoom={false}>
+                <TileLayer
+                  attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+                <Marker 
+                  position={[geo.lat, geo.lng]}
+                  icon={icon}   
+                >
+                </Marker>
+              </MapContainer>
             </div>
           </div>
           
