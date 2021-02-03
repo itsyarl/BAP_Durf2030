@@ -71,7 +71,7 @@ const AddProject = () => {
     //set geo locatie voor map
     const getGeo = await fetch(`http://open.mapquestapi.com/geocoding/v1/address?key=${'3l5afEGTejjwWZXsj0NsSJKkQzT6cdpH'}&location=${location}`);
     const geoObj = await getGeo.json();
-    console.log(geoObj);
+    // console.log(geoObj);
     if (geoObj.results[0].locations[0] !== undefined) {
       setGeo(geoObj.results[0].locations[0].latLng);
     } else {
