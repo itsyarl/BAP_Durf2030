@@ -93,6 +93,11 @@
   margin-top: 2rem;
 }
 
+.map {
+  height: 20rem;
+  margin-bottom: 2rem;
+}
+
 .logout {
   background-color: transparent;
   padding: .9rem 2rem;

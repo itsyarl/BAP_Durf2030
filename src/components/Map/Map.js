@@ -1,9 +1,9 @@
 import { Icon } from "leaflet";
 import { useObserver } from "mobx-react-lite";
 import React from "react";
-import { MapContainer, TileLayer, Marker, Popup} from 'react-leaflet'
+import { MapContainer, TileLayer, Marker, Popup} from 'react-leaflet';
 import { useStores } from "../../hooks/useStores";
-import img from "./projectmarker4.svg"
+import img from "./projectmarker4.svg";
 // import style from "./Map.module.css"
 
 const Map = () => {
