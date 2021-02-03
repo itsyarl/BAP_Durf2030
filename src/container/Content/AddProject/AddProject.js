@@ -5,6 +5,7 @@ import { useStores } from "../../../hooks/useStores";
 import style from "./AddProject.module.css";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../../consts";
+import { useHistory } from "react-router-dom";
 import Rol from "../../../models/Rol";
 
 const AddProject = () => {
@@ -17,8 +18,10 @@ const AddProject = () => {
   const [rollenInput, setRollenInput] = useState({rol: "", aantal: 0});
   const [benodigdheden, setBenodigdheden] = useState([]);
   const [rollen, setRollen] = useState([]);
+  const [geo, setGeo] = useState([50.82803, 3.26487]);
 
   const { projectStore, uiStore, rolStore } = useStores();
+  const history = useHistory();
 
   const appendBenodigdheden = () => {
     if (benodigdhedenInput.product !== "" && benodigdhedenInput.aantal !== 0) {
@@ -54,6 +57,16 @@ const AddProject = () => {
     }
   }
 
+  const geoChange = async (location) => {
+    setLocation(location);
+    
+    //set geo locatie voor map
+    const getGeo = await fetch(`http://open.mapquestapi.com/geocoding/v1/address?key=${'3l5afEGTejjwWZXsj0NsSJKkQzT6cdpH'}&location=${location}`);
+    const geoObj = await getGeo.json();
+    console.log(geoObj.results[0].locations[0].latLng);
+    setGeo(geoObj.results[0].locations[0].latLng);
+  }
+
   const handleSubmit = async e => {
     e.preventDefault();
 
@@ -78,7 +91,8 @@ const AddProject = () => {
       theme,
       eventDate,
       location,
-      image
+      image,
+      geo
     });
 
     rollen.map(async rol => {
@@ -91,9 +105,14 @@ const AddProject = () => {
 
       await rolStore.createRol(r);
     })
-
+    try {
       const newProject = await projectStore.createProject(p);
+      history.push(ROUTES.home);
       console.log(newProject);
+    } catch(error){
+      console.log(error);
+    }
+
   };
 
   return (
@@ -142,7 +161,7 @@ const AddProject = () => {
                   className={style.add__block}
                   type="text"
                   value={location}
-                  onChange={e => setLocation(e.target.value)}
+                  onChange={e => geoChange(e.target.value)}
                 />
               </label>
             </div>

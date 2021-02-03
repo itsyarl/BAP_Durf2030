@@ -25,8 +25,13 @@ const Filter = ({callBackMap}) => {
     setThema(thema); 
     setStatus(status);
 
-    const filtered = projectStore.filterProjects(thema, status);
-    console.log(filtered);
+    try {
+      projectStore.filterProjects(thema, status);
+      // console.log(filtered);
+    } catch (error) {
+      console.log(error);
+    }
+
   }
 
   return(
