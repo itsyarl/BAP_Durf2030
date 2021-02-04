@@ -1,2 +1,71 @@
 @value tokens: "../../../styles/tokens.module.css";
-@value from tokens;
+@value button, dark, green-prim, green-hover, yellow-prim, off-white, subtitle-size, title-size, extra-font from tokens;
+
+.user__container {
+  margin-bottom: 4rem;
+}
+
+.user__container,
+.info__button__active,
+.info__button,
+.buttons {
+  display: flex;
+  align-items: center;
+}
+
+.user__info {
+  display: flex;
+  flex-flow: column;
+  margin-left: 2rem;
+}
+
+.user__name {
+  font-size: title-size;
+  color: dark;
+  font-weight: 900;
+  margin-bottom: 1rem;
+}
+
+.user__date {
+  font-size: subtitle-size;
+  font-weight: lighter;
+  font-family: extra-font;
+}
+
+.buttons {
+  margin-bottom: 2rem;
+}
+
+.info__button {
+  background-color: green-prim;
+  padding: button;
+  border: none;
+  font-weight: 900;
+  font-size: subtitle-size;
+  color: white;
+  margin-right: 1rem;
+  cursor: pointer;
+}
+
+.info__button:hover {
+  background-color: green-hover;
+}
+
+.info__icon {
+  filter: invert(100%) sepia(0%) saturate(1%) hue-rotate(26deg) brightness(500%) contrast(102%);
+  margin-right: 1rem;
+}
+
+.info__button__active {
+  background-color: off-white;
+  padding: button;
+  font-weight: 900;
+  font-size: subtitle-size;
+  color: green-prim;
+  border: none;
+  margin-right: 1rem;
+}
+
+.info__button__active .info__icon {
+  filter: none;
+}

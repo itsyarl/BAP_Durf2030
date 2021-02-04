@@ -125,3 +125,61 @@
 .button__submit:hover {
   background-color: green-hover;
 }
+
+.funding__container {
+  display: flex;
+  flex-flow: column;
+}
+
+.product {
+  width: 24rem;
+	margin-right: 1rem;
+}
+
+.aantal {
+  width: 5rem;
+}
+
+.product__item {
+  display: grid;
+	grid-template-columns: 1fr 3fr 1fr 1fr;
+	width: 30rem;
+  align-items: center;
+  margin: 1rem 0;
+  padding-bottom: .5rem;
+  border-bottom: .1rem solid dark;
+}
+
+.product__item:last-child {
+  border-bottom: none;
+}
+
+.product__item__num {
+  font-weight: lighter;
+  color: dark;
+}
+
+.product__item__naam,
+.product__item__aantal {
+  font-weight: 600;
+  color: dark;
+}
+
+.toevoegen {
+  width: 15rem;
+  padding: 1rem 2rem;
+  align-self: center;
+  font-weight: 900;
+  background-color: green-prim;
+  color: white;
+  border: none;
+  margin-bottom: 2rem;
+}
+
+.toevoegen:hover {
+  background-color: green-hover;
+}
+
+.img__input {
+  margin-bottom: 2rem;
+}
