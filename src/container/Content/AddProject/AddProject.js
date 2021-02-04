@@ -10,6 +10,7 @@ import Rol from "../../../models/Rol";
 import { MapContainer, TileLayer, Marker, } from 'react-leaflet';
 import { Icon } from "leaflet";
 import img from "./projectmarker4.svg";
+import Funding from "../../../models/Funding";
 
 const AddProject = () => {
   const [title, setTitle] = useState("");
@@ -23,7 +24,7 @@ const AddProject = () => {
   const [rollen, setRollen] = useState([]);
   const [geo, setGeo] = useState({lat: 50.82803, lng: 3.26487});
 
-  const { projectStore, uiStore, rolStore } = useStores();
+  const { projectStore, uiStore, rolStore, fundingStore } = useStores();
   const history = useHistory();
 
   const appendBenodigdheden = () => {
@@ -46,7 +47,6 @@ const AddProject = () => {
   }
 
   const deleteRol = (rol) => {
-    console.log(rol)
     const array = [...rollen]
     const index = array.indexOf(rol);
     if (index > -1) {
@@ -56,7 +56,6 @@ const AddProject = () => {
   }
 
   const deleteBenodigdheid = (rol) => {
-    console.log(rol)
     const array = [...benodigdheden]
     const index = array.indexOf(rol);
     if (index > -1) {
@@ -71,7 +70,6 @@ const AddProject = () => {
     //set geo locatie voor map
     const getGeo = await fetch(`http://open.mapquestapi.com/geocoding/v1/address?key=${'3l5afEGTejjwWZXsj0NsSJKkQzT6cdpH'}&location=${location}`);
     const geoObj = await getGeo.json();
-    console.log(geoObj);
     if (geoObj.results[0].locations[0] !== undefined) {
       setGeo(geoObj.results[0].locations[0].latLng);
     } else {
@@ -117,6 +115,18 @@ const AddProject = () => {
 
       await rolStore.createRol(r);
     })
+
+    benodigdheden.map(async funding => {
+      const f = new Funding({
+        projectId: p.id,
+        userId: uiStore.currentUser.id,
+        product: funding.product,
+        aantal: funding.aantal,
+      })
+
+      await fundingStore.createFunding(f);
+    })
+
     try {
       const newProject = await projectStore.createProject(p);
       history.push(ROUTES.home);

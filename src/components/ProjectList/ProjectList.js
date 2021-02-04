@@ -18,16 +18,9 @@ const ProjectList = () => {
             <ProjectAdmin project={project} key={project.id} />
           ))
         ) : (
-          // projectStore.filtered ? (
-            projectStore.filtered.map(project => (
-              <Project project={project} key={project.id}/>
-            ))
-          // ) : (
-          //   projectStore.projects.map(project => (
-          //     <Project project={project} key={project.id}/>
-          //     // console.log(project)
-          //   ))
-          // )
+          projectStore.filtered.map(project => (
+            <Project project={project} key={project.id}/>
+          ))
       )}
     </ul>
     </>

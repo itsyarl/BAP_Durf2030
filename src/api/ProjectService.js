@@ -21,6 +21,7 @@ class ProjectService {
           theme: project.theme,
           eventDate: project.eventDate,
           ownerId: project.ownerId,
+          ownerName: project.ownerName,
           likes: 0,
           image: project.image,
           validated: false,
@@ -34,6 +35,41 @@ class ProjectService {
       return response;
     })
     .catch((error) => console.log('error', error.message))
+  }
+
+  updateProject = async (project, id) => {
+    const object = await client.query(
+      q.Get(
+        q.Match(q.Index('project_by_id'), id)
+      )
+    );
+    // referentie van document ophalen
+    const ref = object.ref.id;
+    //document updaten
+    await client.query(
+      q.Update(
+        q.Ref(q.Collection('Project'), ref),
+        { data: { 
+          id: project.id,
+          title: project.title,
+          description: project.description,
+          recap: project.recap,
+          location: project.location,
+          donationGoal: project.donationGoal,
+          theme: project.theme,
+          eventDate: project.eventDate,
+          ownerId: project.ownerId,
+          ownerName: project.ownerName,
+          likes: 0,
+          image: project.image,
+          validated: true,
+          likedUsers: [],
+          status: project.status,
+          geo: project.geo
+        } },
+      )
+    )
+    .catch((err) => console.error('Error: %s', err))
   }
 
   addLike = async (id, userId) => {
@@ -78,7 +114,7 @@ class ProjectService {
   }
 
 
-  getValidatedProjects = async (state, onChange) => {
+  getValidatedProjects = async (state, onChange, filter) => {
     return await client.query(
       q.Paginate(
         q.Match(
@@ -92,7 +128,7 @@ class ProjectService {
         })
 
         await client.query(getAllProductDataQuery).then((projects) => {
-          const result = projects.forEach(async project => {
+          return projects.forEach(async project => {
             //project als model invoegen
             const projectObj = new Project({
               id: project.data.id,
@@ -109,7 +145,8 @@ class ProjectService {
               validated: project.data.validated,
               ownerId: project.data.ownerId,
               status: project.data.status,
-              geo: project.data.geo
+              geo: project.data.geo,
+              ownerName: project.data.ownerName
             });
             //user ophalen van fauna
             const participants = await this.getParticipantsOfProject(project.data.id);
@@ -131,9 +168,14 @@ class ProjectService {
             }
             //functie zodat de projecten worden terugestuurd
             onChange(projectObj);
+            if(projectObj.status === "Bezig"){
+              filter(projectObj, "all", projectObj.status)
+            }
+            // return projectObj
           })
-          return result;
+          // return result;
         })
+        // filter("all", "Bezig");
       })
       .catch((error) => console.log('error', error.message))
   }

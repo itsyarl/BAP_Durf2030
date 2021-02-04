@@ -7,7 +7,7 @@ class Project {
     title,
     description,
     size,
-    creatorName,
+    ownerName,
     participants = [],
     messages = [],
     store,
@@ -19,7 +19,6 @@ class Project {
     location,
     validated,
     status,
-    donationGoal,
     image,
     likedUsers,
     geo,
@@ -38,8 +37,7 @@ class Project {
     this.creationDate = creationDate;
     this.validated = validated;
     this.ownerId = ownerId;
-    this.donationGoal = donationGoal;
-    this.creatorName = creatorName; 
+    this.ownerName = ownerName; 
     this.store = store;
     this.image = image;
     this.likedUsers = likedUsers;

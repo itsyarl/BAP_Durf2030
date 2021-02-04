@@ -10,15 +10,17 @@ const Filter = ({callBackMap}) => {
   const [map, setMap] = useState("");
   const [thema, setThema] = useState("all");
   const [status, setStatus] = useState("Bezig");
-  // const [filteredItems, setFilteredItems] = useState("");
 
-  const showProjects = () => {
+  const showProjects = (e) => {
+    e.preventDefault();
     callBackMap(false);
     setMap(false);
   }
-  const showMap = () => {
-    callBackMap(true);
+  const showMap = async (e) => {
+    e.preventDefault();
+    await callBackMap(true);
     setMap(true);
+    window.scrollTo(0, document.body.scrollHeight);
   }
 
   const filter = (status, thema) => {
@@ -52,11 +54,11 @@ const Filter = ({callBackMap}) => {
       <button>populair</button>
       <button>nieuw</button>
       
-      <Button onClick={showProjects} variant="contained" color={map ? "secondary" : "primary" }>
+      <Button onClick={e => showProjects(e)} variant="contained" color={map ? "secondary" : "primary" }>
         Show projects
       </Button>
 
-      <Button onClick={showMap} variant="contained" color={map ? "primary" : "secondary" }>
+      <Button onClick={e => showMap(e)} variant="contained" color={map ? "primary" : "secondary" }>
         Show map
       </Button>
     </div>

@@ -23,15 +23,21 @@ class ProjectStore {
     }
   }
 
-  filterProjects = (thema, status) => {
+  getFirstFiltered = (projectObj, thema, status) => {
+    this.filtered.push(projectObj);
+  }
+
+  filterProjects = async (thema, status) => {
     this.emptyFilter();
-    // console.log(status, thema)
+
     if (thema === "all") {
       const filteredProjects = this.projects.filter( project => {
         return (project.status === status)
       })
+      // console.log(filteredProjects);
       filteredProjects.map(project => (
         this.filtered.push(project)
+        // console.log(project)
       ))
     }else{
       const filteredProjects = this.projects.filter( project => {
@@ -40,9 +46,10 @@ class ProjectStore {
       })
       filteredProjects.map(project => (
         this.filtered.push(project)
+        // console.log(project)
       ))
     }
-
+    // console.log(this.filtered);
   } 
 
   createChatDocument = async (document) => {
@@ -69,19 +76,25 @@ class ProjectStore {
   getProjectById = id => {
     //get messages
     this.getMessagesById(id);
-    //get comments
-    this.getComments(id);
     //find project
-    return this.projects.find(project => project.id === id);
+    const project = this.projects.find(project => project.id === id);
+    //get comments
+    this.getComments(id, project);
+    //get funding items
+    this.rootStore.fundingStore.getFundingById(id);
+    //get roles
+    this.rootStore.rolStore.getRolesById(id);
+
+    return project
   }
 
-  getComments = async id => {
+  getComments = async (id, project) => {
     //get comments
-    await this.rootStore.commentStore.getCommentsByProjectId(id);
+    await this.rootStore.commentStore.getCommentsByProjectId(id, project);
   }
 
   getValidatedProjects = async (state) => {
-    await this.projectService.getValidatedProjects(state, this.addProject);
+    await this.projectService.getValidatedProjects(state, this.addProject, this.getFirstFiltered);
   } 
 
   createProject = async project => {
@@ -92,13 +105,18 @@ class ProjectStore {
     project.creationDate = new Date();
     //owner instellen van het project
     project.ownerId = this.rootStore.uiStore.currentUser.id;
-    project.creatorName = this.rootStore.uiStore.currentUser.name;
+    project.ownerName = this.rootStore.uiStore.currentUser.name;
     //create project in fauna backend
     const newProjectRef = await this.projectService.createProject(project);
     //id juist zetten met de document id van de backend
     project.id = newProjectRef.id;
     return project;
   };
+
+  updateProject = async (project, id) => {
+    const updated = await this.projectService.updateProject(project, id);
+    return updated
+  }
 
   getUsers = async projectId => {
     return await this.projectService.getUsersInProject(projectId);

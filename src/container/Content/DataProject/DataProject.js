@@ -8,13 +8,8 @@ const DataProject = () => {
   const { id } = useParams();
   const { projectStore, rolStore } = useStores();
 
-  try {
-    rolStore.getRolesById(id);
-  } catch (error){
-    console.log(error)
-  }
-
   const project = projectStore.getProjectById(id);
+  
   const [whatRole, setWhatRole] = useState("");
   const [user, setUser] = useState("");
   const [usersWithoutRole, setUsersWithoutRole] = useState([]);
@@ -47,22 +42,21 @@ const DataProject = () => {
     if (user !== ""){
       rol.users.push(user);
       setUser("")
-      setWhatRole("");
+      // setWhatRole("");
       await rolStore.giveRoll(user, rol.name, id);
     }
   }
-  console.log(rolStore.roles);
+  // console.log(rolStore.roles);
   return useObserver(() => (
     <>
       <h3 className={style.test}>DataProject</h3>
       <ul>
-        {rolStore.roles.map(rol => {
-          return(
+        {rolStore.roles.map(rol => (
             <>
               <li key={rol.id}>{rol.name} -- {rol.aantal - rol.users.length}</li>
                 {rol.users.map(userInRol => (
                   <>
-                    <span>{userInRol}</span>
+                    <span key={userInRol}>{userInRol}</span>
                     <button onClick={() => removeUser(userInRol, rol)} >verwijder user van rol</button>
                   </>
                 ))}
@@ -81,8 +75,7 @@ const DataProject = () => {
                 <button onClick={()=> setRole(rol.users, rol.name)}>Geef een rol</button>
               )}
             </>
-          )
-        })}
+        ))}
       </ul>
     </>
   ));
