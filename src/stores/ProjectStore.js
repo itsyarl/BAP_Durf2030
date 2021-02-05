@@ -23,8 +23,11 @@ class ProjectStore {
     }
   }
 
-  getFirstFiltered = (projectObj, thema, status) => {
-    this.filtered.push(projectObj);
+  getFirstFiltered = (projectObj) => {
+    let projectExist = this.filtered.findIndex(item => item.id === projectObj.id);
+    if (projectExist === -1) {
+      this.filtered.push(projectObj);
+    }
   }
 
   filterProjects = async (thema, status) => {
@@ -146,12 +149,15 @@ class ProjectStore {
   }
 
   getProjectsChatForUser = async (id) => {
-    const project = await this.chatService.getChatsByUser(id)
+    if (this.rootStore.uiStore.currentUser.projects){
+      const project = await this.chatService.getChatsByUser(id)
 
-    let projectExist = this.projects.findIndex(item => item.id === project.id);
-    if (projectExist === -1) {
-      this.chats.push(project);
+      let projectExist = this.projects.findIndex(item => item.id === project.id);
+      if (projectExist === -1) {
+        console.log(project)
+        this.chats.push(project);
     }
+  }
   };
 
   empty() {

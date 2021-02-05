@@ -146,6 +146,20 @@
 }
 
 .info__button {
+  background-color: green-prim;
+  padding: button;
+  font-weight: 900;
+  font-size: 1.4rem;
+  color: white;
+  border: none;
+  margin-right: .5rem;
+}
+
+.info__button:hover {
+  background-color: green-hover;
+}
+
+.info__button__active {
   background-color: white;
   padding: button;
   font-weight: 900;
@@ -154,20 +168,6 @@
   margin-right: .5rem;
   cursor: pointer;
   border: none;
-}
-
-.info__button:hover {
-  color: #203868;
-}
-
-.info__button__active {
-  background-color: green-prim;
-  padding: button;
-  font-weight: 900;
-  font-size: 1.4rem;
-  color: white;
-  border: none;
-  margin-right: .5rem;
 }
 
 .details__posting {
