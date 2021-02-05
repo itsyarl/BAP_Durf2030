@@ -1,2 +1,156 @@
 @value tokens: "../../../styles/tokens.module.css";
-@value from tokens;
+@value green-prim, button, green-hover, red-hover, red-prim from tokens;
+
+.details__link {
+  display: flex;
+  align-items: center;
+  margin-left: -2rem;
+  width: 23rem;
+}
+
+.details__link__tekst {
+  font-weight: 600;
+  margin-left: 1rem;
+}
+
+@-webkit-keyframes bounceLeft {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    -webkit-transform: translateX(0rem);
+    transform: translateX(0rem);
+  }
+  40% {
+    -webkit-transform: translateX(1.8rem);
+    transform: translateX(1.8rem);
+  }
+  60% {
+    -webkit-transform: translateX(.9rem);
+    transform: translateX(.9rem);
+  }
+}
+@-moz-keyframes bounceLeft {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateX(0rem);
+  }
+  40% {
+    transform: translateX(1.8rem);
+  }
+  60% {
+    transform: translateX(.9rem);
+  }
+}
+@keyframes bounceLeft {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    -ms-transform: translateX(0rem);
+    transform: translateX(0rem);
+  }
+  40% {
+    -ms-transform: translateX(1.8rem);
+    transform: translateX(1.8rem);
+  }
+  60% {
+    -ms-transform: translateX(.9rem);
+    transform: translateX(.9rem);
+  }
+}
+
+.details__link:hover {
+  -webkit-animation: bounceLeft 1.5s infinite;
+  animation: bounceLeft 1.5s infinite;
+}
+
+.driehoek {
+  width: 0;
+  height: 0;
+  border-top: 1.5rem solid transparent;
+  border-right: 2rem solid red-prim;
+  border-bottom: 1.5rem solid transparent;
+}
+
+.title {
+  max-width: 45rem;
+	font-size: 3.6rem;
+	font-weight: bold;
+	margin: 1rem 0;
+}
+
+.paragraaf {
+  font-size: 2.4rem;
+	font-weight: 600;
+	margin-bottom: 4rem;
+}
+
+.form {
+  max-width: 70rem;
+}
+
+.label {
+  display: flex;
+  flex-flow: column;
+}
+
+.tussenTitle {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.text {
+  font-size: 1.4rem;
+	font-weight: lighter;
+	margin: 1rem 0;
+}
+
+.input {
+  height: 2.4rem;
+  width: 30rem;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.button_fundig,
+.button_annuleren {
+  padding: button;
+  font-weight: 900;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+.button_fundig {
+  background-color: green-prim;
+  color: white;
+  border: none;
+  margin-right: .5rem;
+}
+
+.button_fundig:hover {
+  background-color: green-hover;
+}
+
+.button_annuleren {
+  background-color: transparent;
+  color: red-prim;
+  border: solid .1rem red-prim;
+}
+
+.button_annuleren:hover {
+  color: red-hover;
+  border: solid .1rem red-hover;
+}
+
+
+

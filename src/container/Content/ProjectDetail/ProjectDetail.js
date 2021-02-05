@@ -105,15 +105,15 @@ const ProjectDetail = () => {
                 <h4 className={style.details__help}> Hoe kan jij helpen?</h4>
                 <div className={style.details__spotlight__buttons}>
                   <ul className={style.details__rollen__benodigheden}>
-                    <li>Benodigdheden</li>
+                    <li className={style.funding__list__item}>Benodigdheden</li>
                     {fundingStore.funding.map(product => (
-                      <li key={product.id}>{product.product} ------ {product.aantal}</li>  
+                      <li key={product.id} className={style.funding__list__items}><span className={style.funding__list__span}>{product.aantal}</span> {product.product}</li>  
                       ))}
                   </ul>
-                  <ul className={style.details__rollen__list}>
-                    <li>Rollen</li>
+                  <ul>
+                    <li className={style.funding__list__item}>Rollen</li>
                     {rolStore.roles.map(rol => (
-                      <li key={rol.id}>{rol.name} ------ {rol.aantal}</li>  
+                      <li key={rol.id} className={style.funding__list__items}><span className={style.funding__list__span}>{rol.aantal}</span> {rol.name}</li>  
                       ))}
                   </ul>
                 </div>
