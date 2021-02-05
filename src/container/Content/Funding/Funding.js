@@ -2,7 +2,9 @@ import { useObserver } from "mobx-react-lite";
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useStores } from "../../../hooks/useStores";
-// import style from "./Funding.module.css"
+import style from "./Funding.module.css";
+import { Link } from "react-router-dom";
+import { ROUTES } from "../../../consts";
 
 const Funding = () => {
   const [amount, setAmount] = useState();
@@ -26,8 +28,13 @@ const Funding = () => {
 
   return useObserver(() => (
     <>
-      <h3>{project.title}</h3>
-      {/* <span>Help dit project door benodigdheden te funden</span> */}
+      
+      <Link className={style.details__link} to={ROUTES.home}>
+        <div className={style.driehoek}></div>
+        <p className={style.details__link__tekst}>Terug naar projecten</p>
+      </Link>
+      <h3 className={style.test}>{project.title}</h3>
+      <p>Help dit project hun boodschappenlijstje af te vinken!</p>
 
       {fundingStore.funding.map(funding => (
         <>
@@ -36,6 +43,26 @@ const Funding = () => {
           <button onClick={e => doneer(e, funding)}>Doneer</button>
         </>
       ))}
+      
+      <h4>Afleveren</h4>
+      <p>Hoe ga je jouw donatie afleveren?</p>
+      <div>
+        <button>Ophalen</button>
+        <button>Versturen</button>
+      </div>
+
+      <form>
+        <label>
+          Adres
+          <span>Straat, nr</span>
+          <input></input>
+          <span>*Dit is nodig om te weten waar de eigenaar de materialen kan ophalen.</span>
+        </label>
+        <div>
+          <button>Doneren</button>
+          <button>Annuleren</button>
+        </div>
+      </form>
     </>
   ));
 };
