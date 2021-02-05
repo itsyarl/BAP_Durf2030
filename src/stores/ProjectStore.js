@@ -77,16 +77,16 @@ class ProjectStore {
   }
 
   getProjectById = id => {
+    //get funding items
+    this.rootStore.fundingStore.getFundingById(id);
+    //get roles
+    this.rootStore.rolStore.getRolesById(id);
     //get messages
     this.getMessagesById(id);
     //find project
     const project = this.projects.find(project => project.id === id);
     //get comments
     this.getComments(id, project);
-    //get funding items
-    this.rootStore.fundingStore.getFundingById(id);
-    //get roles
-    this.rootStore.rolStore.getRolesById(id);
 
     return project
   }
@@ -163,6 +163,9 @@ class ProjectStore {
   empty() {
     this.projects = [];
     this.chats = [];
+    this.rootStore.rolStore.empty();
+    this.rootStore.fundingStore.empty();
+    this.rootStore.commentStore.empty();
   }
 
 }

@@ -17,8 +17,6 @@ class CommentStore {
   };
 
   getCommentsByProjectId = async (id, project) => {
-    this.empty();
-    
     await this.commentService.getCommentByProjectId(id, this.addComments, project);
   }
 

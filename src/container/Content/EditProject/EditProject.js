@@ -48,21 +48,33 @@ const EditProject = () => {
     }
   }
 
-  const deleteRol = (rol) => {
+  const deleteRol = async (rol) => {
     const array = [...rollen]
     const index = array.indexOf(rol);
     if (index > -1) {
       array.splice(index, 1);
       setRollen(array);
+      rolStore.empty();
+    }
+    try{
+      await rolStore.removeRol(rol.id);
+    } catch(error){
+      console.log(error)
     }
   }
 
-  const deleteBenodigdheid = (rol) => {
+  const deleteBenodigdheid = async (benodigdheid) => {
     const array = [...benodigdheden]
-    const index = array.indexOf(rol);
+    const index = array.indexOf(benodigdheid);
     if (index > -1) {
       array.splice(index, 1);
       setBenodigdheden(array);
+      fundingStore.empty();
+    }
+    try{
+      await fundingStore.removeFunding(benodigdheid.id);
+    } catch(error){
+      console.log(error)
     }
   }
 
@@ -82,19 +94,19 @@ const EditProject = () => {
   const handleSubmit = async e => {
     e.preventDefault();
 
-    const url = `https://api.cloudinary.com/v1_1/dgbx78idf/upload`
-    const formData = new FormData();
-    const imageForm = document.getElementById(`image`).files[0];
-    formData.append('file', imageForm);
-    formData.append('upload_preset', "nouoxmyc");
+    // const url = `https://api.cloudinary.com/v1_1/dgbx78idf/upload`
+    // const formData = new FormData();
+    // const imageForm = document.getElementById(`image`).files[0];
+    // formData.append('file', imageForm);
+    // formData.append('upload_preset', "nouoxmyc");
 
-    const response = await fetch(url, {
-      method: "post",
-      body: formData,
-    });
+    // const response = await fetch(url, {
+    //   method: "post",
+    //   body: formData,
+    // });
 
-    const image = await response.json();
-    console.log(image);
+    // const image = await response.json();
+    // console.log(image);
 
     const p = new Project({ 
       id,
@@ -104,38 +116,42 @@ const EditProject = () => {
       theme,
       eventDate,
       location,
-      image,
+      // image,
       geo
     });
 
     rollen.map(async rol => {
-      const r = new Rol({
-        projectId: p.id,
-        userId: uiStore.currentUser.id,
-        name: rol.rol,
-        aantal: rol.aantal,
-      })
-
-      await rolStore.createRol(r);
+      if (!rol.id) {
+        const r = new Rol({
+          projectId: p.id,
+          userId: uiStore.currentUser.id,
+          name: rol.rol,
+          aantal: rol.aantal,
+        })
+        rolStore.roles.push(r);
+        await rolStore.createRol(r);
+      }
     })
 
     benodigdheden.map(async funding => {
-      const f = new Funding({
-        projectId: p.id,
-        userId: uiStore.currentUser.id,
-        product: funding.product,
-        aantal: funding.aantal,
-      })
-
-      await fundingStore.createFunding(f);
+      if (!funding.id) {
+        const f = new Funding({
+          projectId: p.id,
+          userId: uiStore.currentUser.id,
+          product: funding.product,
+          aantal: funding.aantal,
+        })
+        fundingStore.funding.push(f);
+        await fundingStore.createFunding(f);
+      }
     })
 
     try {
-      const newProject = await projectStore.updateProject(p, id);
-      
       history.push(ROUTES.home);
+      const newProject = await projectStore.updateProject(p, id);
       console.log(newProject);
-    } catch(error){
+      // projectStore.getValidatedProjects(true);
+    } catch(error) {
       console.log(error);
     }
 
@@ -299,7 +315,7 @@ const EditProject = () => {
                 />
               </label>
               
-              <input type="file" id="image" />
+              {/* <input type="file" id="image" /> */}
             </div>
           </div>
 

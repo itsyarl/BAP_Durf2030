@@ -25,12 +25,16 @@ class FundingStore {
     }
   }
 
-  removeFunding = async (participant, product, projectId) => {
-    await this.fundingService.removeFunding(participant, product, projectId);
+  removeFunding = async (id) => {
+    await this.fundingService.removeFunding(id);
   }
 
   giveFunding = async (participant, product, projectId, aantal) => {
     await this.fundingService.giveFunding(participant, product, projectId, aantal);
+  }
+
+  empty = () => {
+    this.funding =[];
   }
 
 }

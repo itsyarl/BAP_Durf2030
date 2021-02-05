@@ -46,7 +46,7 @@ class ProjectService {
     // referentie van document ophalen
     const ref = object.ref.id;
     //document updaten
-    await client.query(
+    return await client.query(
       q.Update(
         q.Ref(q.Collection('Project'), ref),
         { data: { 

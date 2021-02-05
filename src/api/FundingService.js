@@ -24,6 +24,21 @@ class FundingService {
     .catch((err) => console.error('Error: %s', err))
   }
 
+  removeFunding = async (id) => {
+    const object = await client.query(
+      q.Get(
+        q.Match(q.Index('funding_by_id'), id)
+      )
+    )
+
+    const ref = object.ref.id;
+
+    await client.query(
+      q.Delete(q.Ref(q.Collection('Funding'), ref))
+    )
+    .catch((err) => console.error('Error: %s', err))
+  }
+
   createFunding = async funding => {
     return await client.query(
       q.Create(
@@ -47,7 +62,7 @@ class FundingService {
     return await client.query(
       q.Paginate(
         q.Match(
-          q.Ref('indexes/funding_by_id'), id)),
+          q.Ref('indexes/funding_by_projectId'), id)),
     )
     .then(async (response) => {
       const productRefs = response.data
