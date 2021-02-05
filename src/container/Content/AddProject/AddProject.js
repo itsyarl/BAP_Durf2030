@@ -128,8 +128,8 @@ const AddProject = () => {
     })
 
     try {
-      const newProject = await projectStore.createProject(p);
       history.push(ROUTES.home);
+      const newProject = await projectStore.createProject(p);
       console.log(newProject);
     } catch(error){
       console.log(error);

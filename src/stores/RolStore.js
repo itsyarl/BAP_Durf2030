@@ -25,12 +25,16 @@ class RolStore {
     }
   }
 
-  removeRoll = async (participant, role, projectId) => {
-    await this.rolService.removeRol(participant, role, projectId);
+  removeRol = async (id) => {
+    await this.rolService.removeRol(id);
   }
 
   giveRoll = async (participant, role, projectId) => {
     await this.rolService.giveRol(participant, role, projectId);
+  }
+
+  empty = () => {
+    this.roles = [];
   }
 
 }

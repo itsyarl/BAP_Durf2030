@@ -21,19 +21,17 @@ class RolService {
     .catch((err) => console.error('Error: %s', err))
   }
 
-  removeRol = async (participant, rol, projectId) => {
+  removeRol = async (id) => {
     const object = await client.query(
       q.Get(
-        q.Match(q.Index('role_by_project_and_name'), [ projectId, rol ])
+        q.Match(q.Index('role_by_id'), id)
       )
-    );
+    )
+
     const ref = object.ref.id;
 
     await client.query(
-      q.Update(
-        q.Ref(q.Collection('Rollen'), ref),
-        { data: { users: participant } },
-      )
+      q.Delete(q.Ref(q.Collection('Rollen'), ref))
     )
     .catch((err) => console.error('Error: %s', err))
   }
@@ -61,7 +59,7 @@ class RolService {
     return await client.query(
       q.Paginate(
         q.Match(
-          q.Ref('indexes/roles_by_id'), id)),
+          q.Ref('indexes/roles_by_projectId'), id)),
     )
     .then(async (response) => {
       const productRefs = response.data
