@@ -14,6 +14,7 @@ import { Link } from "react-router-dom";
 const EditProject = () => {
   const { projectStore, uiStore, rolStore, fundingStore } = useStores();
   const { id } = useParams();
+  
   const project = projectStore.getProjectById(id);
 
   const [title, setTitle] = useState(project.title);
@@ -23,8 +24,8 @@ const EditProject = () => {
   const [eventDate, setEventDate] = useState(project.eventDate);
   const [benodigdhedenInput, setBenodigdhedenInput] = useState({product: "", aantal: 0});
   const [rollenInput, setRollenInput] = useState({rol: "", aantal: 0});
-  const [benodigdheden, setBenodigdheden] = useState(fundingStore.funding);
-  const [rollen, setRollen] = useState(rolStore.roles);
+  const [benodigdheden, setBenodigdheden] = useState(project.funding);
+  const [rollen, setRollen] = useState(project.rollen);
   const [geo, setGeo] = useState(project.geo);
 
   const history = useHistory();
@@ -54,7 +55,6 @@ const EditProject = () => {
     if (index > -1) {
       array.splice(index, 1);
       setRollen(array);
-      rolStore.empty();
     }
     try{
       await rolStore.removeRol(rol.id);
@@ -69,7 +69,6 @@ const EditProject = () => {
     if (index > -1) {
       array.splice(index, 1);
       setBenodigdheden(array);
-      fundingStore.empty();
     }
     try{
       await fundingStore.removeFunding(benodigdheid.id);
@@ -128,7 +127,7 @@ const EditProject = () => {
           name: rol.rol,
           aantal: rol.aantal,
         })
-        rolStore.roles.push(r);
+        project.rollen.push(r);
         await rolStore.createRol(r);
       }
     })
@@ -141,7 +140,7 @@ const EditProject = () => {
           product: funding.product,
           aantal: funding.aantal,
         })
-        fundingStore.funding.push(f);
+        project.funding.push(f);
         await fundingStore.createFunding(f);
       }
     })

@@ -15,8 +15,10 @@ import CommentsSwitch from "../../../components/CommentsSwitch/CommentsSwitch";
 
 const ProjectDetail = () => {
   const { id } = useParams();
-  const { projectStore, uiStore, fundingStore, rolStore } = useStores();
+  const { projectStore, uiStore } = useStores();
   const project = projectStore.getProjectById(id);
+  // const comment = projectStore.getData(id, project);
+  // const roles = rolStore.getRolesById(id);
   const didLike = project.likedUsers.findIndex(user => user === uiStore.currentUser.id);
   
   const like = async e => {
@@ -106,13 +108,13 @@ const ProjectDetail = () => {
                 <div className={style.details__spotlight__buttons}>
                   <ul className={style.details__rollen__benodigheden}>
                     <li className={style.funding__list__item}>Benodigdheden</li>
-                    {fundingStore.funding.map(product => (
-                      <li key={product.id} className={style.funding__list__items}><span className={style.funding__list__span}>{product.aantal}</span> {product.product}</li>  
+                    {project.funding.map(fund => (
+                      <li key={fund.id} className={style.funding__list__items}><span className={style.funding__list__span}>{fund.aantal}</span> {fund.product}</li>  
                       ))}
                   </ul>
                   <ul>
                     <li className={style.funding__list__item}>Rollen</li>
-                    {rolStore.roles.map(rol => (
+                    {project.rollen.map(rol => (
                       <li key={rol.id} className={style.funding__list__items}><span className={style.funding__list__span}>{rol.aantal}</span> {rol.name}</li>  
                       ))}
                   </ul>

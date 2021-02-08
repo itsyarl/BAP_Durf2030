@@ -6,7 +6,6 @@ class FundingStore {
   constructor(rootStore) {
     this.rootStore = rootStore;
     this.fundingService = new FundingService();
-    this.funding = [];
   }
 
   createFunding = async funding => {
@@ -14,15 +13,8 @@ class FundingStore {
   };
 
   getFundingById = async id => {
-    return await this.fundingService.getFundingById(id, this.addFunding);
-  }
-
-  addFunding = funding => {
-    let fundingExist = this.funding.findIndex(item => item.id === funding.id);
-    if (fundingExist === -1) {
-      this.funding.push(funding);
-      // this.projects.map(project=> console.log(project.id));
-    }
+    this.empty();
+    await this.fundingService.getFundingById(id, this.addFunding);
   }
 
   removeFunding = async (id) => {
@@ -31,10 +23,6 @@ class FundingStore {
 
   giveFunding = async (participant, product, projectId, aantal) => {
     await this.fundingService.giveFunding(participant, product, projectId, aantal);
-  }
-
-  empty = () => {
-    this.funding =[];
   }
 
 }

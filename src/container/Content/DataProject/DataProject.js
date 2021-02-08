@@ -25,6 +25,7 @@ const DataProject = () => {
         setUsersWithoutRole(usersWithoutRole => [...usersWithoutRole, userInProject]);
       }
     })
+    
     setWhatRole(name);
   }
 
@@ -34,16 +35,17 @@ const DataProject = () => {
     if (index > -1) {
       usersArray.splice(index, 1);
     }
-
-    await rolStore.removeRoll(usersArray, rol.name, id)
+    rol.aantal = rol.aantal+1;
+    await rolStore.updateRol(rol.id, rol.aantal, usersArray)
   }
 
   const handleSubmit = async (rol) => {
-    if (user !== ""){
+    if (user !== "" && rol.aantal !== 0){
       rol.users.push(user);
+      rol.aantal = rol.aantal -1;
       setUser("")
-      // setWhatRole("");
-      await rolStore.giveRoll(user, rol.name, id);
+      setWhatRole("");
+      await rolStore.giveRol(user, rol, id);
     }
   }
   // console.log(rolStore.roles);
@@ -51,13 +53,13 @@ const DataProject = () => {
     <>
       <h3 className={style.test}>DataProject</h3>
       <ul>
-        {rolStore.roles.map(rol => (
+        {project.rollen.map(rol => (
             <>
-              <li key={rol.id}>{rol.name} -- {rol.aantal - rol.users.length}</li>
+              <li key={rol.id}>{rol.name} -- {rol.aantal}</li>
                 {rol.users.map(userInRol => (
                   <>
-                    <span key={userInRol}>{userInRol}</span>
-                    <button onClick={() => removeUser(userInRol, rol)} >verwijder user van rol</button>
+                    <span key={userInRol.id}>{userInRol}</span>
+                    <button key={userInRol.id} onClick={() => removeUser(userInRol, rol)} >verwijder user van rol</button>
                   </>
                 ))}
               {whatRole === rol.name ? (

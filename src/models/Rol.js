@@ -1,4 +1,4 @@
-import { decorate, observable } from "mobx";
+import { action, decorate, observable } from "mobx";
 import { v4 } from "uuid";
 
 class Rol {
@@ -8,10 +8,19 @@ class Rol {
     this.users = users;
     this.name = name;
     this.aantal = aantal;
+    this.projects = [];
   }
+
+  linkProject(project) {
+    !this.projects.includes(project) && this.projects.push(project);
+    !project.rollen.includes(this) && project.linkRol(this);
+  }
+
 }
 decorate(Rol, {
   users: observable,
+  aantal: observable,
+  linkProject: action
 });
 
 export default Rol;
