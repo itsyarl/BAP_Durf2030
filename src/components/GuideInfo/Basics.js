@@ -13,6 +13,8 @@ import gegevens from "./icons/gegevens.svg";
 import add from "./icons/add.svg";
 import mode from "./icons/mode.svg";
 import alarm from "./icons/alarm.svg";
+import update from "./icons/update.svg";
+import contact from "./icons/contact.svg";
 
 const Basics = () => {
 
@@ -45,7 +47,7 @@ const Basics = () => {
             <p>Lijst van alle projecten die een beetje meer aandacht verdienen</p>
           </li>
           <li className={style.Basics__icons__item}>
-            <img className={style.Basics__icons__img} src={gegevens} alt="project layout"/>
+            <img className={style.Basics__icons__img} src={contact} alt="project layout"/>
             <p>Bekijk alle contact gegevens</p>
           </li>
           <li className={style.Basics__icons__item}>
@@ -73,11 +75,11 @@ const Basics = () => {
             <p>Aantal likes</p>
           </li>
           <li className={style.Basics__icons__item}>
-            <img className={style.Basics__icons__img} src={account} alt="project layout"/>
+            <img className={style.Basics__icons__img} src={update} alt="project layout"/>
             <p>Updates die de eigenaar over het project deelt</p>
           </li>
           <li className={style.Basics__icons__item}>
-            <img className={style.Basics__icons__img} src={chat} alt="project layout"/>
+            <img className={style.Basics__icons__img} src={gegevens} alt="project layout"/>
             <p>Opmerkingen bij een project</p>
           </li>
           <li className={style.Basics__icons__item}>

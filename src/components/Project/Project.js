@@ -45,7 +45,7 @@ const Project = ({project}) => {
             <span className={style.proj__theme}>{project.theme}</span>
             <span className={style.proj__status}>{project.status}<div className={classSwitch(project.status)}></div></span>
           </div>
-          <h2 className={style.proj__title}>{project.title}</h2>
+          <h3 className={style.proj__title}>{project.title}</h3>
           <div className={style.proj__boxlike}>
             <img className={style.proj__likeicon} src={icon} alt="like icon"/>
             <span className={style.proj__like}>{project.likes}</span>

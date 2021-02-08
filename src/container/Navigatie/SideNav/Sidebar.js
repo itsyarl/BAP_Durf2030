@@ -9,17 +9,19 @@ import info from "./icons/info_icon.svg"
 import contact from "./icons/contact_icon.svg"
 import map from "./icons/map_icon.svg"
 import kijker from "./icons/kijker_icon.svg"
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
+import { ROUTES } from "../../../consts";
 
 const Sidebar = () => {
   return useObserver(() => (
-    <div className={style.sidebar}>
+    <section className={style.sidebar}>
+      <h2 className="hidden">Sidenav</h2>
       <div className={style.sidebar__fixed}>
-        <img className={style.logo} src={logo} alt="durf2030 logo"/>
+        <Link className={style.logo} to={ROUTES.home}><img src={logo} alt="durf2030 logo"/></Link>
 
         <nav className={style.nav}>
           <div className={style.nav__container}>
-            <h2 className={style.nav__titel}>Menu</h2>
+            <h4 className={style.nav__titel}>Menu</h4>
             <NavLink activeClassName={style.active} className={style.nav__link} exact to="/">
               <img className={style.nav__icon} src={map} alt="guide icon"/>
               Alle projecten  
@@ -31,7 +33,7 @@ const Sidebar = () => {
           </div>
         
           <div className={style.nav__container2}>
-            <h2 className={style.nav__titel}>Mijn projecten</h2>
+            <h4 className={style.nav__titel}>Mijn projecten</h4>
             <NavLink activeClassName={style.active} className={style.nav__link} to="/addproject">
               <img className={style.nav__icon} src={add} alt="guide icon"/>
               Project toevoegen  
@@ -47,7 +49,7 @@ const Sidebar = () => {
           </div>
 
           <div className={style.nav__container}>
-          <h2 className={style.nav__titel}>Info</h2>
+          <h4 className={style.nav__titel}>Info</h4>
             <NavLink activeClassName={style.active} className={style.nav__link} to="/guide">
               <img className={style.nav__icon} src={info} alt="guide icon"/>
               Gids  
@@ -65,7 +67,7 @@ const Sidebar = () => {
           </p>
         </footer>
       </div>
-    </div>
+    </section>
   ))
 };
 

@@ -12,7 +12,6 @@ const CommentsSwitch = ({project}) => {
 
   return (
     <>
-
       <div className={style.buttons}>
           <button 
             className={`${info === 'updates' ? style.info__button__active : style.info__button }`} 
@@ -51,7 +50,6 @@ const CommentsSwitch = ({project}) => {
             </>
           )}
         </div>
-
     </>
   );
 };

@@ -11,7 +11,6 @@ import DataProject from "./DataProject/DataProject";
 import EditProject from "./EditProject/EditProject";
 import Funding from "./Funding/Funding";
 import Guide from "./Guide/Guide";
-import AcountUser from "./AcountUser/AcountUser";
 import Chat from "./Chat/Chat";
 import style from "./Content.module.css";
 import Messages from "./Messages/Messages";
@@ -20,7 +19,7 @@ import Contact from "./Contact/Contact";
 const Content = ({ token }) => {
   const { uiStore } = useStores();
   return (
-    <section className={style.content}>
+    <main className={style.content}>
       <Switch>
         <Route path={ROUTES.addProject}>
           <AddProject />
@@ -36,10 +35,6 @@ const Content = ({ token }) => {
 
         <Route path={ROUTES.contact}>
           <Contact />
-        </Route>
-
-        <Route path={ROUTES.acountUser.path}>
-          <AcountUser />
         </Route>
 
         <Route path={ROUTES.dataProject.path}>
@@ -75,7 +70,7 @@ const Content = ({ token }) => {
         </Route>
 
       </Switch>
-    </section>
+    </main>
   );
 };
 

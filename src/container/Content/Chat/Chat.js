@@ -7,11 +7,11 @@ import { ROUTES } from "../../../consts";
 
 const Chat = () => {
   return useObserver(() => (
-    <div className={style.container}>
+    <section className={style.container}>
       <h3 className={style.title}>Chat groepen</h3>
       <ChatList />
       <Link className={style.link} to={ROUTES.home}>Bekijk andere projecten</Link>
-    </div>
+    </section>
   ));
 };
 

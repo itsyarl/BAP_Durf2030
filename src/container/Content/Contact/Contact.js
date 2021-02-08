@@ -14,7 +14,7 @@ const project = new Icon({
 const Contact = () => {
 
   return (
-    <>
+    <section>
       <h3 className={style.test}>Contact</h3>
       <div className={style.contact__grid}>
         <div>
@@ -78,7 +78,7 @@ const Contact = () => {
           </form>
         </div>
       </div>
-    </>
+    </section>
   );
 };
 

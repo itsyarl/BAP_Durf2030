@@ -138,12 +138,12 @@ const AddProject = () => {
   };
 
   return (
-    <>
-      <h3 className={style.title}>Project aanmaken</h3>
+    <section>
+      <h2 className={style.title}>Project aanmaken</h2>
       <div className={style.add__container}>
         <form onSubmit={handleSubmit} className={style.add__form}>
           <div className={style.add__form__block}>
-            <h4 className={style.add__form__block__title}>Basics</h4>
+            <h3 className={style.add__form__block__title}>Basics</h3>
             <div>
               <label className={style.add__label}>
                 <span className={style.add__title}>Title</span>
@@ -173,7 +173,7 @@ const AddProject = () => {
           </div>
           
           <div className={style.add__form__block}>
-            <h4 className={style.add__form__block__title}>Locatie</h4>
+            <h3 className={style.add__form__block__title}>Locatie</h3>
             <div>
               <label className={style.add__label}>
                 <span className={style.add__title}>Adres</span>
@@ -201,7 +201,7 @@ const AddProject = () => {
           </div>
           
           <div className={style.add__form__block}>
-            <h4 className={style.add__form__block__title}>Funding</h4>
+            <h3 className={style.add__form__block__title}>Funding</h3>
             <div className={style.funding__container}>
               <label className={style.add__label}>
                 <span className={style.add__title}>Benodigdheden</span>
@@ -273,7 +273,7 @@ const AddProject = () => {
           </div>
          
           <div className={style.add__form__block}>
-            <h4 className={style.add__form__block__title}>Extra's</h4>
+            <h3 className={style.add__form__block__title}>Extra's</h3>
             <div>
               <label className={style.add__label}>
                 <span className={style.add__title}>Thema</span>
@@ -317,7 +317,7 @@ const AddProject = () => {
 
         <div className={style.add__tips__box}>
           <div className={style.add__tips}>
-            <h4 className={style.add__tips__htitle}>Vooruitgang</h4>
+            <h3 className={style.add__tips__htitle}>Vooruitgang</h3>
             <div className={style.add__tips__container}>
               <h5 className={style.add__tips__title}>Tips</h5>
               <p className={style.add__tips__subtitle}>#1</p>
@@ -338,7 +338,7 @@ const AddProject = () => {
           </div>
         </div>
       </div>
-    </>
+    </section>
   );
 };
 

@@ -27,24 +27,27 @@ const Funding = () => {
   }
 
   return useObserver(() => (
-    <>
-      
-      <Link className={style.details__link} to={ROUTES.home}>
+    <section>
+      <h2 className="hidden">funding</h2>
+      <Link className={style.details__link} to={`${ROUTES.projectDetail.to}${project.id}`}>
         <div className={style.driehoek}></div>
         <p className={style.details__link__tekst}>Terug naar projecten</p>
       </Link>
       <h3 className={style.title}>{project.title}</h3>
       <p className={style.paragraaf}>Help dit project hun boodschappenlijstje af te vinken!</p>
 
-      {fundingStore.funding.map(funding => (
-        <>
-          <span key={funding.id}>{funding.product}-----{funding.aantal}</span>
-          <input type="number" value={amount} onChange={e => setAmount(e.target.value)}></input>
-          <button onClick={e => doneer(e, funding)}>Doneer</button>
-        </>
-      ))}
+      <ul className={style.funding__list}>
+        {fundingStore.funding.map((funding, index) => (
+          <li className={style.funding__item} key={funding.id}>
+            <p><span className={style.funnding__item__number}>#{index + 1}</span> {funding.product}</p>
+            <p>{funding.aantal}</p>
+            <input className={style.funding__item__input} type="number" value={amount} onChange={e => setAmount(e.target.value)}></input>
+            <button onClick={e => doneer(e, funding)}>Doneer</button>
+          </li>
+        ))}
+      </ul>
       
-      <h4 className={style.tussenTitle}>Afleveren</h4>
+      <h3 className={style.tussenTitle}>Afleveren</h3>
       <p className={style.text}>Hoe ga je jouw donatie afleveren?</p>
       <div>
         <button className={style.button_fundig}>Ophalen</button>
@@ -54,7 +57,7 @@ const Funding = () => {
 
       <form className={style.form}>
         <label className={style.label}>
-          <span className={style.tussenTitle}>Adres</span>
+          <h3 className={style.tussenTitle}>Adres</h3>
           <span className={style.text}>Straat, nr</span>
           <input className={style.input}></input>
           <span className={style.text}>*Dit is nodig om te weten waar de eigenaar de materialen kan ophalen.</span>
@@ -64,7 +67,7 @@ const Funding = () => {
           <Link to={`${ROUTES.projectDetail.to}${project.id}`} className={style.button_annuleren}>Annuleren</Link>
         </div>
       </form>
-    </>
+    </section>
   ));
 };
 

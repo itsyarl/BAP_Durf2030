@@ -30,16 +30,19 @@ const Acount = () => {
   // const { projectStore, uiStore } = useStores();
 
   return (
-    <>
-      <div className={style.user__container}>
+    <section>
+      <h2 className="hidden">account</h2>
+      <article className={style.user__container}>
+        <h3 className="hidden">user info</h3>
         <img src={user} alt="user foto"/>
         <p className={style.user__info}>
           <span className={style.user__name}>Floyd Miles</span>
           <span className={style.user__date}>Lid sinds 8/15/21</span>
         </p>
-      </div>
+      </article>
 
-      <div className={style.buttons}>
+      <article className={style.buttons}>
+        <h3 className="hidden">nav</h3>
         <button className={`${info === 'Projects' ? style.info__button__active : style.info__button }`} 
           onClick={() => button('Projects')}>
           <img className={style.info__icon} src={map} alt="projects icon"/>
@@ -57,10 +60,10 @@ const Acount = () => {
           <img className={style.info__icon} src={i} alt="info icon"/>
           <span>Info</span>
         </button>
-      </div>
+      </article>
 
       { infoSwitch(info) }
-    </>
+    </section>
   );
 };
 

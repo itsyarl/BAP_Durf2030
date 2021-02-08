@@ -158,12 +158,12 @@ const EditProject = () => {
   };
 
   return (
-    <>
-      <h3 className={style.title}>Project bewerken</h3>
+    <section>
+      <h2 className={style.title}>Project bewerken</h2>
       <div className={style.add__container}>
         <form onSubmit={handleSubmit} className={style.add__form}>
           <div className={style.add__form__block}>
-            <h4 className={style.add__form__block__title}>Basics</h4>
+            <h3 className={style.add__form__block__title}>Basics</h3>
             <div>
               <label className={style.add__label}>
                 <span className={style.add__title}>Title</span>
@@ -193,7 +193,7 @@ const EditProject = () => {
           </div>
           
           <div className={style.add__form__block}>
-            <h4 className={style.add__form__block__title}>Locatie</h4>
+            <h3 className={style.add__form__block__title}>Locatie</h3>
             <div>
               <label className={style.add__label}>
                 <span className={style.add__title}>Adres</span>
@@ -221,7 +221,7 @@ const EditProject = () => {
           </div>
           
           <div className={style.add__form__block}>
-            <h4 className={style.add__form__block__title}>Benodigdheden</h4>
+            <h3 className={style.add__form__block__title}>Benodigdheden</h3>
             <div>
               <label className={style.add__label}>
                 <span className={style.add__title}>Benodigdheden</span>
@@ -289,7 +289,7 @@ const EditProject = () => {
           </div>
          
           <div className={style.add__form__block}>
-            <h4 className={style.add__form__block__title}>Extra's</h4>
+            <h3 className={style.add__form__block__title}>Extra's</h3>
             <div>
               <label className={style.add__label}>
                 <span className={style.add__title}>Thema</span>
@@ -320,7 +320,7 @@ const EditProject = () => {
           </div>
 
           <div className={style.butttons}>
-            <Link className={style.logout} to={ROUTES.home}>
+            <Link className={style.logout} to={`${ROUTES.projectDetail.to}${project.id}`}>
                 <span>Anuleren</span>
             </Link>
             <input 
@@ -333,7 +333,7 @@ const EditProject = () => {
 
         <div className={style.add__tips__box}>
           <div className={style.add__tips}>
-            <h4 className={style.add__tips__htitle}>Vooruitgang</h4>
+            <h3 className={style.add__tips__htitle}>Vooruitgang</h3>
             <div className={style.add__tips__container}>
               <h5 className={style.add__tips__title}>Tips</h5>
               <p className={style.add__tips__subtitle}>#1</p>
@@ -354,7 +354,7 @@ const EditProject = () => {
           </div>
         </div>
       </div>
-    </>
+    </section>
   );
 };
 

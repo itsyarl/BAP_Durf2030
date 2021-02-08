@@ -1,2 +1,291 @@
 @value tokens: "../../../styles/tokens.module.css";
-@value from tokens;
+@value red-prim, red-hover, dark, white-prim, button, green-prim, green-hover from tokens;
+
+.grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  column-gap: 5rem;
+}
+
+.details__link {
+  display: flex;
+  align-items: center;
+  margin-left: -2rem;
+  width: 23rem;
+}
+
+.details__link__tekst {
+  font-weight: 600;
+  margin-left: 1rem;
+}
+
+@-webkit-keyframes bounceLeft {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    -webkit-transform: translateX(0rem);
+    transform: translateX(0rem);
+  }
+  40% {
+    -webkit-transform: translateX(1.8rem);
+    transform: translateX(1.8rem);
+  }
+  60% {
+    -webkit-transform: translateX(.9rem);
+    transform: translateX(.9rem);
+  }
+}
+@-moz-keyframes bounceLeft {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateX(0rem);
+  }
+  40% {
+    transform: translateX(1.8rem);
+  }
+  60% {
+    transform: translateX(.9rem);
+  }
+}
+@keyframes bounceLeft {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    -ms-transform: translateX(0rem);
+    transform: translateX(0rem);
+  }
+  40% {
+    -ms-transform: translateX(1.8rem);
+    transform: translateX(1.8rem);
+  }
+  60% {
+    -ms-transform: translateX(.9rem);
+    transform: translateX(.9rem);
+  }
+}
+
+.details__link:hover {
+  -webkit-animation: bounceLeft 1.5s infinite;
+  animation: bounceLeft 1.5s infinite;
+}
+
+.driehoek {
+  width: 0;
+  height: 0;
+  border-top: 1.5rem solid transparent;
+  border-right: 2rem solid red-prim;
+  border-bottom: 1.5rem solid transparent;
+}
+
+/*eigen code*/
+
+.title {
+  max-width: 45rem;
+	font-size: 3.6rem;
+	font-weight: bold;
+  margin: 1rem 0;
+  color: dark;
+}
+
+.groepTitle {
+  font-size: 2.4rem;
+  font-weight: 900;
+  margin: 2rem 0 1rem;
+  color: dark;
+}
+
+.project__data {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;  
+  margin: 3rem 0 5rem;
+}
+
+.project__data__block {
+  display: flex;
+  align-items: center;
+}
+
+.project__data__text {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  margin-left: 2rem;
+  font-size: 3.6rem;
+  font-weight: 600;
+}
+
+.project__data__snap {
+  font-size: 1.4rem;
+  font-weight: normal;
+}
+
+.funding__list {
+  margin-top: 3rem;
+}
+
+.funding__list__item {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+  padding: 1rem;
+  align-items: center;
+  font-weight: 600;
+  color: dark;
+}
+
+.funding__list__item:nth-child(even) {
+  background-color: white-prim;
+}
+
+.funding__list__item__center {
+  justify-self: center;
+}
+
+.funding__item__bottom {
+  margin-bottom: 1rem;
+}
+
+.funding__user {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.funding__user__img {
+  margin-right: 2rem;
+}
+
+.funding__user__name {
+  display: flex;
+  flex-flow: column;
+}
+
+.rollen__container {
+  margin-top: 5rem;
+}
+
+.rollen {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 2rem;  
+}
+
+.rol {
+  padding: 1rem;
+  background-color: white-prim;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: 1fr 3fr;
+}
+
+.rol__users {
+  grid-column: 1/ 3;
+  justify-self: center;
+  align-self: center;
+}
+
+.rol__username {
+  display: flex;
+  flex-flow: column;
+  font-weight: 600;
+  font-size: 1.8rem;
+}
+
+.rol__aantal {
+  font-size: 1.1rem;
+  font-weight: lighter;
+  margin-top: .5rem;
+}
+
+.rol__button {
+  background-color: green-prim;
+  border: none;
+  padding: button;
+  font-size: 1.4rem;
+  color: dark;
+  font-weight: 600;
+  margin-left: 1rem;
+  height: 4rem;
+}
+
+.rol__button:hover {
+  background-color: green-hover;
+}
+
+.delete {
+  margin-left: 2rem;
+  background-color: red-prim;
+  color: white-prim;
+  border: none;
+}
+
+.delete:hover {
+  background: red-hover;
+}
+
+.rol__dropdown {
+  display: flex;
+  flex-flow: column;
+}
+
+.rol__user__space {
+  justify-content: space-between;
+  width: 28rem;
+}
+
+.fixed__users {
+  position: fixed;
+  padding: 2rem;
+  background-color: white-prim;
+}
+
+.title__users {
+  font-size: 2.4rem;
+  color: dark;
+  font-weight: 900;
+  margin-bottom: 1rem;
+}
+
+.filter__users {
+  padding: button;
+  border: .1rem green-prim solid;
+  background-color: transparent;
+  color: green-prim;
+  font-weight: 900;
+  font-size: 1.4rem;
+  margin-right: 1rem;
+  margin-bottom: 2rem;
+  cursor: pointer;
+}
+
+.filter__users:hover {
+  border: .1rem green-hover solid;
+  color: green-hover;
+}
+
+.filter__users__active {
+  border: .1rem green-prim solid;
+  background-color: green-prim;
+  color: white-prim;
+}
+
+.funding__user__name__span {
+  margin-top: .2rem;
+  font-weight: lighter;
+}
+
+.user {
+  font-weight: 600;
+}
+
+.deelnemen__list {
+  overflow-y: scroll;
+  max-height: 27rem;
+}

@@ -1,5 +1,5 @@
 @value tokens: "../../../styles/tokens.module.css";
-@value green-prim, button, green-hover, red-hover, red-prim from tokens;
+@value green-prim, button, green-hover, red-hover, red-prim, off-white, dark from tokens;
 
 .details__link {
   display: flex;
@@ -78,11 +78,14 @@
   border-bottom: 1.5rem solid transparent;
 }
 
+/*eigen code*/
+
 .title {
   max-width: 45rem;
 	font-size: 3.6rem;
 	font-weight: bold;
-	margin: 1rem 0;
+  margin: 1rem 0;
+  color: dark;
 }
 
 .paragraaf {
@@ -152,5 +155,28 @@
   border: solid .1rem red-hover;
 }
 
+.funding__list {
+  max-width: 70rem;
+  margin-bottom: 2rem;
+}
 
+.funding__item {
+  display: grid;
+  padding: 1rem .3rem;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  align-items: center;
+  font-weight: 600;
+}
 
+.funnding__item__number {
+  font-weight: lighter;
+  margin-right: 2rem;
+}
+
+.funding__item:nth-child(odd) {
+  background-color: off-white;
+}
+
+.funding__item__input {
+  width: 7rem;
+}

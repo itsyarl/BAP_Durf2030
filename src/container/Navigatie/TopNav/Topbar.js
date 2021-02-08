@@ -13,7 +13,8 @@ const Topbar = () => {
   const user = uiStore.currentUser;
 
   return useObserver(() => (
-    <div className={style.topbar}>
+    <section className={style.topbar}>
+      <h2 className="hidden">Topnav</h2>
       <div className={style.topbar__fixed}>
         <img src={lightmode} className={style.mode} alt="mode"/>
         <img src={notification} className={style.notifications} alt="notifications"/>
@@ -24,7 +25,7 @@ const Topbar = () => {
         </div> 
         <Logout />
       </div>
-    </div>
+    </section>
   ))
 };
 

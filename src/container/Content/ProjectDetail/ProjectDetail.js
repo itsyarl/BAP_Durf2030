@@ -46,14 +46,16 @@ const ProjectDetail = () => {
     }
 
     return(
-      <div className={style.details__container}>
-        <div>
+      <section className={style.details__container}>
+        <h2 className="hidden">details project</h2>
+        <artcle>
+          <h3 className="hidden">details</h3>
           <Link className={style.details__link} to={ROUTES.home}>
             <div className={style.driehoek}></div>
             <p className={style.details__link__tekst}>Terug naar projecten</p>
           </Link>
 
-          <h3 className={style.details__title}>{project.title}</h3>
+          <h4 className={style.details__title}>{project.title}</h4>
           <Image className={style.details__img}publicId={project.image.public_id} />
           <div className={style.details__info}>
             <p className={style.details__theme}>{project.theme}</p>
@@ -65,10 +67,11 @@ const ProjectDetail = () => {
           
           <CommentsSwitch project={project}/>
           
-        </div>
+        </artcle>
 
 
-        <div>
+        <artcle>
+          <h3 className="hidden">help</h3>
           <div className={style.details__funding__fixed}>
             {uiStore.currentUser.id === project.ownerId ? (
               <div className={style.overzicht__container}>
@@ -139,8 +142,8 @@ const ProjectDetail = () => {
               </div>
             </div>
           </div>
-        </div>
-      </div>
+        </artcle>
+      </section>
     );
   });
 };

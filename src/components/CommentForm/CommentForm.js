@@ -27,7 +27,7 @@ const CommentForm = () => {
 
   return useObserver(() => (
     <form onSubmit={handleFormSubmit}>
-      <section>
+      <div>
         <textarea
           className={style.textarea__comment}
           id="content"
@@ -41,7 +41,7 @@ const CommentForm = () => {
             verzend
           </span>
         </button>
-      </section>
+      </div>
     </form>
   ));
 };

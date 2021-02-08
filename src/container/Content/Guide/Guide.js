@@ -30,8 +30,8 @@ const Guide = () => {
   }
 
   return (
-    <>
-      <h3 className={style.info__title}>Hoe ga je te werk?</h3>
+    <section>
+      <h2 className={style.info__title}>Hoe ga je te werk?</h2>
       <div className={style.info__button__contianer}>
         <button 
           className={`${info === 'Basics' ? style.info__button__active : style.info__button }`} 
@@ -60,7 +60,7 @@ const Guide = () => {
         </button>
       </div>
       { infoSwitch(info) }
-    </>
+    </section>
   );
 };
 

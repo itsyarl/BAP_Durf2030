@@ -8,7 +8,8 @@ import del from "./delete.svg";
 const Info = () => {
 
   return (
-    <>
+    <article>
+      <h3 className="hidden">info</h3>
       <div className={style.info__user}>
         <address>
           <p className={style.info__label}>Email</p>
@@ -24,7 +25,7 @@ const Info = () => {
         <Link className={style.bewerk__button} to={ROUTES.home}><img className={style.bewerk__img} src={bewerken} alt="bewerken"/>Bewerken</Link>
       </div>
       <button className={style.delete__button}><img className={style.delete__img} src={del} alt="delete"/>Verwijder mijn account</button>
-    </>
+    </article>
   );
 };
 

@@ -5,10 +5,10 @@ import style from "./Admin.module.css"
 const Admin = () => {
 
   return (
-    <>
-      <h3 className={style.title}>Project voorstellen</h3>
+    <section>
+      <h2 className={style.title}>Project voorstellen</h2>
         <ProjectListAdmin />
-    </>
+    </section>
   );
 };
 
