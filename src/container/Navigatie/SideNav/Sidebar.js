@@ -38,7 +38,7 @@ const Sidebar = () => {
               <img className={style.nav__icon} src={add} alt="guide icon"/>
               Project toevoegen  
             </NavLink>
-            <NavLink activeClassName={style.active} className={style.nav__link} to="/acount">
+            <NavLink activeClassName={style.active} className={style.nav__link} to="/account">
               <img className={style.nav__icon} src={acount} alt="guide icon"/>
               Zie al uw projecten  
             </NavLink>

@@ -29,7 +29,7 @@ const Content = ({ token }) => {
           <Guide />
         </Route>
 
-        <Route path={ROUTES.acount}>
+        <Route path={ROUTES.account}>
           <Acount />
         </Route>
 

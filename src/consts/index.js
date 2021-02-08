@@ -9,7 +9,7 @@ const ROUTES = {
   funding: { path: "/funding/:id", to: "/funding/" },
   addProject: "/addProject",
   admin: "/admin",
-  acount: "/acount",
+  account: "/account",
   guide: "/guide",
   chat: "/chat",
   messages: { path: "/chat/:id", to: "/chat/" },
