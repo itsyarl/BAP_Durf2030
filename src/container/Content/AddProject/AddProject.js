@@ -130,6 +130,7 @@ const AddProject = () => {
     try {
       history.push(ROUTES.home);
       const newProject = await projectStore.createProject(p);
+      await projectStore.addParticipantToProject(p.id);
       console.log(newProject);
     } catch(error){
       console.log(error);
@@ -289,7 +290,7 @@ const AddProject = () => {
 
               <label className={style.add__label}>
                 <span className={style.add__title}>Deadline project</span>
-                <span className={style.add__undertext}>Dag Maand Jaar</span>
+                <span className={style.add__undertext}>Dag/Maand/Jaar</span>
                 <input
                   required="required"
                   className={style.add__block}

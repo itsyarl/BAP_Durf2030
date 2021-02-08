@@ -58,7 +58,7 @@ const ProjectDetail = () => {
           </Link>
 
           <h4 className={style.details__title}>{project.title}</h4>
-          <Image className={style.details__img}publicId={project.image.public_id} />
+          <Image className={style.details__img} publicId={project.image.public_id} />
           <div className={style.details__info}>
             <p className={style.details__theme}>{project.theme}</p>
             <span className={style.status}>Status: {project.status}<div className={classSwitch(project.status)}></div></span>
@@ -71,7 +71,7 @@ const ProjectDetail = () => {
         </article>
 
 
-        <artcle>
+        <article>
           <h3 className="hidden">help</h3>
           <div className={style.details__funding__fixed}>
             {uiStore.currentUser.id === project.ownerId ? (
@@ -143,7 +143,7 @@ const ProjectDetail = () => {
               </div>
             </div>
           </div>
-        </artcle>
+        </article>
       </section>
     );
   });

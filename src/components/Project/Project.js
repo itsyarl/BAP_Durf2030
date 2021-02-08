@@ -6,9 +6,12 @@ import style from "./Project.module.css";
 import { useObserver } from "mobx-react-lite";
 import icon from "./duim.svg";
 
-
 const Project = ({project}) => {
   const { uiStore } = useStores();
+
+  const Image = {
+    backgroundImage: 'linear-gradient(180deg, rgba(30, 30, 30, 0.55) 6.29%, rgba(28, 28, 28, 0) 25.81%),url(' + project.image.url + ')',
+  };
 
   const classSwitch = (status) => {
     switch (status) {
@@ -25,9 +28,11 @@ const Project = ({project}) => {
   return useObserver(() => (
     <li>
       <Link to={`${ROUTES.projectDetail.to}${project.id}`}>
-        <div className={style.proj__img}>
+        <div style={Image} className={style.proj__img} >
           <div className={style.proj__img__box}>
-            <span>users</span>
+            {project.participants.map(participant => (
+              <img key={participant.id} src={participant.avatar} className={style.user} width="30" alt="user"/>
+            ))}
             {uiStore.currentUser.id === project.ownerId ? (
               <p className={style.proj__details}>
                 <span>Aanpassen</span>
