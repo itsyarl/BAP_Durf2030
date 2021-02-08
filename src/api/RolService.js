@@ -1,12 +1,11 @@
 import { client, q } from '../config/db';
-import Rol from '../models/Rol';
 
 class RolService {
 
   giveRol = async (participant, rol, projectId) => {
     const object = await client.query(
       q.Get(
-        q.Match(q.Index('role_by_project_and_name'), [ projectId, rol ])
+        q.Match(q.Index('role_by_project_and_name'), [ projectId, rol.name ])
       )
     );
     const ref = object.ref.id;
@@ -15,25 +14,46 @@ class RolService {
     await client.query(
       q.Update(
         q.Ref(q.Collection('Rollen'), ref),
-        { data: { users: q.Append(participant, object.data.users) } },
+        { data: { users: q.Append(participant, object.data.users), 
+                  aantal: rol.aantal - 1
+        } },
       )
     )
     .catch((err) => console.error('Error: %s', err))
   }
 
-  removeRol = async (participant, rol, projectId) => {
+  updateRol = async (id, waarde, users) => {
     const object = await client.query(
       q.Get(
-        q.Match(q.Index('role_by_project_and_name'), [ projectId, rol ])
+        q.Match(q.Index('role_by_id'), id)
       )
-    );
+    )
+
     const ref = object.ref.id;
 
     await client.query(
       q.Update(
         q.Ref(q.Collection('Rollen'), ref),
-        { data: { users: participant } },
+        { data: { 
+            users: users,
+            aantal: waarde
+        } },
       )
+    )
+    .catch((err) => console.error('Error: %s', err))
+  } 
+
+  removeRol = async (id) => {
+    const object = await client.query(
+      q.Get(
+        q.Match(q.Index('role_by_id'), id)
+      )
+    )
+
+    const ref = object.ref.id;
+
+    await client.query(
+      q.Delete(q.Ref(q.Collection('Rollen'), ref))
     )
     .catch((err) => console.error('Error: %s', err))
   }
@@ -57,34 +77,6 @@ class RolService {
     .catch((error) => console.log('error', error.message))
   }
 
-  getRolesById = async (id, onChange) => {
-    return await client.query(
-      q.Paginate(
-        q.Match(
-          q.Ref('indexes/roles_by_id'), id)),
-    )
-    .then(async (response) => {
-      const productRefs = response.data
-      const getAllProductDataQuery = productRefs.map((ref) => {
-        return q.Get(ref)
-      })
-      
-      await client.query(getAllProductDataQuery).then((roles) => {
-        roles.forEach(async role => {
-          //rol als model invoegen
-          const roleObj = new Rol({
-            id: role.data.id,
-            projectId: role.data.projectId,
-            users: role.data.users,
-            name: role.data.name,
-            aantal: role.data.aantal,
-          });
-          onChange(roleObj);
-        })
-      });
-    })
-    .catch((error) => console.log('error', error.message))
-    }
 }
 
 export default RolService;

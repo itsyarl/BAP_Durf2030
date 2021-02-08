@@ -22,6 +22,7 @@
 .proj__details {
   color: white;
   font-weight: 600;
+  height: 1rem;
 }
 
 .proj__details:hover {

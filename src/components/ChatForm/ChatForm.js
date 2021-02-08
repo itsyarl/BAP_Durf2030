@@ -23,7 +23,8 @@ const ChatForm = () => {
 
   return useObserver(() => (
     <form onSubmit={sendMessage}>
-      <section className={style.form__container}>
+      <article className={style.form__container}>
+        <h4 className="hidden">chat venster</h4>
         <input
           className={style.input__form}
           id="content"
@@ -37,7 +38,7 @@ const ChatForm = () => {
             <img className={style.button__form__img} src={send} alt="send icon"/>
           </span>
         </button>
-      </section>
+      </article>
     </form>
   ));
 };

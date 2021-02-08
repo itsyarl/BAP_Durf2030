@@ -7,9 +7,13 @@ class Project {
     title,
     description,
     size,
-    creatorName,
+    ownerName,
     participants = [],
     messages = [],
+    funding = [],
+    rollen = [],
+    comments = [],
+    updates = [],
     store,
     ownerId,
     creationDate,
@@ -19,7 +23,6 @@ class Project {
     location,
     validated,
     status,
-    donationGoal,
     image,
     likedUsers,
     geo,
@@ -38,12 +41,16 @@ class Project {
     this.creationDate = creationDate;
     this.validated = validated;
     this.ownerId = ownerId;
-    this.donationGoal = donationGoal;
-    this.creatorName = creatorName; 
+    this.ownerName = ownerName; 
     this.store = store;
     this.image = image;
     this.likedUsers = likedUsers;
     this.geo = geo;
+    this.comments = comments;
+    this.rollen = rollen;
+    this.funding = funding;
+    this.comments = comments;
+    this.updates = updates;
   }
 
   linkParticipant(participant) {
@@ -51,6 +58,25 @@ class Project {
     !participant.projects.includes(participant) && participant.linkProject(this);
   }
 
+  linkRol(rol) {
+    !this.rollen.includes(rol) && this.rollen.push(rol);
+    !rol.projects.includes(rol) && rol.linkProject(this);
+  }
+
+  linkComment(comment) {
+    !this.comments.includes(comment) && this.comments.push(comment);
+    !comment.projects.includes(comment) && comment.linkProject(this);
+  }
+
+  linkUpdate(comment) {
+    !this.updates.includes(comment) && this.updates.push(comment);
+    !comment.projects.includes(comment) && comment.linkProject(this);
+  }
+
+  linkFunding(funding) {
+    !this.funding.includes(funding) && this.funding.push(funding);
+    !funding.projects.includes(funding) && funding.linkProject(this);
+  }
 }
 
 decorate(Project, {
@@ -58,10 +84,15 @@ decorate(Project, {
   users: observable,
   likes: observable,
   validated: observable,
+  rollen: observable,
+  funding: observable,
+  comments: observable,
+  updates: observable,
   participants: observable,
-  likedUsers: observable,
   linkParticipant: action,
-  addLike: action
+  linkRol: action,
+  linkFunding: action,
+  linkComment: action
 });
 
 export default Project;

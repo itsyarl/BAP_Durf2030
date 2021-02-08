@@ -24,8 +24,34 @@ a {
   color: black;
 }
 
+.hidden {
+  display: none;
+}
+
 .leaflet-container {
   width: 100%;
   height: 70vh;
   border: 5px slategrey solid;
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: 0%;
+  background-color: #e9edf0;
+}
+
+.leaflet-popup-content p {
+  margin: 0;
+}
+
+.leaflet-container a {
+  color: #0c1424;
+  font-weight: 600;
+}
+
+.leaflet-container a:hover {
+  color: #1e2940;
+}
+
+.leaflet-container a.leaflet-popup-close-button:hover {
+  color: red;
 }

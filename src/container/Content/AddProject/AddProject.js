@@ -10,6 +10,7 @@ import Rol from "../../../models/Rol";
 import { MapContainer, TileLayer, Marker, } from 'react-leaflet';
 import { Icon } from "leaflet";
 import img from "./projectmarker4.svg";
+import Funding from "../../../models/Funding";
 
 const AddProject = () => {
   const [title, setTitle] = useState("");
@@ -23,7 +24,7 @@ const AddProject = () => {
   const [rollen, setRollen] = useState([]);
   const [geo, setGeo] = useState({lat: 50.82803, lng: 3.26487});
 
-  const { projectStore, uiStore, rolStore } = useStores();
+  const { projectStore, uiStore, rolStore, fundingStore } = useStores();
   const history = useHistory();
 
   const appendBenodigdheden = () => {
@@ -46,7 +47,6 @@ const AddProject = () => {
   }
 
   const deleteRol = (rol) => {
-    console.log(rol)
     const array = [...rollen]
     const index = array.indexOf(rol);
     if (index > -1) {
@@ -56,7 +56,6 @@ const AddProject = () => {
   }
 
   const deleteBenodigdheid = (rol) => {
-    console.log(rol)
     const array = [...benodigdheden]
     const index = array.indexOf(rol);
     if (index > -1) {
@@ -71,7 +70,7 @@ const AddProject = () => {
     //set geo locatie voor map
     const getGeo = await fetch(`http://open.mapquestapi.com/geocoding/v1/address?key=${'3l5afEGTejjwWZXsj0NsSJKkQzT6cdpH'}&location=${location}`);
     const geoObj = await getGeo.json();
-    // console.log(geoObj);
+    
     if (geoObj.results[0].locations[0] !== undefined) {
       setGeo(geoObj.results[0].locations[0].latLng);
     } else {
@@ -117,9 +116,21 @@ const AddProject = () => {
 
       await rolStore.createRol(r);
     })
+
+    benodigdheden.map(async funding => {
+      const f = new Funding({
+        projectId: p.id,
+        userId: uiStore.currentUser.id,
+        product: funding.product,
+        aantal: funding.aantal,
+      })
+
+      await fundingStore.createFunding(f);
+    })
+
     try {
-      const newProject = await projectStore.createProject(p);
       history.push(ROUTES.home);
+      const newProject = await projectStore.createProject(p);
       console.log(newProject);
     } catch(error){
       console.log(error);
@@ -128,12 +139,12 @@ const AddProject = () => {
   };
 
   return (
-    <>
-      <h3 className={style.title}>Project aanmaken</h3>
+    <section>
+      <h2 className={style.title}>Project aanmaken</h2>
       <div className={style.add__container}>
         <form onSubmit={handleSubmit} className={style.add__form}>
           <div className={style.add__form__block}>
-            <h4 className={style.add__form__block__title}>Basics</h4>
+            <h3 className={style.add__form__block__title}>Basics</h3>
             <div>
               <label className={style.add__label}>
                 <span className={style.add__title}>Title</span>
@@ -163,7 +174,7 @@ const AddProject = () => {
           </div>
           
           <div className={style.add__form__block}>
-            <h4 className={style.add__form__block__title}>Locatie</h4>
+            <h3 className={style.add__form__block__title}>Locatie</h3>
             <div>
               <label className={style.add__label}>
                 <span className={style.add__title}>Adres</span>
@@ -191,75 +202,79 @@ const AddProject = () => {
           </div>
           
           <div className={style.add__form__block}>
-            <h4 className={style.add__form__block__title}>Benodigdheden</h4>
-            <div>
+            <h3 className={style.add__form__block__title}>Funding</h3>
+            <div className={style.funding__container}>
               <label className={style.add__label}>
                 <span className={style.add__title}>Benodigdheden</span>
                   <ul>
                     {benodigdheden.map((benodigdheid, index) => (
-                      <li>
-                        <span>{index + 1}</span>
-                        <span>{benodigdheid.product}</span>
-                        <span>{benodigdheid.aantal}</span>
+                      <li className={style.product__item}>
+                        <span className={style.product__item__num}>{index + 1}#</span>
+                        <span className={style.product__item__naam}>{benodigdheid.product}</span>
+                        <span className={style.product__item__aantal}>{benodigdheid.aantal}</span>
                         <button type="button" onClick={() => deleteBenodigdheid(benodigdheid)}>delete</button>
                       </li>
                     ))}
                   </ul>
                   <span className={style.add__undertext}>#producten</span>
-                  <input
-                    className={style.add__block}
-                    type="text"
-                    value={benodigdhedenInput.product}
-                    onChange={e => setBenodigdhedenInput({product: e.target.value, aantal: benodigdhedenInput.aantal})}
-                  />
-                  <input
-                    className={style.add__block}
-                    type="number"
-                    value={benodigdhedenInput.aantal}
-                    onChange={e => setBenodigdhedenInput({product: benodigdhedenInput.product, aantal: e.target.value})}
-                  />
+                  <span>
+                    <input
+                      className={`${style.add__block} ${style.product}`}
+                      type="text"
+                      value={benodigdhedenInput.product}
+                      onChange={e => setBenodigdhedenInput({product: e.target.value, aantal: benodigdhedenInput.aantal})}
+                    />
+                    <input
+                      className={`${style.add__block} ${style.aantal}`}
+                      type="number"
+                      value={benodigdhedenInput.aantal}
+                      onChange={e => setBenodigdhedenInput({product: benodigdhedenInput.product, aantal: e.target.value})}
+                    />
+                  </span>
                 </label>
              
-              <button type="button" onClick={appendBenodigdheden}>
-                Voeg benodigheid toe
+              <button className={style.toevoegen} type="button" onClick={appendBenodigdheden}>
+                + Voeg item toe
               </button>
 
               <label className={style.add__label}>
                 <span className={style.add__title}>Rollen</span>
                   <ul>
                     {rollen.map((rol, index) => (
-                      <li>
-                        <span>{index + 1}</span>
-                        <span>{rol.rol}</span>
-                        <span>{rol.aantal}</span>
+                      <li className={style.product__item}>
+                        <span className={style.product__item__num}>{index + 1}#</span>
+                        <span className={style.product__item__naam}>{rol.rol}</span>
+                        <span className={style.product__item__aantal}>{rol.aantal}</span>
                         <button type="button" onClick={() => deleteRol(rol)}>delete</button>
                       </li>
                     ))}
                   </ul>
                   <span className={style.add__undertext}>#deze kan je later aan mensen toekennen</span>
-                  <input
-                    className={style.add__block}
-                    type="text"
-                    value={rollenInput.rol}
-                    onChange={e => setRollenInput({rol: e.target.value, aantal: rollenInput.aantal})}
-                  />
-                  <input
-                    className={style.add__block}
-                    type="number"
-                    value={rollenInput.aantal}
-                    onChange={e => setRollenInput({rol: rollenInput.rol, aantal: e.target.value})}
-                  />
+                  <span>
+                    <input
+                      className={`${style.add__block} ${style.product}`}
+                      type="text"
+                      value={rollenInput.rol}
+                      onChange={e => setRollenInput({rol: e.target.value, aantal: rollenInput.aantal})}
+                    />
+                    <input
+                      className={`${style.add__block} ${style.aantal}`}
+                      type="number"
+                      value={rollenInput.aantal}
+                      onChange={e => setRollenInput({rol: rollenInput.rol, aantal: e.target.value})}
+                    />
+                  </span>
               </label>
 
-              <button type="button" onClick={appendRollen}>
-                Voeg rol toe
+              <button className={style.toevoegen} type="button" onClick={appendRollen}>
+                + Voeg rol toe
               </button>
 
             </div>
           </div>
          
           <div className={style.add__form__block}>
-            <h4 className={style.add__form__block__title}>Extra's</h4>
+            <h3 className={style.add__form__block__title}>Extra's</h3>
             <div>
               <label className={style.add__label}>
                 <span className={style.add__title}>Thema</span>
@@ -285,7 +300,7 @@ const AddProject = () => {
                 />
               </label>
               
-              <input type="file" id="image" />
+              <input className={style.img__input} type="file" id="image" />
             </div>
           </div>
 
@@ -303,7 +318,7 @@ const AddProject = () => {
 
         <div className={style.add__tips__box}>
           <div className={style.add__tips}>
-            <h4 className={style.add__tips__htitle}>Vooruitgang</h4>
+            <h3 className={style.add__tips__htitle}>Vooruitgang</h3>
             <div className={style.add__tips__container}>
               <h5 className={style.add__tips__title}>Tips</h5>
               <p className={style.add__tips__subtitle}>#1</p>
@@ -324,7 +339,7 @@ const AddProject = () => {
           </div>
         </div>
       </div>
-    </>
+    </section>
   );
 };
 

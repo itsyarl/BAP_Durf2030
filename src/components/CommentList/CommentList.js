@@ -1,31 +1,21 @@
 import React from "react";
 
 import Comment from "../Comment/Comment";
-import CommentForm from "../CommentForm/CommentForm";
 
 import { useObserver } from "mobx-react-lite";
-import { useStores } from "../../hooks/useStores";
 
 
-const CommentList = () => {
-  const { commentStore } = useStores();
+const CommentList = ({project}) => {
   return useObserver(() => {
-    if (!commentStore.comments) {
+    if (!project.comments) {
       return <p>Er zijn nog geen comments</p>;
     }
     return (
       <>
-      <CommentForm />
         <ul>
-        {commentStore.comments ? (
-          <>
-            {commentStore.comments.map(comment => (
-              <Comment comment={comment} key={comment.id} />
+            {project.comments.map(comment => (
+                <Comment comment={comment} key={comment.id} />
             ))}
-          </>
-        ) : (
-          <span>loading</span>
-        )}
         </ul>
         
       </>

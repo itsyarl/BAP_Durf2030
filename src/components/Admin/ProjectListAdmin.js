@@ -9,19 +9,20 @@ const ProjectListAdmin = () => {
   
   // console.log(projectStore.projects);
   return useObserver(() => (
-    <>
-    <ul className={style.project__list}>
-      <li className={style.project__list__item}>
-        <p className={style.projectinfo}>Project naam</p>
-        <p className={style.projectinfo}>Gebruiker</p>
-        <p className={style.projectinfo}>Bevestigen</p>
-      </li>
-      {projectStore.projects.map(project => (
-          <ProjectAdmin project={project} key={project.id} />
-        )
-      )}
-    </ul>
-    </>
+    <article>
+      <h3 className="hidden">project list</h3>
+      <ul className={style.project__list}>
+        <li className={style.project__list__item}>
+          <p className={style.projectinfo}>Project naam</p>
+          <p className={style.projectinfo}>Gebruiker</p>
+          <p className={style.projectinfo}>Bevestigen</p>
+        </li>
+        {projectStore.projects.map(project => (
+            <ProjectAdmin project={project} key={project.id} />
+          )
+        )}
+      </ul>
+    </article>
   ));
 };
 

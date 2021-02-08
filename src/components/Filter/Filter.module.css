@@ -1,5 +1,5 @@
 @value tokens: "../../styles/tokens.module.css";
-@value green-prim, title-size from tokens;
+@value green-prim, green-hover, title-size, dark, white-prim, button from tokens;
 
 .filter__container {
   margin: 5rem 0 2rem;
@@ -10,4 +10,88 @@
   font-weight: 900;
   color: green-prim;
   margin-bottom: 2rem;
+}
+
+.filter__container__box {
+  display: flex;
+  align-items: flex-end;
+}
+
+.filter__span {
+  font-size: 1.8rem;
+  font-weight: lighter;
+  color: dark;
+  margin-bottom: 1rem;
+  display: inline-block;
+}
+
+.filter__button,
+.filter__button__status,
+.filter__button__sorteren {
+  padding: button;
+  font-size: 1.4rem;
+  font-weight: 900;
+  margin-right: 1rem;
+}
+
+.filter__button {
+  background-color: transparent;
+  border: .1rem green-prim solid;
+  color: green-prim;
+  cursor: pointer;
+}
+
+.filter__button__status,
+.filter__button__sorteren {
+  background-color: green-prim;
+  border: .1rem green-prim solid;
+  color: white-prim;
+}
+
+.filter__button:hover {
+  border: .1rem green-hover solid;
+  color: green-hover;
+}
+
+.filter__thema {
+  display: flex;
+  flex-flow: column;
+}
+
+.map__projects {
+  display: flex;
+  justify-content: space-between;
+  width: 12rem;
+}
+
+.primary {
+  filter: invert(70%) sepia(8%) saturate(2202%) hue-rotate(137deg) brightness(230%) contrast(81%);
+}
+
+.secondary {
+  filter: invert(6%) sepia(28%) saturate(2365%) hue-rotate(193deg) brightness(15%) contrast(96%);
+  cursor: pointer;
+}
+
+.filter__sorteren,
+.filter__status,
+.filter__thema {
+  margin-right: 3rem;
+}
+
+select::-ms-expand {
+  display: none; /* Hide the default arrow in Internet Explorer 10 and Internet Explorer 11 */
+}
+
+.filter__select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: url(./arrow.svg) 97% / 10% no-repeat;
+  padding: button;
+  font-size: 1.4rem;
+  font-weight: 900;
+  margin-right: 1rem;
+  color: green-prim;
+  border: .1rem green-prim solid;
 }

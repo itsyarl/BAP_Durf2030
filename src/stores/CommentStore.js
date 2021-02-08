@@ -1,39 +1,38 @@
 // import { decorate} from "mobx";
-import { decorate, observable } from "mobx";
+import { action, decorate, observable } from "mobx";
 import CommentService from "../api/CommentService.js";
 
 class CommentStore {
   constructor(rootStore) {
     this.rootStore = rootStore;
     this.commentService = new CommentService();
-    this.comments = [];
   }
 
   createComment = async comment => {
     comment.timestamp = Date();
+    comment.userId = this.rootStore.uiStore.currentUser.id;
     return await this.commentService.createComment(comment);
   };
 
-  getCommentsByProjectId = async (id) => {
-    this.empty();
-    await this.commentService.getCommentByProjectId(id, this.addComments);
+  getCommentsByProjectId = async (id, project) => {
+    return await this.commentService.getCommentByProjectId(id, this.addComments, project);
   }
 
-  addComments = comment => {
-    let commentExist = this.comments.findIndex(item => item.id === comment.id);
+  addComments = (comment, project) => {
+    let commentExist = project.comments.findIndex(item => item.id === comment.id);
     if (commentExist === -1) {
-      this.comments.push(comment);
+      if(comment.userId !== project.ownerId){
+        project.comments.push(comment);
+      }else{
+        project.updates.push(comment);
+      }
       // this.projects.map(project=> console.log(project.id));
     }
-  }
-
-  empty = () => {
-    this.comments=[];
   }
 }
 decorate(CommentStore, {
   comments: observable,
-  // empty: action,
+  empty: action,
   // addGroup: action,
   // addUser: action,
   // unreadLength: computed

@@ -1,0 +1,38 @@
+@value tokens: "../../styles/tokens.module.css";
+@value green-prim, title-size, subtitle-size, dark, button, off-white, yellow-prim, extra-font, yellow-hover, green-hover from tokens;
+
+.buttons {
+  margin-top: 4rem;
+}
+
+.info__button {
+  background-color: white;
+  padding: button;
+  font-weight: 900;
+  font-size: 1.4rem;
+  color: green-prim;
+  margin-right: .5rem;
+  cursor: pointer;
+  border: none;
+}
+
+.info__button:hover {
+  color: #203868;
+}
+
+.info__button__active {
+  background-color: green-prim;
+  padding: button;
+  font-weight: 900;
+  font-size: 1.4rem;
+  color: white;
+  border: none;
+  margin-right: .5rem;
+}
+
+.details__posting {
+  margin-top: .5rem;
+  background-color: blanchedalmond;
+  padding: 2rem;
+  background-color: white;
+}

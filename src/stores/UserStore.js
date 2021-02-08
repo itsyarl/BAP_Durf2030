@@ -1,4 +1,4 @@
-import { decorate, observable, action } from "mobx";
+import { decorate, observable } from "mobx";
 import UserService from "../api/UserService.js";
 
 class UserStore {
@@ -23,8 +23,7 @@ class UserStore {
 }
 
 decorate(UserStore, {
-  users: observable,
-  empty: action
+  users: observable
 });
 
 export default UserStore;

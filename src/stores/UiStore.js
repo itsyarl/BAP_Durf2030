@@ -15,7 +15,7 @@ class UiStore {
     return result;
   };
 
-  onAuthStateChanged = async user => {
+  onAuthStateChanged = user => {
     if (user) {
       console.log(`De user is ingelogd ${user.email}`);
       this.setCurrentUser(
@@ -31,18 +31,19 @@ class UiStore {
 
       //haalt alle projecten op met validatie
       if (user.admin === true) {
-        this.rootStore.projectStore.getValidatedProjects(false);
+        this.rootStore.projectStore.getValidatedProjects(false, this.currentUser);
       } else {
-        this.rootStore.projectStore.getValidatedProjects(true);
+        this.rootStore.projectStore.getValidatedProjects(true, this.currentUser);
         //haalt chatgroepen voor user op
         this.currentUser.projects.forEach(userProject => { 
           this.rootStore.projectStore.getProjectsChatForUser(userProject);
-        })
-        this.rootStore.projectStore.filterProjects("All", "Bezig");
+        });
+
       }
 
     } else {
       this.rootStore.projectStore.empty();
+      
       // this.rootStore.projectStore.getProjects();
       console.log(`De user is uitgelogd.`);
       this.setCurrentUser(undefined);

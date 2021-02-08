@@ -146,6 +146,20 @@
 }
 
 .info__button {
+  background-color: green-prim;
+  padding: button;
+  font-weight: 900;
+  font-size: 1.4rem;
+  color: white;
+  border: none;
+  margin-right: .5rem;
+}
+
+.info__button:hover {
+  background-color: green-hover;
+}
+
+.info__button__active {
   background-color: white;
   padding: button;
   font-weight: 900;
@@ -154,20 +168,6 @@
   margin-right: .5rem;
   cursor: pointer;
   border: none;
-}
-
-.info__button:hover {
-  color: #203868;
-}
-
-.info__button__active {
-  background-color: green-prim;
-  padding: button;
-  font-weight: 900;
-  font-size: 1.4rem;
-  color: white;
-  border: none;
-  margin-right: .5rem;
 }
 
 .details__posting {
@@ -196,7 +196,22 @@
 .details__spotlight__buttons {
   display: flex;
   margin-bottom: 2rem;
-  align-items: center;
+  align-items: flex-start;
+}
+
+.funding__list__item {
+  margin-bottom: 1.5rem;
+  font-size: subtitle-size;
+  font-weight: lighter;
+}
+
+.funding__list__items {
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.funding__list__span {
+  margin-right: 1rem;
 }
 
 .details__like,
@@ -222,7 +237,6 @@
 .details__geef:hover {
   background-color: green-hover;
 }
-
 
 .details__share {
   color: dark;

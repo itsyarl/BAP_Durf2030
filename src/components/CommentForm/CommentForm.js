@@ -5,7 +5,7 @@ import { useStores } from "../../hooks/useStores";
 import { useParams } from "react-router-dom";
 import style from "./CommentForm.module.css"
 
-const CommentForm = () => {
+const CommentForm = ({project}) => {
   const [content, setContent] = useState("");
   const { uiStore, commentStore } = useStores();
   const { id } = useParams();
@@ -19,15 +19,15 @@ const CommentForm = () => {
         userId: uiStore.currentUser.id,
         from: uiStore.currentUser.name
       });
-      await commentStore.createComment(newComment);
-      await commentStore.addComments(newComment);
+      await commentStore.createComment(newComment, project);
+      await commentStore.addComments(newComment, project);
       setContent("");
     }
   };
 
   return useObserver(() => (
     <form onSubmit={handleFormSubmit}>
-      <section>
+      <div>
         <textarea
           className={style.textarea__comment}
           id="content"
@@ -41,7 +41,7 @@ const CommentForm = () => {
             verzend
           </span>
         </button>
-      </section>
+      </div>
     </form>
   ));
 };

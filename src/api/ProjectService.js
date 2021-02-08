@@ -1,6 +1,9 @@
 import { client, q } from '../config/db'
 import Project from '../models/Project';
 import User from '../models/User';
+import Rol from '../models/Rol';
+import Funding from '../models/Funding';
+import Comment from '../models/Comment';
 
 class ProjectService {
   constructor(rootStore) {
@@ -21,6 +24,7 @@ class ProjectService {
           theme: project.theme,
           eventDate: project.eventDate,
           ownerId: project.ownerId,
+          ownerName: project.ownerName,
           likes: 0,
           image: project.image,
           validated: false,
@@ -34,6 +38,41 @@ class ProjectService {
       return response;
     })
     .catch((error) => console.log('error', error.message))
+  }
+
+  updateProject = async (project, id) => {
+    const object = await client.query(
+      q.Get(
+        q.Match(q.Index('project_by_id'), id)
+      )
+    );
+    // referentie van document ophalen
+    const ref = object.ref.id;
+    //document updaten
+    return await client.query(
+      q.Update(
+        q.Ref(q.Collection('Project'), ref),
+        { data: { 
+          id: project.id,
+          title: project.title,
+          description: project.description,
+          recap: project.recap,
+          location: project.location,
+          donationGoal: project.donationGoal,
+          theme: project.theme,
+          eventDate: project.eventDate,
+          ownerId: project.ownerId,
+          ownerName: project.ownerName,
+          likes: 0,
+          image: project.image,
+          validated: true,
+          likedUsers: [],
+          status: project.status,
+          geo: project.geo
+        } },
+      )
+    )
+    .catch((err) => console.error('Error: %s', err))
   }
 
   addLike = async (id, userId) => {
@@ -78,7 +117,7 @@ class ProjectService {
   }
 
 
-  getValidatedProjects = async (state, onChange) => {
+  getValidatedProjects = async (state, onChange, filter, user) => {
     return await client.query(
       q.Paginate(
         q.Match(
@@ -91,8 +130,8 @@ class ProjectService {
           return q.Get(ref)
         })
 
-        await client.query(getAllProductDataQuery).then((projects) => {
-          const result = projects.forEach(async project => {
+        await client.query(getAllProductDataQuery).then((projects, user) => {
+          return projects.forEach(async (project, user) => {
             //project als model invoegen
             const projectObj = new Project({
               id: project.data.id,
@@ -109,11 +148,11 @@ class ProjectService {
               validated: project.data.validated,
               ownerId: project.data.ownerId,
               status: project.data.status,
-              geo: project.data.geo
+              geo: project.data.geo,
+              ownerName: project.data.ownerName
             });
             //user ophalen van fauna
             const participants = await this.getParticipantsOfProject(project.data.id);
-
             //voor elke user 
             for (const participant of participants) {
               //een object maken
@@ -129,11 +168,114 @@ class ProjectService {
               participantObj.linkProject(projectObj);
               projectObj.linkParticipant(participantObj);
             }
+            const rollen = await this.getRolesById(project.data.id);
+            //voor elk rol
+            for (const rol of rollen) {
+              const rolObj = new Rol({
+                id: rol.data.id,
+                projectId: rol.data.projectId,
+                users: rol.data.users,
+                name: rol.data.name,
+                aantal: rol.data.aantal
+              });
+              //rollen linken aan project
+              rolObj.linkProject(projectObj);
+              projectObj.linkRol(rolObj);
+            }
+
+            const funding = await this.getFundingById(project.data.id);
+            //voor elk funding
+            for (const fund of funding) {
+              const fundingObj = new Funding({
+                id: fund.data.id,
+                projectId: fund.data.projectId,
+                users: fund.data.users,
+                product: fund.data.product,
+                aantal: fund.data.aantal,
+              });
+              //funding linken aan project
+              fundingObj.linkProject(projectObj);
+              projectObj.linkFunding(fundingObj);
+            }
+
+            const comments = await this.getCommentByProjectId(project.data.id);
+            //voor elk comment
+            for (const comment of comments) {
+              const commentObj = new Comment({
+                id: comment.data.id,
+                projectId: comment.data.projectId,
+                content: comment.data.content,
+                userId: comment.data.userId,
+                timestamp: comment.data.timestamp,
+              });
+              //update linken aan project
+              commentObj.linkProject(projectObj);
+              if (commentObj.userId !== user.id){
+                projectObj.linkComment(commentObj);
+              }else{
+                projectObj.linkUpdate(commentObj);
+              }
+            }
             //functie zodat de projecten worden terugestuurd
+            if(projectObj.status === "Funding"){
+              filter(projectObj, "all", projectObj.status)
+            }
             onChange(projectObj);
+            // return projectObj
           })
-          return result;
+          // return result;
         })
+        // filter("all", "Bezig");
+      })
+      .catch((error) => console.log('error', error.message))
+  }
+
+  getCommentByProjectId = async (id) => {
+    return await client.query(
+        q.Paginate(
+          q.Match(
+            q.Index('comment_by_project'), id)),
+    )
+    .then(async (response) => {
+      const productRefs = response.data
+      const getAllProductDataQuery = productRefs.map((ref) => {
+        return q.Get(ref)
+      })
+      
+      return await client.query(getAllProductDataQuery).then((data) => data);
+    })
+    .catch((error) => console.log('error', error.message))
+  }
+
+  getFundingById = async (id) => {
+    return await client.query(
+      q.Paginate(
+        q.Match(
+          q.Index('funding_by_projectId'), id)),
+    )
+    .then((response) => {
+      const productRefs = response.data
+      const getAllProductDataQuery = productRefs.map((ref) => {
+        return q.Get(ref)
+      })
+      return client.query(getAllProductDataQuery).then((data) => data)
+    })
+    .catch((error) => console.log('error', error.message))
+    }
+
+  getRolesById = async (id) => {
+    return await client.query(
+      q.Paginate(
+        q.Match(
+          q.Index('roles_by_projectId'), id)),
+    )
+      .then((response) => {
+        const productRefs = response.data
+        const getAllProductDataQuery = productRefs.map((ref) => {
+          return q.Get(ref)
+        })
+        // query the refs
+        return client.query(getAllProductDataQuery).then((data) => data)
       })
       .catch((error) => console.log('error', error.message))
   }

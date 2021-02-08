@@ -55,135 +55,17 @@ const Authentication = () => {
         
         <Route path={ROUTES.home}>
           {uiStore.currentUser ? (
-            <section className={style.container_grid}>
+            <div className={style.container_grid}>
               <TopNav/>
               <SideNav/>
               <Content />
-            </section>
+            </div>
           ) : (
             <Redirect to={ROUTES.login} />
           )}
         </Route>
 
-        <Route path={ROUTES.projectDetail.path}>
-          {uiStore.currentUser ? (  
-            <section className={style.container_grid}>
-              <TopNav/>
-              <SideNav/>
-              <Content />
-            </section>
-          ) : (
-            <Redirect to={ROUTES.login} />
-          )}
-        </Route>
-
-        <Route path={ROUTES.acountUser.path}>
-          {uiStore.currentUser ? (
-            <section className={style.container_grid}>
-              <TopNav/>
-              <SideNav/>
-              <Content />
-            </section>
-          ) : (
-            <Redirect to={ROUTES.login} />
-          )}
-        </Route>
-
-        <Route path={ROUTES.dataProject.path}>
-          {uiStore.currentUser ? (
-            <section className={style.container_grid}>
-              <TopNav/>
-              <SideNav/>
-              <Content />
-            </section>
-          ) : (
-            <Redirect to={ROUTES.login} />
-          )}
-        </Route>
-
-        <Route path={ROUTES.editProject.path}>
-          {uiStore.currentUser ? (
-            <section className={style.container_grid}>
-              <TopNav/>
-              <SideNav/>
-              <Content />
-            </section>
-          ) : (
-            <Redirect to={ROUTES.login} />
-          )}
-        </Route>
-
-        <Route path={ROUTES.funding.path}>
-          {uiStore.currentUser ? (
-            <section className={style.container_grid}>
-              <TopNav/>
-              <SideNav/>
-              <Content />
-            </section>
-          ) : (
-            <Redirect to={ROUTES.login} />
-          )}
-        </Route>
-
-        <Route path={ROUTES.addProject}>
-          {uiStore.currentUser ? (
-            <section className={style.container_grid}>
-              <TopNav/>
-              <SideNav/>
-              <Content />
-            </section>
-          ) : (
-            <Redirect to={ROUTES.login} />
-          )}
-        </Route>
-
-        <Route path={ROUTES.admin}>
-          {uiStore.currentUser ? (
-            <section className={style.container_grid}>
-              <TopNav/>
-              <SideNav/>
-              <Content />
-            </section>
-          ) : (
-            <Redirect to={ROUTES.login} />
-          )}
-        </Route>
-
-        <Route path={ROUTES.acount}>
-          {uiStore.currentUser ? (
-            <section className={style.container_grid}>
-              <TopNav/>
-              <SideNav/>
-              <Content />
-            </section>
-          ) : (
-            <Redirect to={ROUTES.login} />
-          )}
-        </Route>
-
-        <Route path={ROUTES.guide}>
-          {uiStore.currentUser ? (
-            <section className={style.container_grid}>
-              <TopNav/>
-              <SideNav/>
-              <Content />
-            </section>
-          ) : (
-            <Redirect to={ROUTES.login} />
-          )}
-        </Route>
-
-        <Route path={ROUTES.contact}>
-          {uiStore.currentUser ? (
-            <section className={style.container_grid}>
-              <TopNav/>
-              <SideNav/>
-              <Content />
-            </section>
-          ) : (
-            <Redirect to={ROUTES.login} />
-          )}
-        </Route>
+      
       </Switch>
     </>
   ));

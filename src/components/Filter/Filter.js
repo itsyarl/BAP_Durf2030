@@ -1,24 +1,31 @@
 import React, { useState } from "react";
 import style from "./Filter.module.css";
-import { Button } from "@material-ui/core";
 import { useStores } from "../../hooks/useStores";
-
+import grid from "./grid.svg";
+import Map from "./map.svg";
 
 const Filter = ({callBackMap}) => {
   const { projectStore} = useStores();
 
   const [map, setMap] = useState("");
   const [thema, setThema] = useState("all");
-  const [status, setStatus] = useState("Bezig");
-  // const [filteredItems, setFilteredItems] = useState("");
+  const [status, setStatus] = useState("Funding");
+  const [sorteren, setSorteren] = useState("Geen");
 
-  const showProjects = () => {
+  const showProjects = (e) => {
+    e.preventDefault();
     callBackMap(false);
     setMap(false);
   }
-  const showMap = () => {
-    callBackMap(true);
+  const showMap = async (e) => {
+    e.preventDefault();
+    await callBackMap(true);
     setMap(true);
+    window.scrollTo(0, document.body.scrollHeight);
+  }
+
+  const sorter = (type) => {
+    setSorteren(type);
   }
 
   const filter = (status, thema) => {
@@ -36,29 +43,42 @@ const Filter = ({callBackMap}) => {
 
   return(
     <div className={style.filter__container}>
-      <h4 className={style.filter__title}>Filter</h4>
+      <h3 className={style.filter__title}>Filter</h3>
+      <div className={style.filter__container__box}>
+        <div className={style.filter__sorteren}>
+          <span className={style.filter__span}>Sorteren op:</span>
+          <div>
+            <button className={sorteren === "Geen" ? style.filter__button__sorteren : style.filter__button} onClick={() => sorter("Geen")}>Geen</button>
+            <button className={sorteren === "Nieuw" ? style.filter__button__sorteren : style.filter__button} onClick={() => sorter("Nieuw")}>Nieuw</button>
+            <button className={sorteren === "Populair" ? style.filter__button__sorteren : style.filter__button} onClick={() => sorter("Populair")}>Populair</button>
+          </div>
+        </div>
+        
+        <div className={style.filter__status}>
+          <span className={style.filter__span}>Status:</span>
+          <div>
+            <button className={status === "Funding" ? style.filter__button__status : style.filter__button} onClick={() => filter("Funding", thema)}>Funding</button>
+            <button className={status === "Uitvoering" ? style.filter__button__status : style.filter__button} onClick={() => filter("Uitvoering", thema)}>Uitvoering</button>
+            <button className={status === "Voltooid" ? style.filter__button__status : style.filter__button} onClick={() => filter("Voltooid", thema)}>Voltooid</button>
+          </div>
+        </div>
 
-      <span>Status:</span>
-      <Button onClick={() => filter("Afgerond", thema)}>Afgerond</Button>
-      <Button onClick={() => filter("Bezig", thema)}>Bezig</Button>
+        <div className={style.filter__thema}>
+          <span className={style.filter__span}>Thema:</span>
+          <select className={style.filter__select} name="thema" id="thema" value={thema} onChange={e => filter(status, e.target.value)}>
+            <option value="all">Alle</option>
+            <option value="Eenzaamheid">Eenzaamheid</option>
+          </select>
+        </div>
 
-      <span>Thema:</span>
-      <select name="thema" id="thema" value={thema} onChange={e => filter(status, e.target.value)}>
-        <option value="all">Alle</option>
-        <option value="Eenzaamheid">Eenzaamheid</option>
-      </select>
-
-      <span>Sorteren op:</span>
-      <button>populair</button>
-      <button>nieuw</button>
-      
-      <Button onClick={showProjects} variant="contained" color={map ? "secondary" : "primary" }>
-        Show projects
-      </Button>
-
-      <Button onClick={showMap} variant="contained" color={map ? "primary" : "secondary" }>
-        Show map
-      </Button>
+        <div>
+          <span className={style.filter__span}>Weergaven:</span>
+          <div className={style.map__projects}>
+            <img src={grid} alt="projects icon" onClick={e => showProjects(e)} className={map ? style.secondary : style.primary }/>
+            <img src={Map} alt="map icon" onClick={e => showMap(e)} className={map ? style.primary : style.secondary }/>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

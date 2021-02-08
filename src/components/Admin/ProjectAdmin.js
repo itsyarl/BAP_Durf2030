@@ -21,7 +21,7 @@ const ProjectAdmin = ({project}) => {
 
   return useObserver(() => (
     <li className={style.project__list__item}>
-      <h2 className={style.project__title}>{project.title}</h2>
+      <h4 className={style.project__title}>{project.title}</h4>
       <p>user name</p>
       {project.validated === false ? (
         <button onClick={handleApprove}>
