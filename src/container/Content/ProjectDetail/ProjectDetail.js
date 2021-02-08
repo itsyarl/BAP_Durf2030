@@ -64,7 +64,6 @@ const ProjectDetail = () => {
             <span className={style.status}>Status: {project.status}<div className={classSwitch(project.status)}></div></span>
           </div>
 
-          <p className={style.details__samenvatting}>Conor deze class moet weg</p>
           <p className={style.details__tekst}>{project.description}</p>
           
           <CommentsSwitch project={project}/>
@@ -137,9 +136,9 @@ const ProjectDetail = () => {
               <div>
                 <h4 className={style.details__data__title}>info</h4>
                 <div className={style.details__data__grid}>
-                  <span className={style.details__info}><img className={style.details__counticon} src={usersIcon} alt="users icon"/> {project.likes}</span>
+                  <span className={style.details__info}><img className={style.details__counticon} src={usersIcon} alt="users icon"/> {project.participants.length}</span>
                   <span className={style.details__info}><img className={style.details__counticon} src={likeIcon} alt="likes icon"/> {project.likes}</span>
-                  <span className={style.details__info}><img className={style.details__counticon} src={commentsIcon} alt="comments icon"/> {project.likes}</span>
+                  <span className={style.details__info}><img className={style.details__counticon} src={commentsIcon} alt="comments icon"/> {project.comments.length}</span>
                 </div>
               </div>
             </div>
