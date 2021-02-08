@@ -132,7 +132,7 @@ const DataProject = () => {
         <div className={style.rollen__container}>
           <h3 className={style.groepTitle}>Rollen</h3>
           <div className={style.rollen}>
-            {rolStore.roles.map(rol => (
+            {project.rollen.map(rol => (
               <div className={style.rol}>
                 <p className={style.rol__username} key={rol.id}>{rol.name} <span className={style.rol__aantal}>{rol.users.length}/{rol.aantal}</span></p>
             

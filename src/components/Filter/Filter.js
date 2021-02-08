@@ -9,7 +9,7 @@ const Filter = ({callBackMap}) => {
 
   const [map, setMap] = useState("");
   const [thema, setThema] = useState("all");
-  const [status, setStatus] = useState("Bezig");
+  const [status, setStatus] = useState("Funding");
   const [sorteren, setSorteren] = useState("Geen");
 
   const showProjects = (e) => {
@@ -57,9 +57,9 @@ const Filter = ({callBackMap}) => {
         <div className={style.filter__status}>
           <span className={style.filter__span}>Status:</span>
           <div>
-            <button className={status === "Bezig" ? style.filter__button__status : style.filter__button} onClick={() => filter("Bezig", thema)}>Bezig</button>
-            <button className={status === "Klaar" ? style.filter__button__status : style.filter__button} onClick={() => filter("Bezig", thema)}>Klaar</button>
-            <button className={status === "Afgerond" ? style.filter__button__status : style.filter__button} onClick={() => filter("Afgerond", thema)}>Voltooid</button>
+            <button className={status === "Funding" ? style.filter__button__status : style.filter__button} onClick={() => filter("Funding", thema)}>Funding</button>
+            <button className={status === "Uitvoering" ? style.filter__button__status : style.filter__button} onClick={() => filter("Uitvoering", thema)}>Uitvoering</button>
+            <button className={status === "Voltooid" ? style.filter__button__status : style.filter__button} onClick={() => filter("Voltooid", thema)}>Voltooid</button>
           </div>
         </div>
 

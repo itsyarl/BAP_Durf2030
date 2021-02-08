@@ -12,11 +12,11 @@ const Project = ({project}) => {
 
   const classSwitch = (status) => {
     switch (status) {
-      case 'Bezig':
+      case 'Funding':
         return  style.bezig;
       case 'Uitvoering':
         return  style.klaar;
-      case 'Afgerond':
+      case 'Voltooid':
         return  style.afgerond;
       default: return style.bezig;
     }

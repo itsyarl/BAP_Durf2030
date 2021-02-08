@@ -217,10 +217,10 @@ class ProjectService {
               }
             }
             //functie zodat de projecten worden terugestuurd
-            onChange(projectObj);
-            if(projectObj.status === "Bezig"){
+            if(projectObj.status === "Funding"){
               filter(projectObj, "all", projectObj.status)
             }
+            onChange(projectObj);
             // return projectObj
           })
           // return result;

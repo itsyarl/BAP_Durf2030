@@ -32,7 +32,6 @@ class ProjectStore {
 
   filterProjects = async (thema, status) => {
     this.emptyFilter();
-
     if (thema === "all") {
       const filteredProjects = this.projects.filter( project => {
         return (project.status === status)
@@ -92,7 +91,7 @@ class ProjectStore {
   } 
 
   createProject = async project => {
-    project.status = "Bezig";
+    project.status = "Funding";
     //validation installen als false op het moment dat je een project maakt
     project.validated = false;
     //de creationdate instellen

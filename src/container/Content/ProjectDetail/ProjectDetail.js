@@ -31,11 +31,11 @@ const ProjectDetail = () => {
 
   const classSwitch = (status) => {
     switch (status) {
-      case 'Bezig':
+      case 'Funding':
         return  style.bezig;
       case 'Uitvoering':
         return  style.klaar;
-      case 'Afgerond':
+      case 'Voltooid':
         return  style.afgerond;
       default: return style.bezig;
     }
@@ -50,7 +50,7 @@ const ProjectDetail = () => {
     return(
       <section className={style.details__container}>
         <h2 className="hidden">details project</h2>
-        <artcle>
+        <article>
           <h3 className="hidden">details</h3>
           <Link className={style.details__link} to={ROUTES.home}>
             <div className={style.driehoek}></div>
@@ -69,7 +69,7 @@ const ProjectDetail = () => {
           
           <CommentsSwitch project={project}/>
           
-        </artcle>
+        </article>
 
 
         <artcle>
