@@ -1,4 +1,4 @@
-import { decorate, observable} from "mobx";
+import { action, decorate, observable} from "mobx";
 import ProjectService from "../api/ProjectService.js";
 import ChatService from "../api/ChatService.js";
 
@@ -77,23 +77,14 @@ class ProjectStore {
   }
 
   getProjectById = id => {
-    //get funding items
-    this.rootStore.fundingStore.getFundingById(id);
-    //get roles
-    this.rootStore.rolStore.getRolesById(id);
-    //get messages
     this.getMessagesById(id);
-    //find project
-    const project = this.projects.find(project => project.id === id);
-    //get comments
-    this.getComments(id, project);
 
-    return project
+    return this.projects.find(project => project.id === id);
   }
 
-  getComments = async (id, project) => {
-    //get comments
-    await this.rootStore.commentStore.getCommentsByProjectId(id, project);
+  getComments = (id, project) => {
+    //get all aditional data
+    this.rootStore.commentStore.getCommentsByProjectId(id, project);
   }
 
   getValidatedProjects = async (state) => {
@@ -154,7 +145,6 @@ class ProjectStore {
 
       let projectExist = this.projects.findIndex(item => item.id === project.id);
       if (projectExist === -1) {
-        console.log(project)
         this.chats.push(project);
     }
   }
@@ -163,9 +153,8 @@ class ProjectStore {
   empty() {
     this.projects = [];
     this.chats = [];
-    this.rootStore.rolStore.empty();
-    this.rootStore.fundingStore.empty();
-    this.rootStore.commentStore.empty();
+    this.messages = [];
+    this.filtered = [];
   }
 
 }
@@ -173,9 +162,9 @@ decorate(ProjectStore, {
   projects: observable,
   messages: observable,
   chats: observable,
-  filtered: observable
-  // addGroup: action,
-  // addUser: action,
+  filtered: observable,
+  addProject: action,
+  addComment: action,
   // unreadLength: computed
 });
 export default ProjectStore;

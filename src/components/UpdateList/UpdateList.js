@@ -3,22 +3,19 @@ import React from "react";
 import Update from "../Update/Update";
 
 import { useObserver } from "mobx-react-lite";
-import { useStores } from "../../hooks/useStores";
 
-
-const UpdateList = () => {
-  const { commentStore } = useStores();
+const UpdateList = ({project}) => {
   return useObserver(() => {
-    if (!commentStore.updates) {
+    if (!project.updates) {
       return <p>Er zijn nog geen comments</p>;
     }
     return (
       <>
         <ul>
-        {commentStore.updates ? (
+        {project.updates ? (
           <>
-            {commentStore.updates.map(comment => (
-             <Update key={comment.id}/>
+            {project.updates.map(comment => (
+             <Update key={comment.id} update={comment} />
             ))}
           </>
         ) : (

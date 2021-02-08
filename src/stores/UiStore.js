@@ -31,9 +31,9 @@ class UiStore {
 
       //haalt alle projecten op met validatie
       if (user.admin === true) {
-        this.rootStore.projectStore.getValidatedProjects(false);
+        this.rootStore.projectStore.getValidatedProjects(false, this.currentUser);
       } else {
-        this.rootStore.projectStore.getValidatedProjects(true);
+        this.rootStore.projectStore.getValidatedProjects(true, this.currentUser);
         //haalt chatgroepen voor user op
         this.currentUser.projects.forEach(userProject => { 
           this.rootStore.projectStore.getProjectsChatForUser(userProject);
@@ -43,6 +43,7 @@ class UiStore {
 
     } else {
       this.rootStore.projectStore.empty();
+      
       // this.rootStore.projectStore.getProjects();
       console.log(`De user is uitgelogd.`);
       this.setCurrentUser(undefined);

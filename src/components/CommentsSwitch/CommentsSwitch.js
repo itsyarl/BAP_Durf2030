@@ -29,11 +29,11 @@ const CommentsSwitch = ({project}) => {
           {info === "comments" ? (
             <>
               {uiStore.currentUser.id === project.ownerId ? (
-                <CommentList />
+                <CommentList project={project} />
               ):(
                 <>
-                  <CommentForm />
-                  <CommentList />
+                  <CommentForm project={project} />
+                  <CommentList project={project} />
                 </>
               )}
             </>
@@ -41,11 +41,11 @@ const CommentsSwitch = ({project}) => {
             <>
               {uiStore.currentUser.id === project.ownerId ?(
                 <>
-                  <CommentForm />
-                  <UpdateList />
+                  <CommentForm project={project} />
+                  <UpdateList project={project} />
                 </>  
               ):(
-                <UpdateList />
+                <UpdateList project={project} />
               )}
             </>
           )}

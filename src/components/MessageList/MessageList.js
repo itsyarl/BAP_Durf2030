@@ -5,8 +5,9 @@ import { useStores } from "../../hooks/useStores";
 import style from "./MessageList.module.css";
 
 const MessageList = ({project}) => {
+
+  const {projectStore} = useStores();
   
-  const { projectStore } = useStores();
   return useObserver(() => {
     if (!projectStore.messages) {
       return (<p>Er zijn nog geen berichten</p>);

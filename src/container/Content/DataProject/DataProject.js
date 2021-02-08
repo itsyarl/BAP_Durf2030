@@ -29,6 +29,7 @@ const DataProject = () => {
         setUsersWithoutRole(usersWithoutRole => [...usersWithoutRole, userInProject]);
       }
     })
+    
     setWhatRole(name);
   }
 
@@ -38,16 +39,17 @@ const DataProject = () => {
     if (index > -1) {
       usersArray.splice(index, 1);
     }
-
-    await rolStore.removeRoll(usersArray, rol.name, id)
+    rol.aantal = rol.aantal+1;
+    await rolStore.updateRol(rol.id, rol.aantal, usersArray)
   }
 
   const handleSubmit = async (rol) => {
-    if (user !== ""){
+    if (user !== "" && rol.aantal !== 0){
       rol.users.push(user);
+      rol.aantal = rol.aantal -1;
       setUser("")
-      // setWhatRole("");
-      await rolStore.giveRoll(user, rol.name, id);
+      setWhatRole("");
+      await rolStore.giveRol(user, rol, id);
     }
   }
   // console.log(rolStore.roles);
