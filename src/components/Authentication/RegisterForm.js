@@ -32,8 +32,9 @@ const RegisterForm = () => {
       if (result.uid) {
         console.log(result.email);
         //gebruiker is correct geregistreerd
-        history.push(ROUTES.home);
+        history.push(ROUTES.login);
       } else {
+        history.push(ROUTES.login);
         //registratie mislukt
         console.log(result);
       }

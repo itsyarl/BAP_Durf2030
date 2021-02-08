@@ -1,6 +1,6 @@
   import { useObserver } from "mobx-react-lite";
   import React, { useState } from "react";
-  import { useParams } from "react-router-dom";
+  import { useHistory, useParams } from "react-router-dom";
   import { useStores } from "../../../hooks/useStores";
   import style from "./Funding.module.css";
   import { Link } from "react-router-dom";
@@ -8,7 +8,8 @@
   
   const Funding = () => {
     const [allFundings, setAllFundings] = useState([]);
-  
+
+    const history = useHistory();
     const { id } = useParams();
     const { projectStore, fundingStore, uiStore } = useStores();
   
@@ -32,6 +33,7 @@
           );
         }
       })
+      history.push(`${ROUTES.projectDetail.to}${id}`);
     }
   
     return useObserver(() => (

@@ -93,20 +93,6 @@ const EditProject = () => {
   const handleSubmit = async e => {
     e.preventDefault();
 
-    // const url = `https://api.cloudinary.com/v1_1/dgbx78idf/upload`
-    // const formData = new FormData();
-    // const imageForm = document.getElementById(`image`).files[0];
-    // formData.append('file', imageForm);
-    // formData.append('upload_preset', "nouoxmyc");
-
-    // const response = await fetch(url, {
-    //   method: "post",
-    //   body: formData,
-    // });
-
-    // const image = await response.json();
-    // console.log(image);
-
     const p = new Project({ 
       id,
       title,
@@ -325,7 +311,7 @@ const EditProject = () => {
             <input 
               className={style.button__submit}
               type="submit"
-              value="Project voorstellen"
+              value="Wijzigen"
             />
           </div>
         </form>

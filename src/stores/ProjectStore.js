@@ -133,7 +133,7 @@ class ProjectStore {
     );
   }
 
-  addParticipantToProject = async(id) => {
+  addParticipantToProject = async (id) => {
     const user = this.rootStore.uiStore.currentUser; 
     await this.projectService.addParticpantToProject(user, id);
   }

@@ -36,7 +36,7 @@ class Project {
     this.likes = likes
     this.status = status;
     this.messages = messages;
-    this.eventData = eventDate;
+    this.eventDate = eventDate;
     this.participants = participants;
     this.creationDate = creationDate;
     this.validated = validated;
