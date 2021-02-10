@@ -34,6 +34,7 @@ const CommentForm = ({project}) => {
           name="content"
           placeholder="Typ een bericht"
           value={content}
+          max="300"
           onChange={e => setContent(e.currentTarget.value)}
         />
         <button className={style.button__comment}>

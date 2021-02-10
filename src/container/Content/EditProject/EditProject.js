@@ -24,8 +24,10 @@ const EditProject = () => {
   const [eventDate, setEventDate] = useState(project.eventDate);
   const [benodigdhedenInput, setBenodigdhedenInput] = useState({product: "", aantal: 0});
   const [rollenInput, setRollenInput] = useState({rol: "", aantal: 0});
+  const [coOwnerInput, setCoOwnerInput] = useState(project.coOwners);
   const [benodigdheden, setBenodigdheden] = useState(project.funding);
   const [rollen, setRollen] = useState(project.rollen);
+  const [coOwners, setCoOwners] = useState([]);
   const [geo, setGeo] = useState(project.geo);
 
   const history = useHistory();
@@ -49,6 +51,13 @@ const EditProject = () => {
     }
   }
 
+  const appendCoOwner = () => {
+    if (coOwnerInput !== "") {
+      setCoOwnerInput("");
+      setCoOwners(coOwners.concat(coOwnerInput));
+    }
+  }
+
   const deleteRol = async (rol) => {
     const array = [...rollen]
     const index = array.indexOf(rol);
@@ -60,6 +69,15 @@ const EditProject = () => {
       await rolStore.removeRol(rol.id);
     } catch(error){
       console.log(error)
+    }
+  }
+
+  const deleteCoOwner = (participant) => {
+    const array = [...coOwners]
+    const index = array.indexOf(participant);
+    if (index > -1) {
+      array.splice(index, 1);
+      setCoOwners(array);
     }
   }
 
@@ -173,6 +191,34 @@ const EditProject = () => {
                   onChange={e => setDescription(e.target.value)}
                 />
               </label>
+
+              <label className={style.add__label}>
+                <span className={style.add__title}>Met wie werk je samen</span>
+                  <ul>
+                    {coOwners.map((participant, index) => (
+                      <li className={style.product__item}>
+                        <span className={style.product__item__num}>{index + 1}#</span>
+                        <span className={style.product__item__naam}>{participant}</span>
+                        <button type="button" onClick={() => deleteCoOwner(participant)}>delete</button>
+                      </li>
+                    ))}
+                  </ul>
+                  <span>
+
+                  <select name="coOwner" id="coOwner" value={coOwnerInput} onChange={e => setCoOwnerInput(e.target.value)}>
+                    <option >----</option>
+                      {projectStore.participants.map(user => (
+                        // console.log(user)
+                        <option key={user.id} value={user.name}>{user.name}</option>
+                      ))}
+                  </select>
+                  </span>
+              </label>
+
+              <button className={style.toevoegen} type="button" onClick={appendCoOwner}>
+                + Voeg mede-eigenaar toe
+              </button>
+
 
             </div>
           </div>

@@ -9,6 +9,7 @@ class Rol {
     this.name = name;
     this.aantal = aantal;
     this.projects = [];
+    this.participants = [];
   }
 
   linkProject(project) {
@@ -16,11 +17,18 @@ class Rol {
     !project.rollen.includes(this) && project.linkRol(this);
   }
 
+  linkParticipant(participant) {
+    !this.participants.includes(participant) && this.participants.push(participant);
+    !participant.rollen.includes(participant) && participant.linkRol(this);
+  }
+
 }
 decorate(Rol, {
   users: observable,
+  participants: observable,
   aantal: observable,
-  linkProject: action
+  linkProject: action,
+  linkParticipant: action
 });
 
 export default Rol;

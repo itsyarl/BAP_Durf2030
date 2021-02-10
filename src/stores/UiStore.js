@@ -25,7 +25,7 @@ class UiStore {
           email: user.email,
           name: user.name,
           projects: user.projects,
-          store: this.rootStore.userStore,
+          rollen: user.rollen
         })
       );
 
@@ -49,6 +49,10 @@ class UiStore {
       this.setCurrentUser(undefined);
     }
   };
+
+  getOwnerById = project => {
+    return project.participants.find(participant => participant.id === project.ownerId);
+  }
 
   getUserByDocument = async user => {
     await this.userService.getUserByDocument(user,  this.onAuthStateChanged);

@@ -26,14 +26,15 @@ const Filter = ({callBackMap}) => {
 
   const sorter = (type) => {
     setSorteren(type);
+    filter(status, thema, type);
   }
 
-  const filter = (status, thema) => {
+  const filter = (status, thema, sorteren) => {
     setThema(thema); 
     setStatus(status);
 
     try {
-      projectStore.filterProjects(thema, status);
+      projectStore.filterProjects(thema, status, sorteren);
       // console.log(filtered);
     } catch (error) {
       console.log(error);
