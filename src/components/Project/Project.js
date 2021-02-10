@@ -13,6 +13,8 @@ const Project = ({project}) => {
     backgroundImage: 'linear-gradient(180deg, rgba(30, 30, 30, 0.55) 6.29%, rgba(28, 28, 28, 0) 25.81%),url(' + project.image.url + ')',
   };
 
+  const owner = uiStore.getOwnerById(project);
+
   const classSwitch = (status) => {
     switch (status) {
       case 'Funding':
@@ -30,9 +32,9 @@ const Project = ({project}) => {
       <Link to={`${ROUTES.projectDetail.to}${project.id}`}>
         <div style={Image} className={style.proj__img} >
           <div className={style.proj__img__box}>
-            {project.participants.map(participant => (
-              <img key={participant.id} src={participant.avatar} className={style.user} width="30" alt="user"/>
-            ))}
+            <img src={owner.avatar} width="20" alt="avatar van owner" />
+            <span>{project.coOwners.length}</span>
+            <span>{project.participants.length - project.coOwners.length - 1}</span>
             {uiStore.currentUser.id === project.ownerId ? (
               <p className={style.proj__details}>
                 <span>Aanpassen</span>

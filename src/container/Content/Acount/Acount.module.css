@@ -1,6 +1,14 @@
 @value tokens: "../../../styles/tokens.module.css";
 @value button, dark, green-prim, green-hover, yellow-prim, off-white, subtitle-size, title-size, extra-font from tokens;
 
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
+  grid-column-gap: 2rem;
+  grid-row-gap: 4rem;
+}
+
 .user__container {
   margin-bottom: 4rem;
 }

@@ -1,19 +1,7 @@
 @value tokens: "../../styles/tokens.module.css";
 @value dark, subtitle-size, off-white, white-prim, button, green-prim, yellow-prim, green-hover, extra-font from tokens;
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: auto;
-  grid-column-gap: 2rem;
-  grid-row-gap: 4rem;
-}
-
 .proj__img {
-  background-image: url(./project.png);
-  background-image: linear-gradient(270deg, rgba(30, 30, 30, 0.55) 6.29%, rgba(28, 28, 28, 0) 25.81%), url(./project.png);
-  background-image: -moz-linear-gradient(270deg, rgba(30, 30, 30, 0.55) 6.29%, rgba(28, 28, 28, 0) 25.81%), url(./project.png);
-  background-image: -webkit-gradient(270deg, rgba(30, 30, 30, 0.55) 6.29%, rgba(28, 28, 28, 0) 25.81%), url(./project.png);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

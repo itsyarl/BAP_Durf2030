@@ -14,6 +14,7 @@ class Project {
     rollen = [],
     comments = [],
     updates = [],
+    coOwners = [],
     store,
     ownerId,
     creationDate,
@@ -51,6 +52,7 @@ class Project {
     this.funding = funding;
     this.comments = comments;
     this.updates = updates;
+    this.coOwners = coOwners;
   }
 
   linkParticipant(participant) {

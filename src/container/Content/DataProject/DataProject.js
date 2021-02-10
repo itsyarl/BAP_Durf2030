@@ -133,8 +133,8 @@ const DataProject = () => {
           <h3 className={style.groepTitle}>Rollen</h3>
           <div className={style.rollen}>
             {project.rollen.map(rol => (
-              <div className={style.rol}>
-                <p className={style.rol__username} key={rol.id}>{rol.name} <span className={style.rol__aantal}>{rol.users.length}/{rol.aantal}</span></p>
+              <div key={rol.id} className={style.rol}>
+                <p className={style.rol__username} key={rol.id}>{rol.name} <span className={style.rol__aantal}>nog {rol.aantal} te gaan voor deze rol</span></p>
             
                 {whatRole === rol.name ? (
                   <div className={style.rol__dropdown}>
@@ -152,13 +152,12 @@ const DataProject = () => {
                 )}
                 <ul className={style.rol__users}>
                   {rol.users.map(userInRol => (
-                  <li className={`${style.funding__user} ${style.rol__user__space}`}>
-                    <div className={style.funding__user}>
-                      <p>img</p>
-                      <span key={userInRol}>{userInRol}</span>
-                    </div>
-                    <button className={style.delete} onClick={() => removeUser(userInRol, rol)} >del</button>
-                  </li>
+                    <li key={userInRol} className={`${style.funding__user} ${style.rol__user__space}`}>
+                      <div className={style.funding__user}>
+                        <span key={userInRol}>{userInRol}</span>
+                      </div>
+                      <button className={style.delete} onClick={() => removeUser(userInRol, rol)} >del</button>
+                    </li>
                   ))}
                 </ul>
               </div>
@@ -177,54 +176,16 @@ const DataProject = () => {
           </div>
 
           <ul className={style.deelnemen__list}>
-            <li className={`${style.funding__user}`}>
-              <p className={style.funding__user__img}>img</p>
-              <p className={`${style.funding__user__name} ${style.user}`}>Robert Fox <span className={style.funding__user__name__span}>geen rol</span></p>
-            </li>
-            <li className={`${style.funding__user}`}>
-              <p className={style.funding__user__img}>img</p>
-              <p className={`${style.funding__user__name} ${style.user}`}>Leslie Alexander <span className={style.funding__user__name__span}>Poster designer</span></p>
-            </li>
-            <li className={`${style.funding__user}`}>
-              <p className={style.funding__user__img}>img</p>
-              <p className={`${style.funding__user__name} ${style.user}`}>Devon Lane <span className={style.funding__user__name__span}>geen rol</span></p>
-            </li>
-            <li className={`${style.funding__user}`}>
-              <p className={style.funding__user__img}>img</p>
-              <p className={`${style.funding__user__name} ${style.user}`}>Robert Fox <span className={style.funding__user__name__span}>geen rol</span></p>
-            </li>
-            <li className={`${style.funding__user}`}>
-              <p className={style.funding__user__img}>img</p>
-              <p className={`${style.funding__user__name} ${style.user}`}>Leslie Alexander <span className={style.funding__user__name__span}>Poster designer</span></p>
-            </li>
-            <li className={`${style.funding__user}`}>
-              <p className={style.funding__user__img}>img</p>
-              <p className={`${style.funding__user__name} ${style.user}`}>Devon Lane <span className={style.funding__user__name__span}>geen rol</span></p>
-            </li>
-            <li className={`${style.funding__user}`}>
-              <p className={style.funding__user__img}>img</p>
-              <p className={`${style.funding__user__name} ${style.user}`}>Robert Fox <span className={style.funding__user__name__span}>geen rol</span></p>
-            </li>
-            <li className={`${style.funding__user}`}>
-              <p className={style.funding__user__img}>img</p>
-              <p className={`${style.funding__user__name} ${style.user}`}>Leslie Alexander <span className={style.funding__user__name__span}>Poster designer</span></p>
-            </li>
-            <li className={`${style.funding__user}`}>
-              <p className={style.funding__user__img}>img</p>
-              <p className={`${style.funding__user__name} ${style.user}`}>Devon Lane <span className={style.funding__user__name__span}>geen rol</span></p>
-            </li>
-            <li className={`${style.funding__user}`}>
-              <p className={style.funding__user__img}>img</p>
-              <p className={`${style.funding__user__name} ${style.user}`}>Robert Fox <span className={style.funding__user__name__span}>geen rol</span></p>
-            </li>
-            <li className={`${style.funding__user}`}>
-              <p className={style.funding__user__img}>img</p>
-              <p className={`${style.funding__user__name} ${style.user}`}>Leslie Alexander <span className={style.funding__user__name__span}>Poster designer</span></p>
-            </li>
-            <li className={`${style.funding__user}`}>
-              <p className={style.funding__user__img}>img</p>
-              <p className={`${style.funding__user__name} ${style.user}`}>Devon Lane <span className={style.funding__user__name__span}>geen rol</span></p>
-            </li>
+            {project.participants.map(participant => (
+              <li key={participant.id} className={`${style.funding__user}`}>
+                <img key={participant.id} src={participant.avatar} className={style.user} width="30" alt="user"/>
+                <p className={`${style.funding__user__name} ${style.user}`}>{participant.name}
+                  {participant.rollen.map(rol => (
+                    <span key={rol.id} className={style.funding__user__name__span}>{rol.name}</span>
+                  ))}
+                </p>
+              </li>
+            ))}
           </ul>
         </div>
       </div>

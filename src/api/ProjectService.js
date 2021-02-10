@@ -30,7 +30,8 @@ class ProjectService {
           validated: false,
           likedUsers: [],
           status: project.status,
-          geo: project.geo
+          geo: project.geo,
+          coOwners: project.coOwners
         } },
       )
     )
@@ -68,7 +69,8 @@ class ProjectService {
           validated: true,
           likedUsers: [],
           status: project.status,
-          geo: project.geo
+          geo: project.geo,
+          coOwners: project.coOwners
         } },
       )
     )
@@ -117,7 +119,7 @@ class ProjectService {
   }
 
 
-  getValidatedProjects = async (state, onChange, filter, user) => {
+  getValidatedProjects = async (state, onChange, filter, addParticipant) => {
     return await client.query(
       q.Paginate(
         q.Match(
@@ -130,7 +132,7 @@ class ProjectService {
           return q.Get(ref)
         })
 
-        await client.query(getAllProductDataQuery).then((projects, user) => {
+        await client.query(getAllProductDataQuery).then((projects) => {
           return projects.forEach(async (project, user) => {
             //project als model invoegen
             const projectObj = new Project({
@@ -149,7 +151,8 @@ class ProjectService {
               ownerId: project.data.ownerId,
               status: project.data.status,
               geo: project.data.geo,
-              ownerName: project.data.ownerName
+              ownerName: project.data.ownerName,
+              coOwners: project.data.coOwners
             });
             //user ophalen van fauna
             const participants = await this.getParticipantsOfProject(project.data.id);
@@ -167,7 +170,25 @@ class ProjectService {
               //user linken aan project
               participantObj.linkProject(projectObj);
               projectObj.linkParticipant(participantObj);
+
+              addParticipant(participantObj);
+
+              const rollen = await this.getRolesByIdAndUser(project.data.id, participantObj.name);
+              //voor elk rol
+              for (const rol of rollen) {
+                const rolObj = new Rol({
+                  id: rol.data.id,
+                  projectId: rol.data.projectId,
+                  users: rol.data.users,
+                  name: rol.data.name,
+                  aantal: rol.data.aantal
+                });
+                //rollen linken aan project
+                participantObj.linkRol(rolObj);
+                rolObj.linkParticipant(participantObj);
+              }
             }
+
             const rollen = await this.getRolesById(project.data.id);
             //voor elk rol
             for (const rol of rollen) {
@@ -263,6 +284,23 @@ class ProjectService {
     .catch((error) => console.log('error', error.message))
     }
 
+    getRolesByIdAndUser = async (id, user) => {
+      return await client.query(
+        q.Paginate(
+          q.Match(
+            q.Index('role_by_projectId_and_name'), [id, user])),
+      )
+        .then((response) => {
+          const productRefs = response.data
+          const getAllProductDataQuery = productRefs.map((ref) => {
+            return q.Get(ref)
+          })
+          // query the refs
+          return client.query(getAllProductDataQuery).then((data) => data)
+        })
+        .catch((error) => console.log('error', error.message))
+    }
+
   getRolesById = async (id) => {
     return await client.query(
       q.Paginate(
@@ -335,6 +373,22 @@ class ProjectService {
     .catch((err) => console.error('Error: %s', err))
   }
 
+  addOwnerToProject = async (user, id) => {
+    const object = await client.query(
+      q.Get(
+        q.Match(q.Index('users_by_id'), user)
+      )
+    );
+    const ref = object.ref.id;
+    //document updaten
+    await client.query(
+      q.Update(
+        q.Ref(q.Collection('Users'), ref),
+        { data: { projects: q.Append(id, object.data.projects) } },
+      )
+    )
+    .catch((err) => console.error('Error: %s', err))
+  }
 }
 
 export default ProjectService;

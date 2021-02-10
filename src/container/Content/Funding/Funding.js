@@ -5,22 +5,35 @@
   import style from "./Funding.module.css";
   import { Link } from "react-router-dom";
   import { ROUTES } from "../../../consts";
+  // import FundingForm from "../../../components/FundingForm/FundingForm";
   
   const Funding = () => {
-    const [allFundings, setAllFundings] = useState([]);
-
     const history = useHistory();
     const { id } = useParams();
     const { projectStore, fundingStore, uiStore } = useStores();
   
     const project = projectStore.getProjectById(id);
   
+    const [allFundings, setAllFundings] = useState([]);
+
     const change = item => {
-      setAllFundings(allFundings.concat(item))
+      const alreadyFund = allFundings.filter(fund => {
+        return (fund.product === item.product)
+      });
+
+      if(alreadyFund.length > 0) {
+        setAllFundings(allFundings.splice(alreadyFund));
+        setAllFundings(allFundings.concat(item));
+      }else{
+        setAllFundings(allFundings.concat(item));
+      }
+
+
     }
 
     const doneer = (e) => {
       e.preventDefault();
+      console.log(allFundings);
       allFundings.forEach( async newFunding => {
         if (newFunding.amount <= newFunding.product.aantal) {
           newFunding.product.aantal = newFunding.product.aantal - newFunding.amount;
@@ -38,19 +51,18 @@
   
     return useObserver(() => (
       <>
-        
-        <Link className={style.details__link} to={ROUTES.home}>
+        <Link className={style.details__link} to={`${ROUTES.projectDetail.to}${id}`}>
           <div className={style.driehoek}></div>
-          <p className={style.details__link__tekst}>Terug naar projecten</p>
+          <p className={style.details__link__tekst}>Terug naar project</p>
         </Link>
         <h3 className={style.title}>{project.title}</h3>
         <p className={style.paragraaf}>Help dit project hun boodschappenlijstje af te vinken!</p>
   
-        {project.funding.map(funding => (
-          <>
-            <span key={funding.id}>{funding.product}-----{funding.aantal}</span>
-            <input type="number" max={funding.aantal} min={0} onChange={e => change({amount: e.target.value, product: funding})}></input>
-          </>
+        {project.funding.map((funding) => (
+            <div key={funding.id}>
+              <span>{funding.product}-----{funding.aantal}</span>
+              <input type="number" max={9} min={0} onChange={e => change({amount: e.target.value, product: funding})}></input>
+            </div>
         ))}
   
         <h4 className={style.tussenTitle}>Afleveren</h4>

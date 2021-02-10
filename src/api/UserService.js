@@ -1,6 +1,7 @@
 import { client, q } from '../config/db';
 import faunadb from 'faunadb';
 import User from '../models/User';
+import Rol from '../models/Rol';
 class UserService {
 
   createUser = async (user) => { 
@@ -48,7 +49,7 @@ class UserService {
       q.Get(q.Ref(q.Collection("Users"), `${document}`))
     )
     .then(async (response) => {
-      await client.query(response).then((user) => {
+      await client.query(response).then( async (user) => {
           //project als model invoegen
           const userObj = new User({
             id: user.data.id,
@@ -59,10 +60,42 @@ class UserService {
             avatar: user.data.avatar,
             companyName: user.data.companyName
           });
+
+          const rollen = await this.getRolesByIdAndUser(userObj.name);
+          //voor elk rol
+          for (const rol of rollen) {
+            const rolObj = new Rol({
+              id: rol.data.id,
+              projectId: rol.data.projectId,
+              users: rol.data.users,
+              name: rol.data.name,
+              aantal: rol.data.aantal
+            });
+            //rollen linken aan user
+            userObj.linkRol(rolObj);
+            rolObj.linkParticipant(userObj);
+          }
           onChange(userObj);
         })
     })
     .catch((error) => console.log('error', error.message))
+  }
+
+  getRolesByIdAndUser = async (user) => {
+    return await client.query(
+      q.Paginate(
+        q.Match(
+          q.Index('get_roles_by_user'),  user)),
+    )
+      .then((response) => {
+        const productRefs = response.data
+        const getAllProductDataQuery = productRefs.map((ref) => {
+          return q.Get(ref)
+        })
+        // query the refs
+        return client.query(getAllProductDataQuery).then((data) => data)
+      })
+      .catch((error) => console.log('error', error.message))
   }
 
   checkLoggedIn = async (userKey) => {

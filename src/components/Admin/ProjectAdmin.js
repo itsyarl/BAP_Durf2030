@@ -16,6 +16,7 @@ const ProjectAdmin = ({project}) => {
       projectId: project.id,
     });
     await projectStore.createChatDocument(newChat);
+    await projectStore.addOwnerToProject(project);
     await projectStore.approveProject(project.id);
   };
 
