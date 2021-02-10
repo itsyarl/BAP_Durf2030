@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { useStores } from "../../../hooks/useStores";
-import style from "./EditProject.module.css";
+import style from "../AddProject/AddProject.module.css";
 import img from "./projectmarker4.svg";
 import { Icon } from "leaflet";
 import Project from "../../../models/Project";
@@ -207,67 +207,71 @@ const EditProject = () => {
           
           <div className={style.add__form__block}>
             <h3 className={style.add__form__block__title}>Benodigdheden</h3>
-            <div>
+            <div className={style.funding__container}>
               <label className={style.add__label}>
                 <span className={style.add__title}>Benodigdheden</span>
                   <ul>
                     {benodigdheden.map((benodigdheid, index) => (
-                      <li key={index}>
-                        <span>{index + 1}</span>
-                        <span>{benodigdheid.product}</span>
-                        <span>{benodigdheid.aantal}</span>
+                      <li key={index} className={style.product__item}>
+                        <span className={style.product__item__num}>{index + 1}</span>
+                        <span className={style.product__item__naam}>{benodigdheid.product}</span>
+                        <span className={style.product__item__aantal}>{benodigdheid.aantal}</span>
                         <button type="button" onClick={() => deleteBenodigdheid(benodigdheid)}>delete</button>
                       </li>
                     ))}
                   </ul>
                   <span className={style.add__undertext}>#producten</span>
-                  <input
-                    className={style.add__block}
-                    type="text"
-                    value={benodigdhedenInput.product}
-                    onChange={e => setBenodigdhedenInput({product: e.target.value, aantal: benodigdhedenInput.aantal})}
-                  />
-                  <input
-                    className={style.add__block}
-                    type="number"
-                    value={benodigdhedenInput.aantal}
-                    onChange={e => setBenodigdhedenInput({product: benodigdhedenInput.product, aantal: e.target.value})}
-                  />
+                  <span>
+                    <input
+                      className={`${style.add__block} ${style.product}`}
+                      type="text"
+                      value={benodigdhedenInput.product}
+                      onChange={e => setBenodigdhedenInput({product: e.target.value, aantal: benodigdhedenInput.aantal})}
+                    />
+                    <input
+                      className={`${style.add__block} ${style.aantal}`}
+                      type="number"
+                      value={benodigdhedenInput.aantal}
+                      onChange={e => setBenodigdhedenInput({product: benodigdhedenInput.product, aantal: e.target.value})}
+                    />
+                  </span>
                 </label>
              
-              <button type="button" onClick={appendBenodigdheden}>
-                Voeg benodigheid toe
+              <button className={style.toevoegen} type="button" onClick={appendBenodigdheden}>
+                + Voeg item toe
               </button>
 
               <label className={style.add__label}>
                 <span className={style.add__title}>Rollen</span>
                   <ul>
                     {rollen.map((rol, index) => (
-                      <li key={index}>
-                        <span>{index + 1}</span>
-                        <span>{rol.name}</span>
-                        <span>{rol.aantal}</span>
+                      <li className={style.product__item} key={index}>
+                        <span className={style.product__item__num}>{index + 1}</span>
+                        <span className={style.product__item__naam}>{rol.name}</span>
+                        <span className={style.product__item__aantal}>{rol.aantal}</span>
                         <button type="button" onClick={() => deleteRol(rol)}>delete</button>
                       </li>
                     ))}
                   </ul>
                   <span className={style.add__undertext}>#deze kan je later aan mensen toekennen</span>
-                  <input
-                    className={style.add__block}
-                    type="text"
-                    value={rollenInput.rol}
-                    onChange={e => setRollenInput({rol: e.target.value, aantal: rollenInput.aantal})}
-                  />
-                  <input
-                    className={style.add__block}
-                    type="number"
-                    value={rollenInput.aantal}
-                    onChange={e => setRollenInput({rol: rollenInput.rol, aantal: e.target.value})}
-                  />
+                  <span>
+                    <input
+                      className={`${style.add__block} ${style.product}`}
+                      type="text"
+                      value={rollenInput.rol}
+                      onChange={e => setRollenInput({rol: e.target.value, aantal: rollenInput.aantal})}
+                    />
+                    <input
+                      className={`${style.add__block} ${style.aantal}`}
+                      type="number"
+                      value={rollenInput.aantal}
+                      onChange={e => setRollenInput({rol: rollenInput.rol, aantal: e.target.value})}
+                    />
+                  </span>
               </label>
 
-              <button type="button" onClick={appendRollen}>
-                Voeg rol toe
+              <button className={style.toevoegen} type="button" onClick={appendRollen}>
+                + Voeg rol toe
               </button>
 
             </div>
