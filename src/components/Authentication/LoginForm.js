@@ -15,6 +15,8 @@ const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+
+
   const handleSubmit = async e => {
     e.preventDefault();
     const user = new User({
@@ -27,8 +29,8 @@ const LoginForm = () => {
       const result = await uiStore.loginUser(user);
       setCookie('userToken', result.secret, {path: '/'});
       setCookie('userRef', result.instance.id, {path: '/'});
-      console.log(cookies);
     }catch(error) {
+      console.log(cookies);
       setError("Email of Wachtwoord werd niet gevonden")
     }
   };

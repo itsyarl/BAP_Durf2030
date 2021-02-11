@@ -17,10 +17,7 @@ const Header = () => {
     uiStore.logoutUser(userToken);
     cookies.remove('userToken');
     cookies.remove('userRef');
-    console.log(cookies);
-    // console.log(result);
     history.push(ROUTES.login);
-    // console.log("hey");
   };
 
   return (

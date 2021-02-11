@@ -223,7 +223,6 @@ class ProjectService {
             }
 
             const comments = await this.getCommentByProjectId(project.data.id);
-            console.log(comments);
             //voor elk comment
             for (const comment of comments) {
               const commentObj = new Comment({
