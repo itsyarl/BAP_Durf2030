@@ -200,16 +200,7 @@ const AddProject = () => {
                       </li>
                     ))}
                   </ul>
-                  <span>
 
-                  <select name="coOwner" id="coOwner" value={coOwnerInput} onChange={e => setCoOwnerInput(e.target.value)}>
-                    <option >----</option>
-                      {projectStore.participants.map(user => (
-                        // console.log(user)
-                        <option key={user.id} value={user.name}>{user.name}</option>
-                      ))}
-                  </select>
-                  </span>
               </label>
 
               <button className={style.toevoegen} type="button" onClick={appendCoOwner}>
@@ -361,7 +352,6 @@ const AddProject = () => {
 
         <div className={style.add__tips__box}>
           <div className={style.add__tips}>
-            <h3 className={style.add__tips__htitle}>Vooruitgang</h3>
             <div className={style.add__tips__container}>
               <h5 className={style.add__tips__title}>Tips</h5>
               <p className={style.add__tips__subtitle}>#1</p>
