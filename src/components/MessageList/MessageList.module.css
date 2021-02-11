@@ -5,6 +5,30 @@
   margin-top: 4rem;
   flex-grow: 1;
   overflow-y: scroll;
-  max-height: 62rem;
+  max-height: 65vh;
   margin-bottom: 1rem;
+}
+
+@media screen and (max-height: 900px) {
+  .list {
+    max-height: 63vh;
+  }
+}
+
+@media screen and (max-height: 880px) {
+  .list {
+    max-height: 58vh;
+  }
+}
+
+@media screen and (max-height: 780px) {
+  .list {
+    max-height: 50vh;
+  }
+}
+
+@media screen and (max-height: 650px) {
+  .list {
+    max-height: 45vh;
+  }
 }

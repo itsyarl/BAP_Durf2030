@@ -3,7 +3,7 @@ import ProjectList from "../../components/ProjectList/ProjectList"
 import Filter from "../../components/Filter/Filter";
 import Map from "../../components/Map/Map";
 
-const FilterSwitch = ({ token}) => {
+const FilterSwitch = ({ token }) => {
   const [map, setMap] = useState("");
 
   const handleCallback = (map) =>{

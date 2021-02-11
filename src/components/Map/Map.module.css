@@ -48,3 +48,11 @@
 .afgerond {
   background-color: #2d9cdb;
 }
+
+.users__count {
+  padding: .6rem;
+  border-radius: 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  background-color: green-prim;
+}

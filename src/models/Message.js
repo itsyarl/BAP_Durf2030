@@ -1,3 +1,4 @@
+import { decorate, observable } from "mobx";
 import { v4 } from "uuid";
 
 class Message {
@@ -7,5 +8,8 @@ class Message {
     this.messages = messages;
   }
 }
+decorate(Message, {
+  messages: observable,
+});
 
 export default Message;

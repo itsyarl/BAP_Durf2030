@@ -2,19 +2,22 @@ import React, { useState } from "react";
 import { useObserver } from "mobx-react-lite";
 import Comment from "../../models/Comment";
 import { useStores } from "../../hooks/useStores";
-import { useParams } from "react-router-dom";
 import style from "./CommentForm.module.css"
 
 const CommentForm = ({project}) => {
   const [content, setContent] = useState("");
   const { uiStore, commentStore } = useStores();
-  const { id } = useParams();
 
   const handleFormSubmit = async e => {
     e.preventDefault();
     if (content !== "") {
+      if(uiStore.currentUser.id === project.ownerId){
+
+      }
+
+
       const newComment = new Comment({
-        projectId: id,
+        projectId: project.id,
         content,
         userId: uiStore.currentUser.id,
         from: uiStore.currentUser.name
@@ -34,6 +37,7 @@ const CommentForm = ({project}) => {
           name="content"
           placeholder="Typ een bericht"
           value={content}
+          max="300"
           onChange={e => setContent(e.currentTarget.value)}
         />
         <button className={style.button__comment}>

@@ -155,28 +155,34 @@
   border: solid .1rem red-hover;
 }
 
-.funding__list {
-  max-width: 70rem;
-  margin-bottom: 2rem;
-}
-
-.funding__item {
-  display: grid;
-  padding: 1rem .3rem;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
-  align-items: center;
-  font-weight: 600;
-}
-
-.funnding__item__number {
-  font-weight: lighter;
-  margin-right: 2rem;
-}
-
 .funding__item:nth-child(odd) {
   background-color: off-white;
 }
 
-.funding__item__input {
-  width: 7rem;
+.funding__items {
+  max-width: 64rem;
+  margin-bottom: 4rem;
+}
+
+.funding__item {
+  display: grid;
+  grid-template-columns: 1fr 1fr 8rem;
+  padding: 1rem 2rem;
+  align-items: center;
+  font-weight: 600;
+}
+
+.funding__item__num {
+  font-weight: lighter;
+  margin-right: 1rem;
+}
+
+@media only screen and (max-width: 500px) {
+  .details__link {
+    margin-left: 0;
+  }
+
+  .input {
+    width: 27rem;
+  }
 }

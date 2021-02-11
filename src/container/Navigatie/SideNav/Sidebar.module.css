@@ -65,3 +65,56 @@
 .nav__footer {
 	text-align: center;
 }
+
+.sidenav__mobile {
+	display: none;
+}
+
+@media only screen and (max-width: 1024px) {
+	.nav__footer {
+		font-size: 1rem;
+	}
+
+	.nav__link {
+		font-size: 1.4rem;
+	}
+}
+
+@media only screen and (max-width: 850px) {
+  .sidebar {
+		display: none;
+	}
+
+	.sidenav__mobile {
+		display: block;
+	}
+
+	.sidenav__mobile__nav__box {
+		position: fixed;
+		background: #f4f6f7;
+		z-index: 10000;
+		width: 100%;
+		bottom: 0rem;
+	}
+
+	.sidenav__mobile__nav {
+		display: flex;
+		width: 100%;
+		justify-content: space-around;
+		height: 5rem;
+	}
+
+	.nav__container2 {
+		margin-bottom: 4rem;
+	}
+
+	.nav__link {
+		font-size: 1.8rem;
+	}
+
+	.active {
+		background-color: transparent;
+	}
+
+	font-size: 1.4rem;
+}

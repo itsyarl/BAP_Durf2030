@@ -19,6 +19,10 @@
 	padding-right: 3rem;
 }
 
+.topbar__logo {
+	display: none;
+}
+
 .notifications, .user, .userInfo, .mode {
 	margin-right: 2.5rem;
 }
@@ -35,4 +39,38 @@
 
 .userInfo__status {
 	color: green-prim;
+}
+
+@media only screen and (max-width: 850px) {
+	.topbar__fixed {
+		width: 100%;
+	}
+
+	.topbar__logo {
+		width: 30%;
+		margin-left: 1rem;
+		display: block;
+		font-size: 2.4rem;
+		font-weight: bold;
+		color: green-prim;
+	}
+
+	.notifications {
+		width: 4rem;
+	}
+}
+
+@media only screen and (max-width: 750px) {
+	.userInfo,
+	.Logout {
+		display: none;
+	}
+
+	.topbar__logo {
+		width: 60%;
+	}
+
+	.topbar__fixed {
+		padding-right: 0;
+	}
 }

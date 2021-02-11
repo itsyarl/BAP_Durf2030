@@ -14,7 +14,7 @@
 
 .filter__container__box {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
 }
 
 .filter__span {
@@ -31,7 +31,7 @@
   padding: button;
   font-size: 1.4rem;
   font-weight: 900;
-  margin-right: 1rem;
+  margin: 1rem;
 }
 
 .filter__button {
@@ -62,6 +62,7 @@
   display: flex;
   justify-content: space-between;
   width: 12rem;
+  margin: 1rem 1rem 2rem;
 }
 
 .primary {
@@ -77,6 +78,7 @@
 .filter__status,
 .filter__thema {
   margin-right: 3rem;
+  margin-bottom: 1rem;
 }
 
 select::-ms-expand {
@@ -94,4 +96,16 @@ select::-ms-expand {
   margin-right: 1rem;
   color: green-prim;
   border: .1rem green-prim solid;
+  margin: 1rem;
+}
+
+@media only screen and (max-width: 1024px) {
+  .filter__container__box {
+    display: block;
+  }
+
+  .filter__select {
+    width: 25rem;
+    margin-left: 1rem;
+  }
 }

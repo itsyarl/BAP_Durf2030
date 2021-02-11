@@ -20,8 +20,10 @@ const AddProject = () => {
   const [eventDate, setEventDate] = useState("");
   const [benodigdhedenInput, setBenodigdhedenInput] = useState({product: "", aantal: 0});
   const [rollenInput, setRollenInput] = useState({rol: "", aantal: 0});
+  const [coOwnerInput, setCoOwnerInput] = useState({});
   const [benodigdheden, setBenodigdheden] = useState([]);
   const [rollen, setRollen] = useState([]);
+  const [coOwners, setCoOwners] = useState([]);
   const [geo, setGeo] = useState({lat: 50.82803, lng: 3.26487});
 
   const { projectStore, uiStore, rolStore, fundingStore } = useStores();
@@ -46,12 +48,28 @@ const AddProject = () => {
     }
   }
 
+  const appendCoOwner = () => {
+    if (coOwnerInput !== "") {
+      setCoOwnerInput("");
+      setCoOwners(coOwners.concat(coOwnerInput));
+    }
+  }
+
   const deleteRol = (rol) => {
     const array = [...rollen]
     const index = array.indexOf(rol);
     if (index > -1) {
       array.splice(index, 1);
       setRollen(array);
+    }
+  }
+
+  const deleteCoOwner = (participant) => {
+    const array = [...coOwners]
+    const index = array.indexOf(participant);
+    if (index > -1) {
+      array.splice(index, 1);
+      setCoOwners(array);
     }
   }
 
@@ -103,7 +121,8 @@ const AddProject = () => {
       eventDate,
       location,
       image,
-      geo
+      geo,
+      coOwners
     });
 
     rollen.map(async rol => {
@@ -169,6 +188,33 @@ const AddProject = () => {
                   onChange={e => setDescription(e.target.value)}
                 />
               </label>
+
+              <label className={style.add__label}>
+                <span className={style.add__title}>Met wie werk je samen</span>
+                  <ul>
+                    {coOwners.map((participant, index) => (
+                      <li key={index} className={style.product__item}>
+                        <span className={style.product__item__num}>{index + 1}#</span>
+                        <span className={style.product__item__naam}>{participant}</span>
+                        <button type="button" onClick={() => deleteCoOwner(participant)}>delete</button>
+                      </li>
+                    ))}
+                  </ul>
+                  <span>
+
+                  <select name="coOwner" id="coOwner" value={coOwnerInput} onChange={e => setCoOwnerInput(e.target.value)}>
+                    <option >----</option>
+                      {projectStore.participants.map(user => (
+                        // console.log(user)
+                        <option key={user.id} value={user.name}>{user.name}</option>
+                      ))}
+                  </select>
+                  </span>
+              </label>
+
+              <button className={style.toevoegen} type="button" onClick={appendCoOwner}>
+                + Voeg mede-eigenaar toe
+              </button>
 
             </div>
           </div>
@@ -279,28 +325,25 @@ const AddProject = () => {
               <label className={style.add__label}>
                 <span className={style.add__title}>Thema</span>
                 <span className={style.add__undertext}>Beantwoord het project aan de huidige oproep?</span>
-                <input
-                  required="required"
-                  className={style.add__block}
-                  type="text"
-                  value={theme}
-                  onChange={e => setTheme(e.target.value)}
-                />
+                <select name="thema" id="thema" value={theme} onChange={e => setTheme(e.target.value)}>
+                  <option value="">----</option>
+                  <option value="Eenzaamheid">Eenzaamheid</option>
+                </select>
               </label>
 
               <label className={style.add__label}>
                 <span className={style.add__title}>Deadline project</span>
-                <span className={style.add__undertext}>Dag Maand Jaar</span>
+                <span className={style.add__undertext}>Dag/Maand/Jaar</span>
                 <input
                   required="required"
                   className={style.add__block}
-                  type="text"
+                  type="date"
                   value={eventDate}
                   onChange={e => setEventDate(e.target.value)}
                 />
               </label>
               
-              <input className={style.img__input} type="file" id="image" />
+              <input required="required" className={style.img__input} type="file" id="image" />
             </div>
           </div>
 

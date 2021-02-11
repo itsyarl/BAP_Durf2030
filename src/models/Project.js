@@ -14,6 +14,7 @@ class Project {
     rollen = [],
     comments = [],
     updates = [],
+    coOwners = [],
     store,
     ownerId,
     creationDate,
@@ -26,6 +27,7 @@ class Project {
     image,
     likedUsers,
     geo,
+    spotlight
   }) {
     this.id = id;
     this.title = title;
@@ -36,7 +38,7 @@ class Project {
     this.likes = likes
     this.status = status;
     this.messages = messages;
-    this.eventData = eventDate;
+    this.eventDate = eventDate;
     this.participants = participants;
     this.creationDate = creationDate;
     this.validated = validated;
@@ -51,6 +53,8 @@ class Project {
     this.funding = funding;
     this.comments = comments;
     this.updates = updates;
+    this.coOwners = coOwners;
+    this.spotlight = spotlight;
   }
 
   linkParticipant(participant) {
@@ -65,17 +69,21 @@ class Project {
 
   linkComment(comment) {
     !this.comments.includes(comment) && this.comments.push(comment);
-    !comment.projects.includes(comment) && comment.linkProject(this);
+    !comment.projects.includes(comment) && comment.linkProjectComment(this);
   }
 
   linkUpdate(comment) {
     !this.updates.includes(comment) && this.updates.push(comment);
-    !comment.projects.includes(comment) && comment.linkProject(this);
+    !comment.projects.includes(comment) && comment.linkProjectUpdate(this);
   }
 
   linkFunding(funding) {
     !this.funding.includes(funding) && this.funding.push(funding);
     !funding.projects.includes(funding) && funding.linkProject(this);
+  }
+
+  linkMessage(message) {
+    !this.messages.includes(message) && this.messages.push(message);
   }
 }
 

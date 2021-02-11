@@ -6,6 +6,8 @@ import lightmode from "./lightmode.svg";
 import notification from "./notification.svg";
 
 import { useStores } from "../../../hooks/useStores";
+import { Link } from "react-router-dom";
+import { ROUTES } from "../../../consts";
 
 const Topbar = () => {
 
@@ -16,6 +18,7 @@ const Topbar = () => {
     <section className={style.topbar}>
       <h2 className="hidden">Topnav</h2>
       <div className={style.topbar__fixed}>
+        <Link className={style.topbar__logo} to={ROUTES.home}>DURF2030</Link>
         <img src={lightmode} className={style.mode} alt="mode"/>
         <img src={notification} className={style.notifications} alt="notifications"/>
         <img src={user.avatar} className={style.user} width="50" alt="user"/>
@@ -23,7 +26,9 @@ const Topbar = () => {
           <p className={style.userInfo__name}>{user.name}</p>
           <p className={style.userInfo__status}>Online</p>  
         </div> 
-        <Logout />
+        <div className={style.Logout}>
+          <Logout />
+        </div>
       </div>
     </section>
   ))

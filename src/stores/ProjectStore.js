@@ -1,4 +1,4 @@
-import { action, decorate, observable} from "mobx";
+import { decorate, observable} from "mobx";
 import ProjectService from "../api/ProjectService.js";
 import ChatService from "../api/ChatService.js";
 
@@ -11,6 +11,7 @@ class ProjectStore {
     this.filtered = [];
     this.chats = [];
     this.messages = [];
+    this.participants = [];
   }
 
   addMessage = message => {
@@ -30,26 +31,71 @@ class ProjectStore {
     }
   }
 
-  filterProjects = async (thema, status) => {
+  filterProjects = async (thema, status, sorteren) => {
     this.emptyFilter();
     if (thema === "all") {
       const filteredProjects = this.projects.filter( project => {
         return (project.status === status)
       })
+      switch (sorteren) {
+        case "Geen":
+          const sortedAlf = filteredProjects.sort((a, b) => (a.title > b.title) ? -1 : 1);
+          sortedAlf.map(project => (
+            this.filtered.push(project)
+          ));
+            break;
+        case "Populair":
+            const sortedPop = filteredProjects.sort((a, b) => (a.likes > b.likes) ? -1 : 1);
+            sortedPop.map(project => (
+              this.filtered.push(project)
+            ));
+            break;
+        case "Nieuw":
+          const sortedNew = filteredProjects.sort((a, b) => (a.creationDate > b.creationDate) ? -1 : 1);
+          sortedNew.map(project => (
+            this.filtered.push(project)
+          ));
+          break;
+        default: 
+          filteredProjects.map(project => (
+            this.filtered.push(project)
+            // console.log(project)
+          ));
+        break;
       // console.log(filteredProjects);
-      filteredProjects.map(project => (
-        this.filtered.push(project)
-        // console.log(project)
-      ))
+      }
     }else{
       const filteredProjects = this.projects.filter( project => {
         return (project.theme === thema &&
                 project.status === status)
       })
-      filteredProjects.map(project => (
-        this.filtered.push(project)
-        // console.log(project)
-      ))
+      switch (sorteren) {
+        case "Geen":
+          const sortedAlf = filteredProjects.sort((a, b) => (a.title > b.title) ? -1 : 1);
+          sortedAlf.map(project => (
+            this.filtered.push(project)
+          ));
+            break;
+        case "Populair":
+            const sortedPop = filteredProjects.sort((a, b) => (a.likes > b.likes) ? -1 : 1);
+            sortedPop.map(project => (
+              this.filtered.push(project)
+            ));
+            break;
+        case "Nieuw":
+          const sortedNew = filteredProjects.sort((a, b) => (a.creationDate > b.creationDate) ? -1 : 1);
+          sortedNew.map(project => (
+            this.filtered.push(project)
+          ));
+          break;
+        default: 
+          filteredProjects.map(project => (
+            this.filtered.push(project)
+            // console.log(project)
+          ));
+        break;
+      // console.log(filteredProjects);
+      }
     }
     // console.log(this.filtered);
   } 
@@ -59,7 +105,8 @@ class ProjectStore {
   }
 
   sendMessage = async (content, id) => {
-    return await this.chatService.sendMessage(content, id);
+    const message = await this.chatService.sendMessage(content, id);
+    console.log(message);
   };
 
   getMessagesById = async (projectId) => {
@@ -81,13 +128,8 @@ class ProjectStore {
     return this.projects.find(project => project.id === id);
   }
 
-  getComments = (id, project) => {
-    //get all aditional data
-    this.rootStore.commentStore.getCommentsByProjectId(id, project);
-  }
-
   getValidatedProjects = async (state) => {
-    await this.projectService.getValidatedProjects(state, this.addProject, this.getFirstFiltered);
+    await this.projectService.getValidatedProjects(state, this.addProject, this.getFirstFiltered, this.addParticipant);
   } 
 
   createProject = async project => {
@@ -119,6 +161,13 @@ class ProjectStore {
     await this.projectService.approveProject(id);
   }
 
+  addParticipant = participant => {
+    let participantExist = this.participants.findIndex(item => item.id === participant.id);
+    if (participantExist === -1) {
+      this.participants.push(participant);
+    }
+  }
+
   addProject = project => {
     let projectExist = this.projects.findIndex(item => item.id === project.id);
     if (projectExist === -1) {
@@ -133,9 +182,14 @@ class ProjectStore {
     );
   }
 
-  addParticipantToProject = async(id) => {
+  addParticipantToProject = async (id) => {
     const user = this.rootStore.uiStore.currentUser; 
     await this.projectService.addParticpantToProject(user, id);
+  }
+
+  addOwnerToProject = async (project) => {
+    const user = project.ownerId; 
+    await this.projectService.addOwnerToProject(user, project.id);
   }
 
   getProjectsChatForUser = async (id) => {
@@ -149,10 +203,13 @@ class ProjectStore {
   }
   };
 
+  emptyChat = () => {
+    this.chats = [];
+  }
+
   empty() {
     this.projects = [];
     this.chats = [];
-    this.messages = [];
     this.filtered = [];
   }
 
@@ -162,8 +219,5 @@ decorate(ProjectStore, {
   messages: observable,
   chats: observable,
   filtered: observable,
-  addProject: action,
-  addComment: action,
-  // unreadLength: computed
 });
 export default ProjectStore;

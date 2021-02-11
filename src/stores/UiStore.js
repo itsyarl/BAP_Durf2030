@@ -25,7 +25,7 @@ class UiStore {
           email: user.email,
           name: user.name,
           projects: user.projects,
-          store: this.rootStore.userStore,
+          rollen: user.rollen
         })
       );
 
@@ -36,6 +36,7 @@ class UiStore {
         this.rootStore.projectStore.getValidatedProjects(true, this.currentUser);
         //haalt chatgroepen voor user op
         this.currentUser.projects.forEach(userProject => { 
+          this.rootStore.projectStore.emptyChat();
           this.rootStore.projectStore.getProjectsChatForUser(userProject);
         });
 
@@ -43,12 +44,14 @@ class UiStore {
 
     } else {
       this.rootStore.projectStore.empty();
-      
-      // this.rootStore.projectStore.getProjects();
       console.log(`De user is uitgelogd.`);
       this.setCurrentUser(undefined);
     }
   };
+
+  getOwnerById = project => {
+    return project.participants.find(participant => participant.id === project.ownerId);
+  }
 
   getUserByDocument = async user => {
     await this.userService.getUserByDocument(user,  this.onAuthStateChanged);

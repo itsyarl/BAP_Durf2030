@@ -2,10 +2,9 @@
 @value dark, subtitle-size, off-white, white-prim, button, green-prim, yellow-prim from tokens;
 
 .proj__img {
-  background-image: url(./project.png);
-  background-image: linear-gradient(270deg, rgba(30, 30, 30, 0.55) 6.29%, rgba(28, 28, 28, 0) 25.81%), url(./project.png);
-  background-image: -moz-linear-gradient(270deg, rgba(30, 30, 30, 0.55) 6.29%, rgba(28, 28, 28, 0) 25.81%), url(./project.png);
-  background-image: -webkit-gradient(270deg, rgba(30, 30, 30, 0.55) 6.29%, rgba(28, 28, 28, 0) 25.81%), url(./project.png);
+  background-image: linear-gradient(270deg, rgba(30, 30, 30, 0.55) 6.29%, rgba(28, 28, 28, 0) 25.81%);
+  background-image: -moz-linear-gradient(270deg, rgba(30, 30, 30, 0.55) 6.29%, rgba(28, 28, 28, 0) 25.81%);
+  background-image: -webkit-gradient(270deg, rgba(30, 30, 30, 0.55) 6.29%, rgba(28, 28, 28, 0) 25.81%);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -85,4 +84,25 @@
 
 .proj__likeicon {
   margin-right: 1rem;
+}
+
+.proj__users__data {
+  display: flex;
+  align-items: center;
+}
+
+.proj__owners,
+.proj__user {
+  padding: 1rem;
+  border-radius: 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.proj__owners {
+  background-color: green-prim;
+}
+
+.proj__user {
+  background-color: off-white;
 }

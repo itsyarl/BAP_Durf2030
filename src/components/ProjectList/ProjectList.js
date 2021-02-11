@@ -7,7 +7,6 @@ import style from  "./ProjectList.module.css";
 
 const ProjectList = () => {
   const { projectStore, uiStore } = useStores();
-  
   // console.log(projectStore.projects);
   return useObserver(() => (
     <>
@@ -18,9 +17,9 @@ const ProjectList = () => {
             <ProjectAdmin project={project} key={project.id} />
           ))
         ) : (
-          projectStore.filtered.map(project => (
-            <Project project={project} key={project.id}/>
-          ))
+          projectStore.filtered.map(project => {
+            return <Project project={project} key={project.id}/>
+          })
       )}
     </ul>
     </>

@@ -1,5 +1,5 @@
 @value tokens: "../../styles/tokens.module.css";
-@value off-white from tokens;
+@value off-white, dark from tokens;
 
 .item {
   display: flex;
@@ -19,7 +19,8 @@
 }
 
 .text__me {
-  background-color: yellow;
+  background-color: dark;
+  color: white;
 }
 
 .text__owner {

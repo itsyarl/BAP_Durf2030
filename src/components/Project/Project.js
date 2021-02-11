@@ -6,9 +6,14 @@ import style from "./Project.module.css";
 import { useObserver } from "mobx-react-lite";
 import icon from "./duim.svg";
 
-
 const Project = ({project}) => {
   const { uiStore } = useStores();
+
+  const Image = {
+    backgroundImage: 'linear-gradient(180deg, rgba(30, 30, 30, 0.55) 6.29%, rgba(28, 28, 28, 0) 25.81%),url(' + project.image.url + ')',
+  };
+
+  const owner = uiStore.getOwnerById(project);
 
   const classSwitch = (status) => {
     switch (status) {
@@ -25,9 +30,13 @@ const Project = ({project}) => {
   return useObserver(() => (
     <li>
       <Link to={`${ROUTES.projectDetail.to}${project.id}`}>
-        <div className={style.proj__img}>
+        <div style={Image} className={style.proj__img} >
           <div className={style.proj__img__box}>
-            <span>users</span>
+            <div className={style.proj__users__data}>
+              <img src={owner.avatar} width="20" alt="avatar van owner" />
+              <span className={style.proj__owners}>+{project.coOwners.length}</span>
+              <span className={style.proj__user}>+{project.participants.length}</span>
+            </div>
             {uiStore.currentUser.id === project.ownerId ? (
               <p className={style.proj__details}>
                 <span>Aanpassen</span>

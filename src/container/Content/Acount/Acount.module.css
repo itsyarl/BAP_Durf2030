@@ -1,6 +1,14 @@
 @value tokens: "../../../styles/tokens.module.css";
 @value button, dark, green-prim, green-hover, yellow-prim, off-white, subtitle-size, title-size, extra-font from tokens;
 
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
+  grid-column-gap: 2rem;
+  grid-row-gap: 4rem;
+}
+
 .user__container {
   margin-bottom: 4rem;
 }
@@ -34,6 +42,8 @@
 
 .buttons {
   margin-bottom: 2rem;
+  display: flex;
+  flex-flow: wrap;
 }
 
 .info__button {
@@ -45,6 +55,7 @@
   color: white;
   margin-right: 1rem;
   cursor: pointer;
+  margin-top: 1rem
 }
 
 .info__button:hover {
@@ -64,8 +75,39 @@
   color: green-prim;
   border: none;
   margin-right: 1rem;
+  margin-top: 1rem
 }
 
 .info__button__active .info__icon {
   filter: none;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading__gif {
+  width: 45rem;
+}
+
+@media only screen and (max-width: 1025px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .user__name {
+    font-size: 2.4rem;
+  }
+
+  .loading__gif {
+    width: 35rem;
+  }
 }

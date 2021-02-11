@@ -1,6 +1,7 @@
 import { useObserver } from "mobx-react-lite";
 import React from "react";
 import { Link } from "react-router-dom";
+import { ROUTES } from "../../consts";
 import { useStores } from "../../hooks/useStores";
 import Message from "../../models/Message";
 import style from "./Admin.module.css";
@@ -16,13 +17,14 @@ const ProjectAdmin = ({project}) => {
       projectId: project.id,
     });
     await projectStore.createChatDocument(newChat);
+    await projectStore.addOwnerToProject(project);
     await projectStore.approveProject(project.id);
   };
 
   return useObserver(() => (
     <li className={style.project__list__item}>
       <h4 className={style.project__title}>{project.title}</h4>
-      <p>user name</p>
+      <p>{project.ownerName}</p>
       {project.validated === false ? (
         <button onClick={handleApprove}>
           Approve
@@ -30,7 +32,7 @@ const ProjectAdmin = ({project}) => {
       ):(
         <span>Is al goedgekeurd</span>
       )}
-      <Link className={style.project__detail__link}>Bekijk project</Link>
+      <Link to={`${ROUTES.projectDetail.to}${project.id}`} className={style.project__detail__link}>Bekijk project</Link>
     </li>
   ));
 };

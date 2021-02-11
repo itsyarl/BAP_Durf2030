@@ -11,7 +11,7 @@ import login from './login.gif';
 const LoginForm = () => {
   const [cookies, setCookie] = useCookies(["userToken"])
   const { userStore, uiStore } = useStores();
-
+  const [error, setError] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -22,16 +22,22 @@ const LoginForm = () => {
       email: email,
       password: password
     });
-    const result = await uiStore.loginUser(user);
-    setCookie('userToken', result.secret, {path: '/'});
-    setCookie('userRef', result.instance.id, {path: '/'});
-    console.log(cookies);
+
+    try{
+      const result = await uiStore.loginUser(user);
+      setCookie('userToken', result.secret, {path: '/'});
+      setCookie('userRef', result.instance.id, {path: '/'});
+      console.log(cookies);
+    }catch(error) {
+      setError("Email of Wachtwoord werd niet gevonden")
+    }
   };
 
   return (
     <section className={style.container}>
       <div className={style.box}>
         <h2 className={style.login_title}>Log in</h2>
+        <p className={style.error}>{error}</p>
         <form onSubmit={handleSubmit} className={style.form}>
           <TextInputGroup
             label="Email:"
