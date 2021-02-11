@@ -58,13 +58,16 @@
         <h3 className={style.title}>{project.title}</h3>
         <p className={style.paragraaf}>Help dit project hun boodschappenlijstje af te vinken!</p>
   
-        {project.funding.map((funding) => (
-            <div key={funding.id}>
-              <span>{funding.product}-----{funding.aantal}</span>
-              <input type="number" max={9} min={0} onChange={e => change({amount: e.target.value, product: funding})}></input>
-            </div>
-        ))}
-  
+        <div className={style.funding__items}>
+          {project.funding.map((funding, index) => (
+              <div className={style.funding__item} key={funding.id}>
+                <p className={style.funding__item__text}><span className={style.funding__item__num}>#{index +1}</span>{funding.product}</p>
+                <p className={style.funding__item__text}>{funding.aantal}</p>
+                <input type="number" max={9} min={0} onChange={e => change({amount: e.target.value, product: funding})}></input>
+              </div>
+          ))}
+        </div>
+
         <h4 className={style.tussenTitle}>Afleveren</h4>
         <p className={style.text}>Hoe ga je jouw donatie afleveren?</p>
         <div>

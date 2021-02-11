@@ -35,6 +35,7 @@
 
 .add__form__block__title {
   width: 23rem;
+  margin-bottom: 1rem;
 }
 
 .add__block {
@@ -182,4 +183,34 @@
 
 .img__input {
   margin-bottom: 2rem;
+}
+
+@media only screen and (max-width: 1325px) {
+  .add__form__block {
+    display: block;
+  }
+
+  .add__tips,
+  .add__tips__box {
+    width: 40rem;
+  }
+}
+
+@media only screen and (max-width: 1050px) {
+  .add__tips,
+  .add__tips__box {
+    width: 30rem;
+  }
+}
+
+@media only screen and (max-width: 850px) {
+  .butttons {
+    margin-bottom: 2rem;
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  .add__tips__box {
+    display: none;
+  }
 }

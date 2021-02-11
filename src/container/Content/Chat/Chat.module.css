@@ -24,3 +24,9 @@
 .link:hover {
   background-color: green-hover;
 }
+
+@media only screen and (max-width: 680px) {
+  .link {
+    margin: 6rem 0;
+  }
+}

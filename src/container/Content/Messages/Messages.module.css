@@ -120,3 +120,17 @@
   display: flex;
   flex-flow: column;
 }
+
+@media only screen and (max-width: 750px) {
+  .info__content {
+    display: none;
+  }
+
+  .chat__grid {
+    display: block;
+  }
+
+  .details__link {
+    margin-left: 0;
+  }
+}

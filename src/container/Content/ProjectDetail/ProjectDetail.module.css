@@ -130,15 +130,9 @@
   background-color: #2d9cdb;
 }
 
-
-
-.details__samenvatting {
-  font-weight: bold;
-  margin: 2rem 0; 
-}
-
 .details__tekst {
   font-weight: 500;
+  margin-top: 2rem;
 }
 
 .buttons {
@@ -327,4 +321,32 @@
 .overzicht__beheren:hover,
 .overzicht__bewerken:hover {
   background: green-hover;
+}
+
+.willywoonka {
+  display: none;
+}
+
+@media only screen and (max-width: 1000px) {
+  .willywoonka {
+		display: block;
+  }
+
+  .details__container {
+    grid-template-columns: 1fr;
+  }
+
+  .infodetail__container {
+    display: none;
+  }
+
+  .details__funding__fixed {
+    position: unset;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+ .details__link {
+   margin-left: 0;
+ }
 }

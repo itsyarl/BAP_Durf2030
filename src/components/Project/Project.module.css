@@ -85,3 +85,24 @@
 .proj__likeicon {
   margin-right: 1rem;
 }
+
+.proj__users__data {
+  display: flex;
+  align-items: center;
+}
+
+.proj__owners,
+.proj__user {
+  padding: 1rem;
+  border-radius: 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.proj__owners {
+  background-color: green-prim;
+}
+
+.proj__user {
+  background-color: off-white;
+}

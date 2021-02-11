@@ -34,9 +34,11 @@ const Projects = ({ project, owner }) => {
           <div>
             <div style={Image} className={style.proj__img}>
               <div className={style.proj__img__box}>
-              <img src={owner.avatar} width="20" alt="avatar van owner" />
-              <span>{project.coOwners.length}</span>
-              <span>{project.participants.length - project.coOwners.length - 1}</span>
+                <div>
+                  <img src={owner.avatar} width="20" alt="avatar van owner" />
+                  <span>{project.coOwners.length}</span>
+                  <span>{project.participants.length - project.coOwners.length - 1}</span>
+                </div>
                 {uiStore.currentUser.id === project.ownerId ? (
                   <div className={style.proj__detail__buttons}>
                     <button className={style.proj__detail__button}><Link to={`${ROUTES.editProject.to}${project.id}`}><img src={bewerk} alt="bewerk"/></Link></button>

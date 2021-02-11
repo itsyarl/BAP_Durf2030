@@ -119,7 +119,7 @@ const Basics = () => {
           </li>
           <li className={style.Basics__icons__item}>
             <span className={`${style.Basics__ball} ${style.blue}`}></span>
-            <div>
+            <div className={style.Basics__Voltooid}>
               <h4 className={style.Basics__smalltitle}>Voltooid</h4>
               <p>Het project is afgewerkt en het impact formulier <span>(meer info over impact formulier)</span> is ingevuld</p>
             </div>

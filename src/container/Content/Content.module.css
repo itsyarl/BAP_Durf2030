@@ -14,6 +14,6 @@
   .content {
 		grid-column: 2 / 3;
 		grid-row: 2;
-		padding: 5rem 1rem;
+		padding: 3rem 1rem 6rem;
 	}
 }

@@ -32,9 +32,11 @@ const Project = ({project}) => {
       <Link to={`${ROUTES.projectDetail.to}${project.id}`}>
         <div style={Image} className={style.proj__img} >
           <div className={style.proj__img__box}>
-            <img src={owner.avatar} width="20" alt="avatar van owner" />
-            <span>{project.coOwners.length}</span>
-            <span>{project.participants.length - project.coOwners.length - 1}</span>
+            <div className={style.proj__users__data}>
+              <img src={owner.avatar} width="20" alt="avatar van owner" />
+              <span className={style.proj__owners}>+{project.coOwners.length}</span>
+              <span className={style.proj__user}>+{project.participants.length - project.coOwners.length - 1}</span>
+            </div>
             {uiStore.currentUser.id === project.ownerId ? (
               <p className={style.proj__details}>
                 <span>Aanpassen</span>

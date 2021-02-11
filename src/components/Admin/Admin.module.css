@@ -41,3 +41,9 @@
 .project__detail__link:hover {
   background: green-hover;
 }
+
+@media only screen and (max-width: 750px) {
+  .projectinfo {
+    font-size: 1.4rem;
+  }
+}

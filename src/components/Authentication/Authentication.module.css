@@ -6,7 +6,7 @@
   align-items: center;
   justify-content: space-evenly;
   height: 100vh;
-  width: 96rem;
+  max-width: 96rem;
   margin: 0 auto;
 }
 
@@ -79,5 +79,9 @@
 @media only screen and (max-width: 850px) {
   .container_grid {
     display: block;
+  }
+
+  .form__img {
+    display: none;
   }
 }

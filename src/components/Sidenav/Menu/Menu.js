@@ -3,12 +3,12 @@ import { NavLink } from "react-router-dom";
 import styles from "./Menu.module.css";
 import style from "../../../container/Navigatie/SideNav/Sidebar.module.css";
 import map from "../../../container/Navigatie/SideNav/icons/map_icon.svg";
-import kijker from "../../../container/Navigatie/SideNav/icons/map_icon.svg";
-import add from "../../../container/Navigatie/SideNav/icons/map_icon.svg";
-import acount from "../../../container/Navigatie/SideNav/icons/map_icon.svg";
-import chat from "../../../container/Navigatie/SideNav/icons/map_icon.svg";
-import info from "../../../container/Navigatie/SideNav/icons/map_icon.svg";
-import contact from "../../../container/Navigatie/SideNav/icons/map_icon.svg";
+import kijker from "../../../container/Navigatie/SideNav/icons/kijker_icon.svg";
+import add from "../../../container/Navigatie/SideNav/icons/add_icon.svg";
+import acount from "../../../container/Navigatie/SideNav/icons/acount_icon.svg";
+import chat from "../../../container/Navigatie/SideNav/icons/chat_icon.svg";
+import info from "../../../container/Navigatie/SideNav/icons/info_icon.svg";
+import contact from "../../../container/Navigatie/SideNav/icons/contact_icon.svg";
 import Logout from "../../Logout/Header";
 
 const Menu = ({ open, setOpen }) => {
