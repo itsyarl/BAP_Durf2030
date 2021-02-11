@@ -1,6 +1,11 @@
 @value tokens: "../../styles/tokens.module.css";
 @value off-white, title-size, green-prim, white-prim, base, button, green-hover, dark from tokens;
 
+.error {
+  color: red;
+  margin-left: 2rem;
+}
+
 .container {
   display: flex;
   align-items: center;

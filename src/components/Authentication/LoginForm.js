@@ -37,7 +37,7 @@ const LoginForm = () => {
     <section className={style.container}>
       <div className={style.box}>
         <h2 className={style.login_title}>Log in</h2>
-        <p>{error}</p>
+        <p className={style.error}>{error}</p>
         <form onSubmit={handleSubmit} className={style.form}>
           <TextInputGroup
             label="Email:"
