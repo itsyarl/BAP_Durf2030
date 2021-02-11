@@ -5,7 +5,7 @@ import bar from "./funding.png"
 const Beheren = () => {
 
   return (
-    <div className={style.test}>
+    <div className={style.beheren}>
       <h3 className={style.title}>Data</h3>
       <p>Op de data pagina vind je alle informatie over de stand van jouw project.</p>
       <img className={style.beheren__img} src={bar} alt="funding bar"/>

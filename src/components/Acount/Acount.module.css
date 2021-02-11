@@ -115,6 +115,14 @@
   margin-bottom: 6rem;
 }
 
+.listitem {
+  padding: 2rem;
+}
+
+.listitem:nth-child(odd) {
+  background-color: off-white;
+}
+
 .listitem__content,
 .info__user,
 .delete__button,
@@ -122,6 +130,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.info__user {
+  flex-flow: wrap;
 }
 
 .listitem__name {
@@ -133,7 +145,7 @@
 .details__link {
   display: flex;
   align-items: center;
-  width: 23rem;
+  width: 15rem;
 }
 
 .details__link__tekst {
@@ -210,6 +222,9 @@
   display: flex;
   align-items: center;
   margin: 1rem 0;
+  width: 60%;
+  flex-flow: wrap;
+  justify-content: space-around;
 }
 
 .listitem__user {

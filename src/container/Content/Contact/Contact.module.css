@@ -103,3 +103,31 @@
   border: solid .1rem red-hover;
   color: red-hover;
 }
+
+@media only screen and (max-width: 950px) {
+  .contact__label {
+    width: 25rem;
+  }
+
+  .buttons {
+    margin-left: 0;
+  }
+}
+
+@media only screen and (max-width: 680px) {
+  .contact__grid {
+    grid-template-columns: repeat(1 ,1fr);
+  }
+
+  .contact__label {
+    width: 100%;
+  }
+
+  .buttons {
+    margin-bottom: 3rem;
+  }
+
+  .contact__title {
+    margin: 2rem 0;
+  }
+}

@@ -65,13 +65,87 @@ const ProjectDetail = () => {
           </div>
 
           <p className={style.details__tekst}>{project.description}</p>
+
+          <article className={style.willywoonka}>
+          <h3 className="hidden">help</h3>
+          <div className={style.details__funding__fixed}>
+            {uiStore.currentUser.id === project.ownerId ? (
+              <div className={style.overzicht__container}>
+                <h4 className={style.overzicht}>Overzicht</h4>
+                <div className={style.overzicht__buttons}>
+                  <Link className={style.overzicht__bewerken} to={`${ROUTES.editProject.to}${id}`}><span>Bewerken</span></Link>
+                  <Link className={style.overzicht__beheren} to={`${ROUTES.dataProject.to}${id}`}><span>Beheren</span></Link>
+                </div>
+              </div>
+            ):(
+              <>
+              </>
+            )}
+            <div className={style.details__funding}>
+              <p className={style.details__spotlight__text}>Zet dit project in de spotlight!</p>
+              <div className={style.details__spotlight__buttons}>
+                {didLike === -1 ? (
+                  <form onSubmit={like}>
+                    <button className={style.details__like}>
+                      <img className={style.details__icon} src={likeIcon} alt="share icon"/>
+                      <span>Like</span>
+                    </button>
+                  </form>
+                ):(
+                  <span className={style.detail__geliked}>al geliked</span>
+                )}
+                <button className={style.details__share}>
+                  <img className={style.details__icon} src={shareIcon} alt="share icon"/>
+                  <span>Delen</span>
+                </button>
+              </div>
+
+              <div>
+                <h4 className={style.details__help}> Hoe kan jij helpen?</h4>
+                <div className={style.details__spotlight__buttons}>
+                  <ul className={style.details__rollen__benodigheden}>
+                    <li className={style.funding__list__item}>Benodigdheden</li>
+                    {project.funding.map(fund => (
+                      <li key={fund.id} className={style.funding__list__items}><span className={style.funding__list__span}>{fund.aantal}</span> {fund.product}</li>  
+                      ))}
+                  </ul>
+                  <ul>
+                    <li className={style.funding__list__item}>Rollen</li>
+                    {project.rollen.map(rol => (
+                      <li key={rol.id} className={style.funding__list__items}><span className={style.funding__list__span}>{rol.aantal}</span> {rol.name}</li>  
+                      ))}
+                  </ul>
+                </div>
+              </div>
+              <div className={style.details__join__buttons}>
+                <Link className={`${style.details__rollen__benodigheden} ${style.details__geef}`} to={`${ROUTES.funding.to}${id}`}><span>Ik geef ...</span></Link>
+                <ParticipantList project={project} />
+              </div>
+            </div>
+
+            <div className={style.details__data}>
+              <div>
+                <h4 className={style.details__data__title}>Eigenaar</h4>
+                <p>{project.ownerName}</p>
+              </div>
+              <div>
+                <h4 className={style.details__data__title}>info</h4>
+                <div className={style.details__data__grid}>
+                  <span className={style.details__info}><img className={style.details__counticon} src={usersIcon} alt="users icon"/> {project.participants.length}</span>
+                  <span className={style.details__info}><img className={style.details__counticon} src={likeIcon} alt="likes icon"/> {project.likes}</span>
+                  <span className={style.details__info}><img className={style.details__counticon} src={commentsIcon} alt="comments icon"/> {project.comments.length}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
           
           <CommentsSwitch project={project}/>
           
         </article>
 
 
-        <article>
+        <article className={style.infodetail__container}>
           <h3 className="hidden">help</h3>
           <div className={style.details__funding__fixed}>
             {uiStore.currentUser.id === project.ownerId ? (

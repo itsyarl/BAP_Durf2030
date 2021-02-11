@@ -166,7 +166,7 @@ const DataProject = () => {
         </div>
       </div>
 
-      <div>
+      <div className={style.fixed__users__box}>
         <div className={style.fixed__users}>
           <h2 className={style.title__users}>Deelnemers</h2>
           <div>

@@ -116,3 +116,31 @@
 .space {
   margin-bottom: 4rem;
 }
+
+.Basics__Voltooid {
+  width: 40rem;
+}
+
+@media only screen and (max-width: 990px) {
+  .Basics__icons__grid {
+    grid-template-columns: repeat(1, 33rem);
+  }
+
+  .vs__paragraaf,
+  .vs__list__item__small,
+  .basics__wat__container {
+    width: 100%;
+  }
+
+  .beheren__img {
+    width: 98%;
+  }
+
+  .beheren {
+    margin-bottom: 3rem;
+  }
+
+  .Basics__Voltooid {
+    width: 33rem;
+  }
+}

@@ -20,6 +20,7 @@
   color: dark;
   margin-right: 2rem;
   cursor: pointer;
+  margin-top: 1rem;
 }
 
 .info__button:hover {
@@ -35,5 +36,5 @@
   font-size: 1.4rem;
   color: white;
   margin-right: 2rem;
+  margin-top: 1rem;
 }
-
