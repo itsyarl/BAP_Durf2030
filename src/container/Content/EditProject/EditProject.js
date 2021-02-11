@@ -24,10 +24,10 @@ const EditProject = () => {
   const [eventDate, setEventDate] = useState(project.eventDate);
   const [benodigdhedenInput, setBenodigdhedenInput] = useState({product: "", aantal: 0});
   const [rollenInput, setRollenInput] = useState({rol: "", aantal: 0});
-  const [coOwnerInput, setCoOwnerInput] = useState(project.coOwners);
+  const [coOwnerInput, setCoOwnerInput] = useState();
   const [benodigdheden, setBenodigdheden] = useState(project.funding);
   const [rollen, setRollen] = useState(project.rollen);
-  const [coOwners, setCoOwners] = useState([]);
+  const [coOwners, setCoOwners] = useState(project.coOwners);
   const [geo, setGeo] = useState(project.geo);
 
   const history = useHistory();
@@ -196,7 +196,7 @@ const EditProject = () => {
                 <span className={style.add__title}>Met wie werk je samen</span>
                   <ul>
                     {coOwners.map((participant, index) => (
-                      <li className={style.product__item}>
+                      <li key={participant.id} className={style.product__item}>
                         <span className={style.product__item__num}>{index + 1}#</span>
                         <span className={style.product__item__naam}>{participant}</span>
                         <button type="button" onClick={() => deleteCoOwner(participant)}>delete</button>
@@ -206,7 +206,7 @@ const EditProject = () => {
                   <span>
 
                   <select name="coOwner" id="coOwner" value={coOwnerInput} onChange={e => setCoOwnerInput(e.target.value)}>
-                    <option >----</option>
+                    <option value="">----</option>
                       {projectStore.participants.map(user => (
                         // console.log(user)
                         <option key={user.id} value={user.name}>{user.name}</option>
@@ -326,16 +326,13 @@ const EditProject = () => {
           <div className={style.add__form__block}>
             <h3 className={style.add__form__block__title}>Extra's</h3>
             <div>
-              <label className={style.add__label}>
+            <label className={style.add__label}>
                 <span className={style.add__title}>Thema</span>
                 <span className={style.add__undertext}>Beantwoord het project aan de huidige oproep?</span>
-                <input
-                  required="required"
-                  className={style.add__block}
-                  type="text"
-                  value={theme}
-                  onChange={e => setTheme(e.target.value)}
-                />
+                <select name="thema" id="thema" value={theme} onChange={e => setTheme(e.target.value)}>
+                  <option value="">----</option>
+                  <option value="Eenzaamheid">Eenzaamheid</option>
+                </select>
               </label>
 
               <label className={style.add__label}>
@@ -344,7 +341,7 @@ const EditProject = () => {
                 <input
                   required="required"
                   className={style.add__block}
-                  type="text"
+                  type="date"
                   value={eventDate}
                   onChange={e => setEventDate(e.target.value)}
                 />

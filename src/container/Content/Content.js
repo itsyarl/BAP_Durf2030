@@ -15,6 +15,7 @@ import Chat from "./Chat/Chat";
 import style from "./Content.module.css";
 import Messages from "./Messages/Messages";
 import Contact from "./Contact/Contact";
+import InDeKijker from "./InDeKijker/InDeKijker";
 
 const Content = ({ token }) => {
   const { uiStore } = useStores();
@@ -51,6 +52,10 @@ const Content = ({ token }) => {
         
         <Route path={ROUTES.projectDetail.path}>
           <ProjectDetail token={token} />
+        </Route>
+
+        <Route path={ROUTES.inDeKijker}>
+          <InDeKijker token={token} />
         </Route>
 
         <Route exact strict path={ROUTES.home}>

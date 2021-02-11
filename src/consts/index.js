@@ -13,7 +13,8 @@ const ROUTES = {
   guide: "/guide",
   chat: "/chat",
   messages: { path: "/chat/:id", to: "/chat/" },
-  contact: "/contact"
+  contact: "/contact",
+  inDeKijker: "/indekijker"
 };
 
 export { ROUTES };

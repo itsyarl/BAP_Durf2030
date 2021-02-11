@@ -192,7 +192,7 @@ const AddProject = () => {
                 <span className={style.add__title}>Met wie werk je samen</span>
                   <ul>
                     {coOwners.map((participant, index) => (
-                      <li className={style.product__item}>
+                      <li key={index} className={style.product__item}>
                         <span className={style.product__item__num}>{index + 1}#</span>
                         <span className={style.product__item__naam}>{participant}</span>
                         <button type="button" onClick={() => deleteCoOwner(participant)}>delete</button>

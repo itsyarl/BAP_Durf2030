@@ -27,6 +27,7 @@ class Project {
     image,
     likedUsers,
     geo,
+    spotlight
   }) {
     this.id = id;
     this.title = title;
@@ -53,6 +54,7 @@ class Project {
     this.comments = comments;
     this.updates = updates;
     this.coOwners = coOwners;
+    this.spotlight = spotlight;
   }
 
   linkParticipant(participant) {
@@ -78,6 +80,10 @@ class Project {
   linkFunding(funding) {
     !this.funding.includes(funding) && this.funding.push(funding);
     !funding.projects.includes(funding) && funding.linkProject(this);
+  }
+
+  linkMessage(message) {
+    !this.messages.includes(message) && this.messages.push(message);
   }
 }
 

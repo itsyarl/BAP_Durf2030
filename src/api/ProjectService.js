@@ -31,7 +31,8 @@ class ProjectService {
           likedUsers: [],
           status: project.status,
           geo: project.geo,
-          coOwners: project.coOwners
+          coOwners: project.coOwners,
+          spotlight: false
         } },
       )
     )
@@ -70,7 +71,8 @@ class ProjectService {
           likedUsers: [],
           status: project.status,
           geo: project.geo,
-          coOwners: project.coOwners
+          coOwners: project.coOwners,
+          spotlight: project.spotlight
         } },
       )
     )
@@ -152,7 +154,8 @@ class ProjectService {
               status: project.data.status,
               geo: project.data.geo,
               ownerName: project.data.ownerName,
-              coOwners: project.data.coOwners
+              coOwners: project.data.coOwners,
+              spotlight: project.data.spotlight
             });
             //user ophalen van fauna
             const participants = await this.getParticipantsOfProject(project.data.id);
@@ -242,11 +245,8 @@ class ProjectService {
               filter(projectObj, "all", projectObj.status)
             }
             onChange(projectObj);
-            // return projectObj
           })
-          // return result;
         })
-        // filter("all", "Bezig");
       })
       .catch((error) => console.log('error', error.message))
   }

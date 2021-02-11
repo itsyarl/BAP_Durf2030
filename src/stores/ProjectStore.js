@@ -1,4 +1,4 @@
-import { action, decorate, observable} from "mobx";
+import { decorate, observable} from "mobx";
 import ProjectService from "../api/ProjectService.js";
 import ChatService from "../api/ChatService.js";
 
@@ -61,7 +61,7 @@ class ProjectStore {
             this.filtered.push(project)
             // console.log(project)
           ));
-        break;;
+        break;
       // console.log(filteredProjects);
       }
     }else{
@@ -93,7 +93,7 @@ class ProjectStore {
             this.filtered.push(project)
             // console.log(project)
           ));
-        break;;
+        break;
       // console.log(filteredProjects);
       }
     }
@@ -105,7 +105,8 @@ class ProjectStore {
   }
 
   sendMessage = async (content, id) => {
-    return await this.chatService.sendMessage(content, id);
+    const message = await this.chatService.sendMessage(content, id);
+    console.log(message);
   };
 
   getMessagesById = async (projectId) => {
@@ -125,11 +126,6 @@ class ProjectStore {
     this.getMessagesById(id);
 
     return this.projects.find(project => project.id === id);
-  }
-
-  getComments = (id, project) => {
-    //get all aditional data
-    this.rootStore.commentStore.getCommentsByProjectId(id, project);
   }
 
   getValidatedProjects = async (state) => {
@@ -207,12 +203,14 @@ class ProjectStore {
   }
   };
 
+  emptyChat = () => {
+    this.chats = [];
+  }
+
   empty() {
     this.projects = [];
     this.chats = [];
-    this.messages = [];
     this.filtered = [];
-    this.participants = [];
   }
 
 }
@@ -221,8 +219,5 @@ decorate(ProjectStore, {
   messages: observable,
   chats: observable,
   filtered: observable,
-  addProject: action,
-  addComment: action,
-  // unreadLength: computed
 });
 export default ProjectStore;

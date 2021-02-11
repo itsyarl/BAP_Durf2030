@@ -1,6 +1,5 @@
 import { client, q } from '../config/db';
 import Message from '../models/Message';
-// import Message from '../models/Message';
 import Project from '../models/Project'
 
 class ChatService {
@@ -59,7 +58,7 @@ class ChatService {
     // referentie van document ophalen
     const ref = object.ref.id;
     //document updaten
-    await client.query(
+    return await client.query(
       q.Update(
         q.Ref(q.Collection('Messages'), ref),
         { data: { 
@@ -71,9 +70,9 @@ class ChatService {
   }
 
   getMessagesById = async (projectId, onChange) => {
-    // Before we get a new set of documents (e.g. the next page), we will close down existing streams
+    //bestaande stream sluiten
     this.closeStreams()
-    // First we will get all the document references.
+    // De documenten van de berichten ophalen
     const page = await this.getDocuments(projectId);
     this.openStreams(page.data, onChange);
   }
@@ -84,40 +83,13 @@ class ChatService {
     );
   }
 
-//   getDocuments = async (projectId, onChange) => {
-//     return await client.query(
-//         q.Paginate(q.Match(q.Index("messages_by_project"), projectId))
-//     )
-//     .then(async (response) => {
-//       const productRefs = response.data
-//       const getAllProductDataQuery = productRefs.map((ref) => {
-//         return q.Get(ref)
-//       })
-      
-//       return await client.query(getAllProductDataQuery).then((messages) => {
-//         messages.forEach(async message => {
-//           //message als model invoegen
-//           const messageObj = new Message({
-//             id: message.data.id,
-//             projectId: message.data.projectId,
-//             users: message.data.users,
-//             messages: message.data.messages
-//           });
-//           onChange(messageObj);
-//         })
-//         return productRefs;
-//       });
-//     })
-//     .catch((error) => console.log('error', error.message))
-// }
-
   openStreams = async (documentReferences, onChange) => {
     // console.log('data retrieved', documentReferences.length)
     documentReferences.forEach((ref) => {
       
         let stream = client.stream.document(ref)
+          //op de start van de stream halen we alvast de bestaande berichten op
           .on('snapshot', (data, event) => {
-              // this.handleSnapshot(streamAndData, data, event);
               const messageObj = new Message({
                 id: data.data.id,
                 projectId: data.data.projectId,
@@ -126,9 +98,9 @@ class ChatService {
               });
               onChange(messageObj);
           })
+          //op een verandering gaan we de messages ophalen en in de array steken
           .on('version', (data, event) => {
             console.log(data);
-            // this.handleSnapshot(streamAndData, data, event);
             const messageObj = new Message({
               id: data.document.data.id,
               projectId: data.document.data.projectId,
@@ -138,47 +110,14 @@ class ChatService {
             console.log(messageObj);
             onChange(messageObj);
         })
-            // .on('error', (data, event) => this.handleError(streamAndData, data, event))
-        // and start the stream
+        // de stream starten
         stream.start()
-        // we'll return it so we have a reference to the stream to close it later on.
       })
     }
-    
-
-    handleSnapshot = async (streamAndData, data, event) => {
-      // We'll keep the snapshot as well. The snapshot is useful in case you plan to apply changs
-      // incrementally. Instead of retrieving the data and then opening a stream,
-      // we can use the snapshot to make sure we have not missed an update.
-      streamAndData.snapshot = data
-    }
-
-    handleError = async (streamAndData, data, event) => {
-      // In the case of an error, we're going to print the error and
-      //  restart the stream for that document.
-      console.log('error, restarting stream', data, event, streamAndData)
-      this.restartDocumentStream(streamAndData.snapshot.ref)
-    }
-
-    restartDocumentStream = async (ref) => {
-      // let's fetch the stream subscription
-      const streamAndData = this.subscriptionsByRef[ref]
-      // close it
-      streamAndData.stream.close();
-      // and restart it again, we will wait slightly
-      setTimeout(() => {
-          this.openStreams([ref])
-      }, 100)
-    }
+  
 
     closeStreams = async () => {
-    //   // If we change a page, we'll close all the streams to release the
-    //   // underlying connections that the stream uses.
-    //   Object.keys(this.subscriptionsByRef).forEach((ref) => {
-    //       const streamAndData = this.subscriptionsByRef[ref]
-    //       console.log('closing stream', streamAndData.stream)
-    //       streamAndData.stream.close();
-    //   })
+    //   Als we veranderen van pagina stoppen we de stream om geen continue check te krijgen.
       this.subscriptionsByRef = {}
     }
 }
