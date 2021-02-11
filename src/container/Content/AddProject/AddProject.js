@@ -188,25 +188,6 @@ const AddProject = () => {
                   onChange={e => setDescription(e.target.value)}
                 />
               </label>
-
-              <label className={style.add__label}>
-                <span className={style.add__title}>Met wie werk je samen</span>
-                  <ul>
-                    {coOwners.map((participant, index) => (
-                      <li key={index} className={style.product__item}>
-                        <span className={style.product__item__num}>{index + 1}#</span>
-                        <span className={style.product__item__naam}>{participant}</span>
-                        <button type="button" onClick={() => deleteCoOwner(participant)}>delete</button>
-                      </li>
-                    ))}
-                  </ul>
-
-              </label>
-
-              <button className={style.toevoegen} type="button" onClick={appendCoOwner}>
-                + Voeg mede-eigenaar toe
-              </button>
-
             </div>
           </div>
           
