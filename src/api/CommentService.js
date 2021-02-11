@@ -10,6 +10,7 @@ class CommentService {
           id: comment.id,
           projectId: comment.projectId,
           content: comment.content,
+          userName: comment.userName,
           userId: comment.userId,
           timestamp: comment.timestamp
         } },

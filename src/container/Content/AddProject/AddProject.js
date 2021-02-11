@@ -342,7 +342,7 @@ const AddProject = () => {
                 />
               </label>
               
-              <input className={style.img__input} type="file" id="image" />
+              <input required="required" className={style.img__input} type="file" id="image" />
             </div>
           </div>
 

@@ -35,7 +35,7 @@ const Project = ({project}) => {
             <div className={style.proj__users__data}>
               <img src={owner.avatar} width="20" alt="avatar van owner" />
               <span className={style.proj__owners}>+{project.coOwners.length}</span>
-              <span className={style.proj__user}>+{project.participants.length - project.coOwners.length - 1}</span>
+              <span className={style.proj__user}>+{project.participants.length}</span>
             </div>
             {uiStore.currentUser.id === project.ownerId ? (
               <p className={style.proj__details}>

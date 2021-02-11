@@ -119,7 +119,7 @@ const EditProject = () => {
       theme,
       eventDate,
       location,
-      // image,
+      coOwners,
       geo
     });
 

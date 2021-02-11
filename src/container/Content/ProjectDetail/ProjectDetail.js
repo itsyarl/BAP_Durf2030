@@ -61,7 +61,7 @@ const ProjectDetail = () => {
           <Image className={style.details__img} publicId={project.image.public_id} />
           <div className={style.details__info}>
             <p className={style.details__theme}>{project.theme}</p>
-            <span className={style.status}>Status: {project.status}<div className={classSwitch(project.status)}></div></span>
+            <span className={uiStore.currentUser.admin === false ? (style.status):("hidden")}>Status: {project.status}<div className={classSwitch(project.status)}></div></span>
           </div>
 
           <p className={style.details__tekst}>{project.description}</p>
@@ -83,7 +83,7 @@ const ProjectDetail = () => {
             )}
             <div className={style.details__funding}>
               <p className={style.details__spotlight__text}>Zet dit project in de spotlight!</p>
-              <div className={style.details__spotlight__buttons}>
+              <div className={uiStore.currentUser.admin === false ? (style.details__spotlight__buttons) : ("hidden")}>
                 {didLike === -1 ? (
                   <form onSubmit={like}>
                     <button className={style.details__like}>
@@ -117,7 +117,7 @@ const ProjectDetail = () => {
                   </ul>
                 </div>
               </div>
-              <div className={style.details__join__buttons}>
+              <div className={uiStore.currentUser.admin === false ? (style.details__join__buttons):("hidden")}>
                 <Link className={`${style.details__rollen__benodigheden} ${style.details__geef}`} to={`${ROUTES.funding.to}${id}`}><span>Ik geef ...</span></Link>
                 <ParticipantList project={project} />
               </div>
@@ -128,7 +128,7 @@ const ProjectDetail = () => {
                 <h4 className={style.details__data__title}>Eigenaar</h4>
                 <p>{project.ownerName}</p>
               </div>
-              <div>
+              <div className={uiStore.currentUser.admin === true ? ("hidden"):(style.admin__idden)}>
                 <h4 className={style.details__data__title}>info</h4>
                 <div className={style.details__data__grid}>
                   <span className={style.details__info}><img className={style.details__counticon} src={usersIcon} alt="users icon"/> {project.participants.length}</span>
@@ -139,9 +139,9 @@ const ProjectDetail = () => {
             </div>
           </div>
         </article>
-          
-          <CommentsSwitch project={project}/>
-          
+          <div className={uiStore.currentUser.admin === true ? ("hidden"):(style.admin__idden)}>
+            <CommentsSwitch project={project}/>
+          </div>
         </article>
 
 
@@ -162,7 +162,7 @@ const ProjectDetail = () => {
             )}
             <div className={style.details__funding}>
               <p className={style.details__spotlight__text}>Zet dit project in de spotlight!</p>
-              <div className={style.details__spotlight__buttons}>
+              <div className={uiStore.currentUser.admin === false ? (style.details__spotlight__buttons):("hidden")}>
                 {didLike === -1 ? (
                   <form onSubmit={like}>
                     <button className={style.details__like}>
@@ -196,7 +196,7 @@ const ProjectDetail = () => {
                   </ul>
                 </div>
               </div>
-              <div className={style.details__join__buttons}>
+              <div className={uiStore.currentUser.admin === false ? (style.details__join__buttons):("hidden")}>
                 <Link className={`${style.details__rollen__benodigheden} ${style.details__geef}`} to={`${ROUTES.funding.to}${id}`}><span>Ik geef ...</span></Link>
                 <ParticipantList project={project} />
               </div>
@@ -207,7 +207,7 @@ const ProjectDetail = () => {
                 <h4 className={style.details__data__title}>Eigenaar</h4>
                 <p>{project.ownerName}</p>
               </div>
-              <div>
+              <div className={uiStore.currentUser.admin === false ? (style.admin__idden):("hidden")}>
                 <h4 className={style.details__data__title}>info</h4>
                 <div className={style.details__data__grid}>
                   <span className={style.details__info}><img className={style.details__counticon} src={usersIcon} alt="users icon"/> {project.participants.length}</span>

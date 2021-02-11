@@ -223,6 +223,7 @@ class ProjectService {
             }
 
             const comments = await this.getCommentByProjectId(project.data.id);
+            console.log(comments);
             //voor elk comment
             for (const comment of comments) {
               const commentObj = new Comment({
@@ -230,14 +231,16 @@ class ProjectService {
                 projectId: comment.data.projectId,
                 content: comment.data.content,
                 userId: comment.data.userId,
+                userName: comment.data.userName,
                 timestamp: comment.data.timestamp,
               });
               //update linken aan project
-              commentObj.linkProject(projectObj);
-              if (commentObj.userId !== user.id){
-                projectObj.linkComment(commentObj);
-              }else{
+              if (commentObj.userId === projectObj.ownerId){
                 projectObj.linkUpdate(commentObj);
+                commentObj.linkProjectUpdate(projectObj);
+              }else{
+                projectObj.linkComment(commentObj);
+                commentObj.linkProjectComment(projectObj);
               }
             }
             //functie zodat de projecten worden terugestuurd
@@ -376,7 +379,7 @@ class ProjectService {
   addOwnerToProject = async (user, id) => {
     const object = await client.query(
       q.Get(
-        q.Match(q.Index('users_by_id'), user)
+        q.Match(q.Index('user_by_id'), user)
       )
     );
     const ref = object.ref.id;

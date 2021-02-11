@@ -69,12 +69,12 @@ class Project {
 
   linkComment(comment) {
     !this.comments.includes(comment) && this.comments.push(comment);
-    !comment.projects.includes(comment) && comment.linkProject(this);
+    !comment.projects.includes(comment) && comment.linkProjectComment(this);
   }
 
   linkUpdate(comment) {
     !this.updates.includes(comment) && this.updates.push(comment);
-    !comment.projects.includes(comment) && comment.linkProject(this);
+    !comment.projects.includes(comment) && comment.linkProjectUpdate(this);
   }
 
   linkFunding(funding) {

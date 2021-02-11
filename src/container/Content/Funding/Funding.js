@@ -63,7 +63,7 @@
               <div className={style.funding__item} key={funding.id}>
                 <p className={style.funding__item__text}><span className={style.funding__item__num}>#{index +1}</span>{funding.product}</p>
                 <p className={style.funding__item__text}>{funding.aantal}</p>
-                <input type="number" max={9} min={0} onChange={e => change({amount: e.target.value, product: funding})}></input>
+                <input type="number" min={0} onChange={e => change({amount: e.target.value, product: funding})}></input>
               </div>
           ))}
         </div>
