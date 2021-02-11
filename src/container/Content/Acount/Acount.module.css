@@ -89,7 +89,7 @@
 }
 
 .loading__gif {
-  width: 75%;
+  width: 45rem;
 }
 
 @media only screen and (max-width: 1025px) {
@@ -105,5 +105,9 @@
 
   .user__name {
     font-size: 2.4rem;
+  }
+
+  .loading__gif {
+    width: 35rem;
   }
 }

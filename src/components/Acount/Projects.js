@@ -1,5 +1,6 @@
 import React from "react";
 import style from "./Acount.module.css";
+import styles from "../Project/Project.module.css";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../consts";
 import icon from "./duim.svg";
@@ -34,10 +35,10 @@ const Projects = ({ project, owner }) => {
           <div>
             <div style={Image} className={style.proj__img}>
               <div className={style.proj__img__box}>
-                <div>
+                <div className={styles.proj__users__data}>
                   <img src={owner.avatar} width="20" alt="avatar van owner" />
-                  <span>{project.coOwners.length}</span>
-                  <span>{project.participants.length - project.coOwners.length - 1}</span>
+                  <span className={styles.proj__owners}>+{project.coOwners.length}</span>
+                  <span className={styles.proj__user}>+{project.participants.length}</span>
                 </div>
                 {uiStore.currentUser.id === project.ownerId ? (
                   <div className={style.proj__detail__buttons}>
