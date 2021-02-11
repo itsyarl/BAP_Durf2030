@@ -5,7 +5,7 @@ Voor een schoolopdracht werd van ons (Michiel Casteleyn, Conor Vanoystaeyen, Yar
 De motivatie voor dit project is zeker omdat de opdracht zo ruim is, en voor een heel aangename organisatie is.
 
 ## Build
-De build staat op Vercel gedeployed. Deze kan je vinden op volgende link:
+De build staat op Vercel gedeployed. Deze kan je vinden op volgende link: https://bap-durf2030.yarlvanonckelen.vercel.app/login
 ## Screenshots
 ![Image of project login](./public/login.png "Optional Title")
 ![Image of project home](./public/home.png "Optional Title")
