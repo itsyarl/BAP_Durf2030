@@ -20,10 +20,8 @@ const AddProject = () => {
   const [eventDate, setEventDate] = useState("");
   const [benodigdhedenInput, setBenodigdhedenInput] = useState({product: "", aantal: 0});
   const [rollenInput, setRollenInput] = useState({rol: "", aantal: 0});
-  const [coOwnerInput, setCoOwnerInput] = useState({});
   const [benodigdheden, setBenodigdheden] = useState([]);
   const [rollen, setRollen] = useState([]);
-  const [coOwners, setCoOwners] = useState([]);
   const [geo, setGeo] = useState({lat: 50.82803, lng: 3.26487});
 
   const { projectStore, uiStore, rolStore, fundingStore } = useStores();
@@ -48,28 +46,12 @@ const AddProject = () => {
     }
   }
 
-  const appendCoOwner = () => {
-    if (coOwnerInput !== "") {
-      setCoOwnerInput("");
-      setCoOwners(coOwners.concat(coOwnerInput));
-    }
-  }
-
   const deleteRol = (rol) => {
     const array = [...rollen]
     const index = array.indexOf(rol);
     if (index > -1) {
       array.splice(index, 1);
       setRollen(array);
-    }
-  }
-
-  const deleteCoOwner = (participant) => {
-    const array = [...coOwners]
-    const index = array.indexOf(participant);
-    if (index > -1) {
-      array.splice(index, 1);
-      setCoOwners(array);
     }
   }
 
@@ -122,7 +104,7 @@ const AddProject = () => {
       location,
       image,
       geo,
-      coOwners
+      coOwners: []
     });
 
     rollen.map(async rol => {
