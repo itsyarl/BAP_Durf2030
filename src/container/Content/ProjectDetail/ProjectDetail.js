@@ -4,6 +4,7 @@ import { Image } from 'cloudinary-react'
 import { useStores } from "../../../hooks/useStores";
 import ParticipantList from "../../../components/ParticipantList/ParticipantList";
 import style from "./ProjectDetail.module.css";
+import styles from "../../../styles/animatie.module.css";
 import { useObserver } from "mobx-react-lite";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../../consts";
@@ -52,9 +53,9 @@ const ProjectDetail = () => {
         <h2 className="hidden">details project</h2>
         <article>
           <h3 className="hidden">details</h3>
-          <Link className={style.details__link} to={ROUTES.home}>
-            <div className={style.driehoek}></div>
-            <p className={style.details__link__tekst}>Terug naar projecten</p>
+          <Link className={styles.details__link} to={ROUTES.home}>
+            <div className={styles.driehoek}></div>
+            <p className={styles.details__link__tekst}>Terug naar projecten</p>
           </Link>
 
           <h4 className={style.details__title}>{project.title}</h4>

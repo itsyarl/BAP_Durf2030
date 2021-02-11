@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { ROUTES } from "../../../consts";
 import { useStores } from "../../../hooks/useStores";
 import style from "./DataProject.module.css";
+import styles from "../../../styles/animatie.module.css";
 import likes from "./likes.svg";
 import users from "./users.svg";
 import bericht from "./bericht.svg";
@@ -56,9 +57,9 @@ const DataProject = () => {
   return useObserver(() => (
     <section className={style.grid}>
       <div>
-        <Link className={style.details__link} to={`${ROUTES.projectDetail.to}${project.id}`}>
-          <div className={style.driehoek}></div>
-          <p className={style.details__link__tekst}>Terug naar project</p>
+        <Link className={styles.details__link} to={`${ROUTES.projectDetail.to}${project.id}`}>
+          <div className={styles.driehoek}></div>
+          <p className={styles.details__link__tekst}>Terug naar project</p>
         </Link>
 
         <h2 className={style.title}>DataProject</h2>
@@ -87,7 +88,7 @@ const DataProject = () => {
             <ul className={style.funding__list}>
               <li className={`${style.funding__list__item} ${style.funding__item__bottom}`}>
                 <p>wat</p>
-                <p className={style.funding__list__item__center}>Aantal x gefund</p>
+                <p className={style.funding__list__item__center}>Aantal</p>
                 <p className={style.funding__list__item__center}>Nog nodig</p>
                 {/* <p className={style.funding__list__item__center}>Datum</p> */}
                 <p className={style.funding__list__item__center}>Bedankt</p>

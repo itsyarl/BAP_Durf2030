@@ -102,7 +102,7 @@ const Acount = () => {
     ):(
       <section className={style.loading}>
         <h2 className="hidden">account</h2>
-        <img className={style.loading__gif} width="800"src={load} alt="rollen icon"/>
+        <img className={style.loading__gif} src={load} alt="rollen icon"/>
       </section>
     )
   );

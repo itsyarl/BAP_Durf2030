@@ -6,6 +6,8 @@ import ChatForm from "../../../components/ChatForm/ChatForm";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../../consts";
 import style from "./Messages.module.css";
+import styles from "../Acount/Acount.module.css";
+import animatie from "../../../styles/animatie.module.css";
 import load from "./Loadinggif.gif";
 
 const Messages = () => {
@@ -23,9 +25,9 @@ const Messages = () => {
       <section className={style.chat__grid}>
         <h2 className="hidden">chat</h2>
         <article className={style.chat__box}>
-          <Link className={style.details__link} to={ROUTES.chat}>
-            <div className={style.driehoek}></div>
-            <p className={style.details__link__tekst}>Terug naar chatgroepen</p>
+          <Link className={animatie.details__link} to={ROUTES.chat}>
+            <div className={animatie.driehoek}></div>
+            <p className={animatie.details__link__tekst}>Terug naar chatgroepen</p>
           </Link>
           <h3 className={style.messeage__title}>{project.title}</h3>
           <MessageList project={project}/>
@@ -52,7 +54,10 @@ const Messages = () => {
         </article>
       </section>
     ):(
-      <img width="800"src={load} alt="rollen icon"/>
+      <section className={styles.loading}>
+        <h2 className="hidden">account</h2>
+        <img className={styles.loading__gif} src={load} alt="rollen icon"/>
+      </section>
     )
   );
 };

@@ -31,8 +31,10 @@ const PopUp = ({project}) => {
         <div className={classSwitch(project.status)}></div>
       </div>
       <div className={style.info2}>
-        <img src={owner.avatar} width="20" alt="avatar van owner" />
-        <span>{project.coOwners.length}</span>
+        <div className={style.info2}>
+          <img src={owner.avatar} width="20" alt="avatar van owner" />
+          <span className={style.users__count}>+{project.coOwners.length}</span>
+        </div>
         <Link className={style.link} to={`${ROUTES.projectDetail.to}${project.id}`}>Meer details</Link>
       </div>
     </Popup>
